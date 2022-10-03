@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from './components/LoginSignup/Signup';
 import Login from './components/LoginSignup/Login';
+import Products from './components/Products';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           {/* <Route index element={<Signup />} /> */}
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/products" element={<Products />} />
       </Routes>
     </BrowserRouter>
   );
