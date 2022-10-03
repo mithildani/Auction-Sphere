@@ -8,5 +8,5 @@ setup(
     packages=find_packages(where='backend'),
     include_package_data=True,
     zip_safe=False,
-    install_requires=['Flask']
+    install_requires=['Flask','flask-cors']
 )
