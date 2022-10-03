@@ -1,3 +1,6 @@
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/kartikson1/Auction-Sphere)
+![GitHub forks](https://img.shields.io/github/forks/kartikson1/Auction-Sphere?style=social)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +71,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Group-3
+[Kartik Soni](https://github.com/kartikson1)
+
+[Nandini Mundra](https://github.com/nandinimundra00)
+
+[Palash Rathod](https://github.com/palash27)
+
+[Shreya Maheshwari](https://github.com/ShreyaMaheshwari)
+
+[Tanvi Sinha](https://github.com/tanvi9sinha)
