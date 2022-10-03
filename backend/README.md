@@ -1,16 +1,16 @@
 # Getting Started with Flask Locally
 
 ### Before we start the Python project, we will create a virtual environment
-python3 -m venv myproject
+`python3 -m venv myproject`
 
 ### Activate the virtual env
-myproject/bin/activate
+ `myproject/bin/activate`  
 
 ### Install flask
-pip install Flask
+`pip install Flask`
 
 ### To run project
-flask --app app run
+`flask --app app run`
 
 
 ### Reference-
