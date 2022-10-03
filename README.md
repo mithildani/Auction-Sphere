@@ -1,3 +1,6 @@
+https://img.shields.io/github/issues/kartikson1/Auction-Sphere
+https://img.shields.io/github/forks/kartikson1/Auction-Sphere
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
