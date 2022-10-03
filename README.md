@@ -1,6 +1,6 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/kartikson1/Auction-Sphere)
 ![GitHub forks](https://img.shields.io/github/forks/kartikson1/Auction-Sphere?style=social)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/kartikson1/Auction-Sphere)
+
 
 # Getting Started with Create React App
 
