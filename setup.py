@@ -1,4 +1,4 @@
-# this is executed when `pip install -e .` is run
+# this is executed when `pip3 install -e .` is run
 from setuptools import setup, find_packages
 
 setup(
