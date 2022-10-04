@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
+from sqlite3 import Error
 
 app = Flask(__name__)
 CORS(app)
