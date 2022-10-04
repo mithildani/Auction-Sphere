@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Navbar, Button } from "reactstrap";
-import Navv from "./Navv";
+import Navv from "../Navv";
 const Login = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
