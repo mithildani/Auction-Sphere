@@ -15,7 +15,6 @@ const Sell = () => {
   };
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
   });
   return (
     <div>
@@ -30,17 +29,6 @@ const Sell = () => {
             placeholder="Enter your registered email here"
             type="email"
             value={formData.email}
-            onChange={(e) => handleChange(e)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="Password">Password</Label>
-          <Input
-            id="Password"
-            name="password"
-            placeholder="password"
-            type="password"
-            value={formData.password}
             onChange={(e) => handleChange(e)}
           />
         </FormGroup>
