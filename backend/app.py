@@ -68,3 +68,29 @@ def login():
         else: 
             response["message"] = "Please create an account!"
     return jsonify(response)
+
+@app.route("/create-bid", methods=["POST"])
+def create_bid():
+    # Get relevant data
+    productId=request.get_json()['prodId']
+    email=request.get_json()['email']
+    amount=request.get_json()['bidAmount']
+
+    # create db connection
+    conn = create_connection(database)
+    c = conn.cursor()
+    # get initial price wanted by seller
+    select_query="SELECT initial_price FROM product WHERE prod_id='" + str(productId) + "';"
+    c.execute(select_query)
+    result = list(c.fetchall())
+    response = {}
+    #  if bid amount is less than price by seller then don't save in db
+    if (result[0][0]>(int)(amount)):
+        response["message"]= "Amount less than initial price"
+    else:
+        insert_query= "INSERT INTO bids(prod_id,email,bid_amount) VALUES ('" + str(productId) + "','" + str(email) + "','" + str(amount) +  "');"
+        c.execute(insert_query)
+        conn.commit()
+
+        response["message"]="Saved Bid"
+    return jsonify(response)
