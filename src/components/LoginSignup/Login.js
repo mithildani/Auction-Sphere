@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Navbar, Button } from "reactstrap";
+import axios from "axios";
 import Navv from "../Navv";
 import Footer from "../Footer";
+import { URL } from "../../global";
+
 /**
  * This component displays the Login Page
  */
@@ -9,9 +12,17 @@ const Login = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
+    try {
+      resposne = await axios.post(`${URL}/login`, formData);
+      console.log(response);
+      alert("Form submitted successfully I think");
+    } catch (e) {
+      alert("Something went wrong");
+      console.log(e);
+    }
     // Set local storage
     // if(api.response == success){
     //   localStorage.setItem("auth", true);
