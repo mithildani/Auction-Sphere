@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import About from "../About";
 import Navv from "../Navv";
+import Footer from "../Footer";
 const Signup = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -109,6 +110,7 @@ const Signup = () => {
       <div style={{ marginLeft: "1rem" }}>
         <About />
       </div>
+      <Footer />
     </div>
   );
 };

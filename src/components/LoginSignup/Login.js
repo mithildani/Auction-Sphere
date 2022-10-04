@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Navbar, Button } from "reactstrap";
 import Navv from "../Navv";
+import Footer from "../Footer";
 const Login = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -41,6 +42,7 @@ const Login = () => {
         </FormGroup>
         <Button>Submit</Button>
       </Form>
+      <Footer />
     </div>
   );
 };

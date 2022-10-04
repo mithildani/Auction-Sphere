@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "./Footer";
 import Navv from "./Navv";
 import ProductCard from "./ProductCard";
 
@@ -13,6 +14,7 @@ const Products = () => {
       {products.map((product) => (
         <ProductCard product={product} />
       ))}
+      <Footer />
     </>
   );
 };
