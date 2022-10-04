@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardImg,
@@ -30,7 +31,12 @@ const ProductCard = ({ product }) => {
         </CardBody>
         <Button
           color="warning"
-          style={{ width: "15%", marginLeft: "0.5rem", marginBottom: "0.5rem" }}
+          href="/details"
+          style={{
+            width: "15%",
+            marginLeft: "0.5rem",
+            marginBottom: "0.5rem",
+          }}
         >
           Details
         </Button>
