@@ -53,12 +53,19 @@ def signup():
     result = list(c.fetchall())
     response = {}
     if(result[0][0] == 0): 
-        query = "INSERT INTO users(first_name, last_name, email, contact_number, password) VALUES('" + str(firstName) + "','" + str(lastName) + "','" + str(email) + "','" + str(contact) + "','" + str(password) +"');"
+        query = "SELECT COUNT(*) FROM users WHERE contact_number='" + str(contact) + "';"
         c.execute(query)
-        conn.commit()
-        response["result"] = "Added successfully"
+        result = list(c.fetchall())
+
+        if(result[0][0] != 0): 
+            response["message"] = "An account with this contact already exists"
+        else:
+            query = "INSERT INTO users(first_name, last_name, email, contact_number, password) VALUES('" + str(firstName) + "','" + str(lastName) + "','" + str(email) + "','" + str(contact) + "','" + str(password) +"');"
+            c.execute(query)
+            conn.commit()
+            response["message"] = "Added successfully"
     else: 
-        response["result"] = "This email already exists"
+        response["message"] = "An account with this email already exists"
     return response
 
 @app.route("/login", methods=["POST"])
@@ -147,6 +154,54 @@ def create_product():
 
 
 
+    return response
+
+@app.route("/product/listAll", methods=["GET"])
+def get_all_products(): 
+    query = "SELECT * FROM product ORDER BY date DESC"
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {"result": result}
+    return(response)
+
+@app.route("/product/getDetails", methods=["POST"])
+def get_product_details():
+    productID = request.get_json()['productID']
+    
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    # gets product details
+    query = "SELECT * FROM product WHERE prod_id=" + str(productID) + ";"
+    c.execute(query)
+    result = list(c.fetchall())
+
+    # get highest 10 bids 
+    query = "SELECT first_name, last_name, (SELECT bid_amount FROM bids WHERE prod_id=" + str(productID) + " AND bids.email = users.email ORDER BY bid_amount DESC LIMIT 10) bid_amount FROM users ORDER BY bid_amount DESC;"
+    c.execute(query)
+    topbids = list(c.fetchall())
+    
+    response = {"product": result, "bids": topbids}
+    return response
+
+@app.route("/product/update", methods=["POST"])
+def update_product_details():
+    productId = request.get_json()['productID']
+    productName = request.get_json()['productName']
+    initialPrice = request.get_json()['initialPrice']
+    deadlineDate = request.get_json()['deadlineDate']
+    description = request.get_json()['description']
+    increment = request.get_json()['increment']
+
+    query = "UPDATE product SET name='" + str(productName) + "',initial_price='" + str(initialPrice) + "',deadline_date='" + str(deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "' WHERE prod_id=" + str(productId) + ";"
+    print(query)
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    conn.commit()
+    response = {"result": "Updated product successfully"}
     return response
 
 database = r"auction.db"

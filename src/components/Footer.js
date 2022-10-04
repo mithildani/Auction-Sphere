@@ -10,7 +10,6 @@ const Footer = () => {
             Sinha, Kartik Soni, Palash Rathod, Shreya Maheshwari, and Nandini
             Mundra.
           </p>
-          {/* Test */}
         </div>
       </div>
     </div>
