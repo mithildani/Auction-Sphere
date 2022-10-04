@@ -13,7 +13,7 @@ import {
   DropdownItem,
   NavbarText,
 } from "reactstrap";
-import logo from "../assets/Logo2.png";
+import logo from "../assets/NavLogo.png";
 
 function Navv(args) {
   const [isOpen, setIsOpen] = useState(true);
@@ -28,7 +28,7 @@ function Navv(args) {
             src={logo}
             style={{
               height: 40,
-              width: 75,
+              width: 60,
             }}
           />
         </NavbarBrand>
