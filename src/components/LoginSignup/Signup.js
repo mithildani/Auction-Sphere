@@ -107,7 +107,7 @@ const Signup = () => {
         <Button>Submit</Button>
       </Form>
       <br />
-      <div style={{ marginLeft: "1rem" }}>
+      <div style={{ marginLeft: "0.5rem" }}>
         <About />
       </div>
       <Footer />
