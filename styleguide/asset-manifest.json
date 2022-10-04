@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/build/bundle.e0e9ecac.js",
+    "NavLogo.png": "/b5a884bb6b6d8ea72df2.png",
+    "Logo.png": "/2ba96109a0fe97f588de.png",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "build/bundle.e0e9ecac.js"
+  ]
+}
