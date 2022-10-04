@@ -33,7 +33,7 @@ const Signup = () => {
           <Input
             id="FirstName"
             name="fname"
-            placeholder="First Name"
+            placeholder="Your good name, sir?"
             type="text"
             value={formData.fname}
             onChange={(e) => handleChange(e)}
@@ -44,7 +44,7 @@ const Signup = () => {
           <Input
             id="LastName"
             name="lname"
-            placeholder="Last Name"
+            placeholder="Family name"
             type="text"
             value={formData.lname}
             onChange={(e) => handleChange(e)}
@@ -55,7 +55,7 @@ const Signup = () => {
           <Input
             id="Contact"
             name="contact"
-            placeholder="Contact"
+            placeholder="Just for our records, we're not asking you out *yet* :)"
             type="text"
             value={formData.contact}
             onChange={(e) => handleChange(e)}
@@ -66,7 +66,7 @@ const Signup = () => {
           <Input
             id="Email"
             name="email"
-            placeholder="Enter your email here"
+            placeholder="We solemnly swear we are up to no spamming :)"
             type="email"
             value={formData.email}
             onChange={(e) => handleChange(e)}
@@ -77,7 +77,7 @@ const Signup = () => {
           <Input
             id="Address"
             name="address"
-            placeholder="Address"
+            placeholder="We promise to not come over, atleast not unannounced :)"
             type="textarea"
             value={formData.address}
             onChange={(e) => handleChange(e)}
@@ -88,7 +88,7 @@ const Signup = () => {
           <Input
             id="Password"
             name="password"
-            placeholder="password"
+            placeholder="Type your crush's name here 👀"
             type="password"
             value={formData.password}
             onChange={(e) => handleChange(e)}
@@ -99,7 +99,7 @@ const Signup = () => {
           <Input
             id="ConfirmPassword"
             name="confirmPassword"
-            placeholder="Confirm your password"
+            placeholder="Confirm your crush ;)"
             type="password"
             value={formData.confirmPassword}
             onChange={(e) => handleChange(e)}

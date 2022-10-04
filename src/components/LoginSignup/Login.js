@@ -28,7 +28,7 @@ const Login = () => {
           <Input
             id="Email"
             name="email"
-            placeholder="Enter your registered email here"
+            placeholder="The email you registered with us"
             type="email"
             value={formData.email}
             onChange={(e) => handleChange(e)}
@@ -39,7 +39,7 @@ const Login = () => {
           <Input
             id="Password"
             name="password"
-            placeholder="password"
+            placeholder="Your password"
             type="password"
             value={formData.password}
             onChange={(e) => handleChange(e)}
