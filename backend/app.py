@@ -130,6 +130,27 @@ def create_product():
 
     return response
 
+@app.route("/product/listAll", methods=["GET"])
+def get_all_products(): 
+    query = "SELECT * FROM product ORDER BY date DESC"
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {"result": result}
+    return(response)
+
+@app.route("/product/getDetails", methods=["POST"])
+def get_product_details():
+    productID = request.get_json()['productID']
+    query = "SELECT * FROM product WHERE prod_id=" + str(productID) + ";"
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {"result": result}
+    return response 
+
 database = r"auction.db"
 # write queries for creating database here:
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
