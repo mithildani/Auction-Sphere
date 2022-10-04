@@ -103,6 +103,36 @@ def create_bid():
         response["message"]="Saved Bid"
     return jsonify(response)
 
+@app.route("/create-predict", methods=["POST"])
+def create_product():
+    #Get all the product details
+    productId = request.get_json()['prod_id']
+    productName = request.get_json()['name']
+    sellerEmail = request.get_json()['seller_email']
+    intialPrice = request.get_json()['initial_price']
+    date = request.get_json()['date']
+    increment = request.get_json()['increment']
+    deadlineDate = request.get_json()['deadline_date']
+    description = request.get_json()['description']
+    
+    conn = create_connection(database)
+    c = conn.cursor()
+    
+    #check if product is already there
+    query = "SELECT COUNT(*) FROM product WHERE productId ='" + str(productId) + "';"
+    c.execute(query)
+    
+    result = list(c.fetchall())
+    response = {}
+    if(result[0][0] == 0): 
+        query = "INSERT INTO product(prod_id, name, seller_email, initial_price, date, increment, deadline_date, description) VALUES('" + str(productId) + "','" + str(productName) + "','" + str(sellerEmail) + "','" + str(initialPrice) + "','" + str(date) + "','" + str(increment) + "','" + str(deadlineDate) + "','" + str(description) + "');"
+        c.execute(query)
+        conn.commit()
+        response["result"] = "Added product successfully"
+    else:
+        response["result"] = "This product already exists"
+    return response
+
 database = r"auction.db"
 #write queries for creating database here:
 create_users_table = """CREATE TABLE users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
