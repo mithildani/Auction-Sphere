@@ -2,17 +2,31 @@
 ![GitHub forks](https://img.shields.io/github/forks/kartikson1/Auction-Sphere?style=social)
 
 # Auction-Sphere
+
 Repository for CSC 510 Software Engineering project 1, created by Group 3: Shreya Maheshwari, Nandini Mundra, Palash Rathod, Tanvi Sinha, and Kartik Soni
 
 ## About Auction-Sphere
+
 Auction Sphere is an auctioning system where people can bid on exciting items and also put items up for sale. Every item has a bidding window, and the item goes to the highest bidder by the end of that window.
 
 On the homepage, people can view all the latest items being put up for sale and their respective highest bids. On the product details page, apart from product details, people can view the latest bids as well as the highest bid, and can also place a bid. It's upto the seller to decide the minimum price of the product, as well as bid increments.
 
 ## Tools used
+
 Code formatter: Prettier
 Tech stack: React.js, Flask, SQLite
 
+## Group-3
+
+[Kartik Soni](https://github.com/kartikson1)
+
+[Nandini Mundra](https://github.com/nandinimundra00)
+
+[Palash Rathod](https://github.com/palash27)
+
+[Shreya Maheshwari](https://github.com/ShreyaMaheshwari)
+
+[Tanvi Sinha](https://github.com/tanvi9sinha)
 
 # Getting Started with Create React App
 
@@ -84,14 +98,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-## Group-3
-[Kartik Soni](https://github.com/kartikson1)
-
-[Nandini Mundra](https://github.com/nandinimundra00)
-
-[Palash Rathod](https://github.com/palash27)
-
-[Shreya Maheshwari](https://github.com/ShreyaMaheshwari)
-
-[Tanvi Sinha](https://github.com/tanvi9sinha)
