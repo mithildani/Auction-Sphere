@@ -6,6 +6,7 @@ import Login from "./components/LoginSignup/Login";
 import Products from "./components/Products";
 import Sell from "./components/Sell";
 import ProductDetails from "./components/ProductDetails";
+import AddBid from "./components/AddBid";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/sell" element={<Sell />} />
         <Route path="/details/:id" element={<ProductDetails />} />
+        <Route path="/bid" element={<AddBid />} />
       </Routes>
     </BrowserRouter>
   );
