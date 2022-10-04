@@ -4,6 +4,7 @@ import axios from "axios";
 import Navv from "../Navv";
 import Footer from "../Footer";
 import { URL } from "../../global";
+import { useNavigate } from "react-router-dom";
 
 /**
  * This component displays the Login Page
@@ -12,22 +13,25 @@ const Login = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
+    let response;
     try {
-      let response = await axios.post(`${URL}/login`, formData);
+      response = await axios.post(`${URL}/login`, formData);
       console.log(response);
       alert("Form submitted successfully I think");
+      // Set local storage
+      if (response.data.message === "Logged in successfully") {
+        localStorage.setItem("auth", "true");
+        localStorage.setItem("email", formData.email);
+        navigate("/products");
+      }
     } catch (e) {
       alert("Something went wrong");
       console.log(e);
     }
-    // Set local storage
-    // if(api.response == success){
-    //   localStorage.setItem("auth", true);
-    //   localStorage.setItem("email", formData.email);
-    // }
   };
   const [formData, setFormData] = useState({
     email: "",
