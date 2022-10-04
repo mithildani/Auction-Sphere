@@ -113,7 +113,7 @@ def create_bid():
     response = {}
 
     #  if bid amount is less than price by seller then don't save in db
-    if (result[0][0]>(int)(amount)):
+    if (result[0][0]>(float)(amount)):
         response["message"]= "Amount less than initial price"
     else:
         currentTime= int(datetime.utcnow().timestamp())
