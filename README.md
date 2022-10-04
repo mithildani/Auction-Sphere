@@ -1,5 +1,6 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/kartikson1/Auction-Sphere)
 ![GitHub forks](https://img.shields.io/github/forks/kartikson1/Auction-Sphere?style=social)
+[![DOI](https://zenodo.org/badge/545100230.svg)](https://zenodo.org/badge/latestdoi/545100230)
 
 # Auction-Sphere
 
