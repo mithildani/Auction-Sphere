@@ -9,9 +9,11 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
-    //Set local storage
-    // if(api.response == success)
+    // Set local storage
+    // if(api.response == success){
     //   localStorage.setItem("auth", true);
+    //   localStorage.setItem("email", formData.email);
+    // }
   };
   const [formData, setFormData] = useState({
     email: "",

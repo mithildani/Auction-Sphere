@@ -43,7 +43,7 @@ function Navv(args) {
             <NavItem>
               <NavLink href="/products">Products</NavLink>
             </NavItem>
-            {/* {localStorage.getItem('auth') === 'true' ? (<></>) : (
+            {/* {localStorage.getItem('auth') === true ? (<></>) : (
               <>
               <NavItem>
               <NavLink href="/login">Login</NavLink>
