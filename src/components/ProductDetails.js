@@ -15,7 +15,7 @@ const ProductDetails = () => {
       <Button color="info" onClick={() => setShowAddBid(!showAddBid)}>
         {showAddBid ? <span>-</span> : <span>+</span>} Add a Bid
       </Button>
-      {showAddBid && <AddBid />}
+      {showAddBid && <AddBid productId={id} />}
       <Footer />
     </>
   );
