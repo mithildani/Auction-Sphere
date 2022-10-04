@@ -128,11 +128,11 @@ def create_bid():
 
 @app.route("/product/create", methods=["POST"])
 def create_product():
-    productName = request.get_json()['name']
-    sellerEmail = request.get_json()['seller_email']
-    initialPrice = request.get_json()['initial_price']
+    productName = request.get_json()['productName']
+    sellerEmail = request.get_json()['sellerEmail']
+    initialPrice = request.get_json()['initialPrice']
     increment = request.get_json()['increment']
-    deadlineDate = request.get_json()['deadline_date']
+    deadlineDate = request.get_json()['deadlineDate']
     description = request.get_json()['description']
     
     conn = create_connection(database)
@@ -148,11 +148,6 @@ def create_product():
     c.execute(query,('" + str(productName) + "','" + str(sellerEmail) + "',empPhoto," + str(initialPrice) + ",'" + str(currentTime) + "'," + str(increment) + ",'" + str(deadlineDate) + "','" + str(description) + "'))
     conn.commit()
     response["result"] = "Added product successfully"
-
-    query = "SELECT * FROM product WHERE prod_id = 1"
-    c.execute(query)
-
-
 
     return response
 
