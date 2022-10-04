@@ -15,6 +15,8 @@
 ### Install flask
 `pip install Flask`
 
+`pip install Flask-Cors`
+
 ### To run project
 `flask --app app run`
 
