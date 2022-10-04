@@ -115,7 +115,6 @@ def create_product():
     productName = request.get_json()['name']
     sellerEmail = request.get_json()['seller_email']
     initialPrice = request.get_json()['initial_price']
-    # date = request.get_json()['date']
     increment = request.get_json()['increment']
     deadlineDate = request.get_json()['deadline_date']
     description = request.get_json()['description']
@@ -123,8 +122,8 @@ def create_product():
     conn = create_connection(database)
     c = conn.cursor()
     response = {}
-    query = "INSERT INTO product( name, seller_email, initial_price, date, increment, deadline_date, description) VALUES('" + str(productName) + "','" + str(sellerEmail) + "'," + str(initialPrice) + ",'datetime()'," + str(increment) + ",'" + str(deadlineDate) + "','" + str(description) + "');"
-    print(query)
+    currentTime= int(datetime.utcnow().timestamp())
+    query = "INSERT INTO product( name, seller_email, initial_price, date, increment, deadline_date, description) VALUES('" + str(productName) + "','" + str(sellerEmail) + "'," + str(initialPrice) + ",'" + str(currentTime) + "'," + str(increment) + ",'" + str(deadlineDate) + "','" + str(description) + "');"
     c.execute(query)
     conn.commit()
     response["result"] = "Added product successfully"
