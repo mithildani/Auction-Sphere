@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
 from sqlite3 import Error
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -78,7 +79,7 @@ def login():
             response["message"] = "Please create an account!"
     return jsonify(response)
 
-@app.route("/create-bid", methods=["POST"])
+@app.route("/bid/create", methods=["POST"])
 def create_bid():
     # Get relevant data
     productId=request.get_json()['prodId']
@@ -88,16 +89,21 @@ def create_bid():
     # create db connection
     conn = create_connection(database)
     c = conn.cursor()
+
     # get initial price wanted by seller
     select_query="SELECT initial_price FROM product WHERE prod_id='" + str(productId) + "';"
     c.execute(select_query)
     result = list(c.fetchall())
     response = {}
+
     #  if bid amount is less than price by seller then don't save in db
     if (result[0][0]>(int)(amount)):
         response["message"]= "Amount less than initial price"
     else:
-        insert_query= "INSERT INTO bids(prod_id,email,bid_amount) VALUES ('" + str(productId) + "','" + str(email) + "','" + str(amount) +  "');"
+        currentTime= int(datetime.utcnow().timestamp())
+        # print(currentTime)
+        insert_query= "INSERT OR REPLACE INTO bids(prod_id,email,bid_amount,created_at) VALUES ('" + str(productId) + "','" + \
+                      str(email) + "','" + str(amount) + "','" + str(currentTime) + "');"
         c.execute(insert_query)
         conn.commit()
 
@@ -131,7 +137,7 @@ create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NU
 
 create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date INTEGER NOT NULL, increment REAL, deadline_date INTEGER NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
 
-create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
+create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
 
 create_table_claims = """CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NULL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));"""
 
