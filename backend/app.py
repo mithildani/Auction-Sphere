@@ -44,12 +44,19 @@ def signup():
     result = list(c.fetchall())
     response = {}
     if(result[0][0] == 0): 
-        query = "INSERT INTO users(first_name, last_name, email, contact_number, password) VALUES('" + str(firstName) + "','" + str(lastName) + "','" + str(email) + "','" + str(contact) + "','" + str(password) +"');"
+        query = "SELECT COUNT(*) FROM users WHERE contact_number='" + str(contact) + "';"
         c.execute(query)
-        conn.commit()
-        response["result"] = "Added successfully"
+        result = list(c.fetchall())
+
+        if(result[0][0] != 0): 
+            response["message"] = "An account with this contact already exists"
+        else:
+            query = "INSERT INTO users(first_name, last_name, email, contact_number, password) VALUES('" + str(firstName) + "','" + str(lastName) + "','" + str(email) + "','" + str(contact) + "','" + str(password) +"');"
+            c.execute(query)
+            conn.commit()
+            response["message"] = "Added successfully"
     else: 
-        response["result"] = "This email already exists"
+        response["message"] = "An account with this email already exists"
     return response
 
 @app.route("/login", methods=["POST"])
@@ -143,12 +150,21 @@ def get_all_products():
 @app.route("/product/getDetails", methods=["POST"])
 def get_product_details():
     productID = request.get_json()['productID']
-    query = "SELECT * FROM product WHERE prod_id=" + str(productID) + ";"
+    
     conn = create_connection(database)
     c = conn.cursor()
+
+    # gets product details
+    query = "SELECT * FROM product WHERE prod_id=" + str(productID) + ";"
     c.execute(query)
     result = list(c.fetchall())
-    response = {"result": result}
+
+    # get highest 10 bids 
+    query = "SELECT first_name, last_name, (SELECT bid_amount FROM bids WHERE prod_id=" + str(productID) + " AND bids.email = users.email ORDER BY bid_amount DESC LIMIT 10) bid_amount FROM users ORDER BY bid_amount DESC;"
+    c.execute(query)
+    topbids = list(c.fetchall())
+    
+    response = {"product": result, "bids": topbids}
     return response 
 
 database = r"auction.db"
