@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -10,6 +10,8 @@ import {
 } from "reactstrap";
 
 const ProductCard = ({ product }) => {
+  const [url, setUrl] = useState(`/details/${product.id}`);
+
   return (
     <>
       <Card className="my-2" style={{ width: "70%" }}>
@@ -31,7 +33,7 @@ const ProductCard = ({ product }) => {
         </CardBody>
         <Button
           color="warning"
-          href="/details"
+          href={url}
           style={{
             width: "15%",
             marginLeft: "0.5rem",
