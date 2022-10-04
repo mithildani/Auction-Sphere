@@ -13,6 +13,7 @@ import {
   DropdownItem,
   NavbarText,
 } from "reactstrap";
+import logo from "../assets/Logo2.png";
 
 function Navv(args) {
   const [isOpen, setIsOpen] = useState(true);
@@ -22,7 +23,15 @@ function Navv(args) {
   return (
     <div>
       <Navbar style={{ marginBottom: "1rem" }} color="light" light expand="md">
-        <NavbarBrand href="/">Auction Sphere</NavbarBrand>
+        <NavbarBrand href="/">
+          <img
+            src={logo}
+            style={{
+              height: 40,
+              width: 75,
+            }}
+          />
+        </NavbarBrand>
         <NavbarToggler
           onClick={() => {
             setIsOpen(!isOpen);
