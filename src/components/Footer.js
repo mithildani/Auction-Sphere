@@ -6,10 +6,11 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <p>
-            One stop portal for auctioning and selling items. Created by Kartik
-            Soni, Tanvi Sinha, Palash Rathod, Shreya Maheshwari, and Nandini
+            One stop portal for auctioning and selling items. Created by Tanvi
+            Sinha, Kartik Soni, Palash Rathod, Shreya Maheshwari, and Nandini
             Mundra.
           </p>
+          {/* Test */}
         </div>
       </div>
     </div>
