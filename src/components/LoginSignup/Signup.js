@@ -3,22 +3,34 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import About from "../About";
 import Navv from "../Navv";
 import Footer from "../Footer";
+import axios from "axios";
+import { URL } from "../../global";
+
 const Signup = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (formData.password !== formData.confirmPassword)
       alert("Passwords do not match");
-    else console.log(formData);
+    else {
+      console.log(formData);
+      try {
+        await axios.post(`${URL}/signup`, formData);
+        alert("Form submitted successfully I think");
+      } catch (e) {
+        alert("Something went wrong");
+        console.log(e);
+      }
+    }
   };
   const [formData, setFormData] = useState({
-    fname: "",
-    lname: "",
+    firstName: "",
+    lastName: "",
     contact: "",
     email: "",
-    address: "",
+    // address: "",
     password: "",
     confirmPassword: "",
   });
@@ -32,10 +44,10 @@ const Signup = () => {
           <Label for="FirstName">First Name</Label>
           <Input
             id="FirstName"
-            name="fname"
+            name="firstName"
             placeholder="Your good name, sir?"
             type="text"
-            value={formData.fname}
+            value={formData.firstName}
             onChange={(e) => handleChange(e)}
           />
         </FormGroup>
@@ -43,10 +55,10 @@ const Signup = () => {
           <Label for="LastName">Last Name</Label>
           <Input
             id="LastName"
-            name="lname"
+            name="lastName"
             placeholder="Family name"
             type="text"
-            value={formData.lname}
+            value={formData.lastName}
             onChange={(e) => handleChange(e)}
           />
         </FormGroup>
@@ -72,7 +84,7 @@ const Signup = () => {
             onChange={(e) => handleChange(e)}
           />
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Label for="Address">Address</Label>
           <Input
             id="Address"
@@ -82,7 +94,7 @@ const Signup = () => {
             value={formData.address}
             onChange={(e) => handleChange(e)}
           />
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
           <Label for="Password">Password</Label>
           <Input
