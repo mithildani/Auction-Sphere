@@ -11,7 +11,7 @@ const Signup = () => {
     event.preventDefault();
     if (formData.password !== formData.confirmPassword)
       alert("Passwords do not match");
-    console.log(formData);
+    else console.log(formData);
   };
   const [formData, setFormData] = useState({
     fname: "",
@@ -25,7 +25,7 @@ const Signup = () => {
   return (
     <div>
       <Navv />
-      Signup
+      <h3>Sign up and bid away!</h3>
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="FirstName">First Name</Label>
@@ -104,7 +104,7 @@ const Signup = () => {
             onChange={(e) => handleChange(e)}
           />
         </FormGroup>
-        <Button>Submit</Button>
+        <Button color="primary">Submit</Button>
       </Form>
       <br />
       <div style={{ marginLeft: "0.5rem" }}>

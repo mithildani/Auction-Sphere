@@ -9,6 +9,9 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
+    //Set local storage
+    // if(api.response == success)
+    //   localStorage.setItem("auth", true);
   };
   const [formData, setFormData] = useState({
     email: "",
@@ -40,7 +43,7 @@ const Login = () => {
             onChange={(e) => handleChange(e)}
           />
         </FormGroup>
-        <Button>Submit</Button>
+        <Button color="primary">Submit</Button>
       </Form>
       <Footer />
     </div>

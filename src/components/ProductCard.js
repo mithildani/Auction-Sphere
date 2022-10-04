@@ -1,5 +1,12 @@
 import React from "react";
-import { Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
+import {
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardText,
+  Button,
+} from "reactstrap";
 
 const ProductCard = ({ product }) => {
   return (
@@ -21,6 +28,12 @@ const ProductCard = ({ product }) => {
             <small className="text-muted">id = {product.id}</small>
           </CardText>
         </CardBody>
+        <Button
+          color="warning"
+          style={{ width: "15%", marginLeft: "0.5rem", marginBottom: "0.5rem" }}
+        >
+          Details
+        </Button>
       </Card>
     </>
   );
