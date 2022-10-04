@@ -10,6 +10,14 @@ def create_connection(db_file):
   conn = sqlite3.connect(db_file)
   return conn
 
+def create_table(conn, create_table_sql):
+    try:
+        c = conn.cursor()
+        c.execute(create_table_sql)
+        conn.commit()
+    except Error as e:
+        print(e)
+
 database = r"auction.db"
 
 @app.route("/")
@@ -94,3 +102,23 @@ def create_bid():
 
         response["message"]="Saved Bid"
     return jsonify(response)
+
+database = r"auction.db"
+#write queries for creating database here:
+create_users_table = """CREATE TABLE users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
+
+create_product_table = """CREATE TABLE product(prod_id INTEGER PRIMARY KEY, name TEXT NOT NULL, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date INTEGER NOT NULL, increment REAL, deadline_date INTEGER NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
+
+create_bids_table = """CREATE TABLE bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id) PRIMARY KEY(prod_id, email);"""
+
+create_table_claims = """CREATE TABLE claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NUL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));"""
+
+conn = create_connection(database)
+if conn is not None:
+    create_table(conn, create_users_table)
+    create_table(conn, create_product_table)
+    create_table(conn, create_bids_table)
+    create_table(conn, create_table_claims)
+else:
+    print("Error! Cannot create the database connection")
+
