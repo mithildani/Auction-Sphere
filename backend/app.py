@@ -200,7 +200,30 @@ def update_product_details():
     c = conn.cursor()
     c.execute(query)
     conn.commit()
-    response = {"result": "Updated product successfully"}
+    response = {"message": "Updated product successfully"}
+    return response
+
+@app.route("/getLatestProducts", methods=["GET"])
+def get_landing_page(): 
+    response = {}
+    #query = "SELECT first_name, last_name, (SELECT MAX(bid_amount), (SELECT prod_id FROM product WHERE bids.prod_id = product.prod_id ORDER BY date DESC LIMIT 10) FROM bids WHERE bids.email = users.email) FROM users"
+    query = "SELECT * FROM product ORDER BY date DESC LIMIT 10;"
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    products = list(c.fetchall())
+
+    highestBids = []
+    names = []
+    for product in products: 
+        query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
+        c.execute(query)
+        result = list(c.fetchall()[0])
+        highestBids.append(result[1])
+        query = "SELECT first_name, last_name FROM users WHERE email='" + str(result[0]) +"';"
+        c.execute(query)
+        names.append(list(c.fetchall())[0])
+    response = {"products": products, "maximumBids": highestBids, "names": names}
     return response
 
 database = r"auction.db"
@@ -220,8 +243,6 @@ if conn is not None:
     create_table(conn, create_table_claims)
 else:
     print("Error! Cannot create the database connection")
-
-
 
 if __name__ == "__main__":
   app.debug = True
