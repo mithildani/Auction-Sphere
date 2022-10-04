@@ -15,25 +15,41 @@ const toBase64 = (file) =>
 
     reader.readAsDataURL(file);
   });
+
 const Sell = () => {
+  const [encodedImages, setEncodedImages] = useState([]);
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    //formData.email = localStorage.getItem('email');
+    formData.encodedImages = encodedImages;
     console.log(formData);
     //Set local storage
     // if(api.response == success)
     //   localStorage.setItem("auth", true);
   };
+
   const [formData, setFormData] = useState({
-    email: "",
+    pname: "",
+    initialPrice: "",
+    increment: "",
+    datePosted: Date.now(),
+    description: "",
+    biddingTime: "",
   });
+
   const handleFileInputChange = useCallback(async (acceptedFiles) => {
     for (let i = 0; i < acceptedFiles.target.files.length; i++) {
       let file = acceptedFiles.target.files[i];
       console.log(file);
       let base64EncodedImage = await toBase64(file);
+      setEncodedImages((encodedImages) => [
+        ...encodedImages,
+        base64EncodedImage,
+      ]);
       console.log("Base64: " + base64EncodedImage);
     }
   }, []);
