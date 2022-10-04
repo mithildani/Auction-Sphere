@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
+import About from "../About";
 import Navv from "../Navv";
 const Signup = () => {
   return (
@@ -26,6 +27,10 @@ const Signup = () => {
           />
         </FormGroup>
       </Form>
+      <br />
+      <div style={{ marginLeft: "1rem" }}>
+        <About />
+      </div>
     </div>
   );
 };
