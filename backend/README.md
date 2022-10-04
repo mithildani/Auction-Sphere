@@ -1,10 +1,10 @@
 # Getting Started with Flask Locally
 
 ### Before we start the Python project, we will create a virtual environment
-`python3 -m venv myproject`
+`python3 -m venv venv`
 
 ### Activate the virtual env
- `myproject/bin/activate`  
+ `venv/bin/activate`  
  
  **if permission denied error, try the below** 
  
