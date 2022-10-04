@@ -7,7 +7,7 @@ Repository for CSC 510 Software Engineering project 1, created by Group 3: Shrey
 
 ## About Auction-Sphere
 
-<img src="./src/assets/Logo.png" style="height:150; width:300;">
+<img src="./src/assets/Logo.png">
 
 Auction Sphere is an auctioning system where people can bid on exciting items and also put items up for sale. Every item has a bidding window, and the item goes to the highest bidder by the end of that window.
 
