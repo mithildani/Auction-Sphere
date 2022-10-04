@@ -17,7 +17,7 @@ const toBase64 = (file) =>
   });
 
 const Sell = () => {
-  const [encodedImages, setEncodedImages] = useState([]);
+  const [encodedImages, setEncodedImages] = useState();
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -46,10 +46,7 @@ const Sell = () => {
       let file = acceptedFiles.target.files[i];
       console.log(file);
       let base64EncodedImage = await toBase64(file);
-      setEncodedImages((encodedImages) => [
-        ...encodedImages,
-        base64EncodedImage,
-      ]);
+      setEncodedImages(base64EncodedImage);
       console.log("Base64: " + base64EncodedImage);
     }
   }, []);
@@ -115,22 +112,13 @@ const Sell = () => {
           />
         </FormGroup>
         <FormGroup>
+          <Label>Upload Image of the product</Label>
           <Input
             type="file"
             name="file"
-            multiple={true}
             onChange={(e) => handleFileInputChange(e)}
           />
         </FormGroup>
-        {/* <Form onSubmit={handleSubmit}>
-          <Input
-            type="file"
-            name="file"
-            multiple={true}
-            onChange={(e) => handleFileInputChange(e)}
-          />
-        <Button color="primary">Submit</Button>
-      </Form> */}
         <Button color="primary">Submit</Button>
       </Form>
       <Footer />
