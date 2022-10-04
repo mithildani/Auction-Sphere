@@ -59,6 +59,9 @@ function Navv(args) {
             <NavItem>
               <NavLink href="/">Signup</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/sell">Sell</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
