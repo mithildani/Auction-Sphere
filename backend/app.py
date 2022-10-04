@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
 from sqlite3 import Error
-from datetime import datetime
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 CORS(app)
@@ -132,20 +132,24 @@ def create_product():
     sellerEmail = request.get_json()['sellerEmail']
     initialPrice = request.get_json()['initialPrice']
     increment = request.get_json()['increment']
-    deadlineDate = request.get_json()['deadlineDate']
+    # deadlineDate = request.get_json()['deadlineDate']
     description = request.get_json()['description']
     
     conn = create_connection(database)
     c = conn.cursor()
     response = {}
-    currentTime= int(datetime.utcnow().timestamp())
+    currentTime = int(datetime.utcnow().timestamp())
+    currentTime = datetime.fromtimestamp(currentTime)
+    deadlineDate = currentTime + timedelta(days = 7)
+    print(deadlineDate)
+
     print (os.getcwd()) 
     # os.path.expanduser('~')
     # # photo_loc = os.path.expanduser('~/Desktop/Sem 1/SE/project/Auction-Sphere/backend/photos/photo1.jpeg')
     photo_loc = 'photos/photo1.jpeg'
     empPhoto = convertToBinaryData(photo_loc)
     query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)"
-    c.execute(query,('" + str(productName) + "','" + str(sellerEmail) + "',empPhoto," + str(initialPrice) + ",'" + str(currentTime) + "'," + str(increment) + ",'" + str(deadlineDate) + "','" + str(description) + "'))
+    c.execute(query,('" + str(productName) + "','" + str(sellerEmail) + "',empPhoto," + str(initialPrice) + ",'" + str(currentTime) + "'," + str(increment) + ",deadlineDate,'" + str(description) + "'))
     conn.commit()
     response["result"] = "Added product successfully"
 
@@ -200,7 +204,6 @@ def update_product_details():
     return response
 
 database = r"auction.db"
-# write queries for creating database here:
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
 create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo BLOB, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date INTEGER NOT NULL, increment REAL, deadline_date INTEGER NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
