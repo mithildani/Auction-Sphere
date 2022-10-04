@@ -19,7 +19,6 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/sell" element={<Sell />} />
         <Route path="/details/:id" element={<ProductDetails />} />
-        <Route path="/bid" element={<AddBid />} />
       </Routes>
     </BrowserRouter>
   );

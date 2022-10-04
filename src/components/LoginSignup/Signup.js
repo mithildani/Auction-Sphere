@@ -25,6 +25,7 @@ const Signup = () => {
   return (
     <div>
       <Navv />
+      {/* {localStorage.getItem("auth") !== true && (form)} */}
       <h3>Sign up and bid away!</h3>
       <Form onSubmit={handleSubmit}>
         <FormGroup>
