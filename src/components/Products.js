@@ -5,8 +5,8 @@ import ProductCard from "./ProductCard";
 
 const Products = () => {
   let products = [
-    { id: 1, name: "prod1" },
-    { id: 2, name: "prod2" },
+    { id: 1, name: "prod1", description: "jhadsbfusjkan fksdufj,nsajfkjdsa" },
+    { id: 2, name: "prod2", description: "jhadsbfusjkan fksdufj,nsajfkjdsa" },
   ];
   return (
     <>
