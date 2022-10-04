@@ -16,7 +16,7 @@ const Login = () => {
     event.preventDefault();
     console.log(formData);
     try {
-      resposne = await axios.post(`${URL}/login`, formData);
+      let response = await axios.post(`${URL}/login`, formData);
       console.log(response);
       alert("Form submitted successfully I think");
     } catch (e) {

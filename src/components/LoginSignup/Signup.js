@@ -17,7 +17,7 @@ const Signup = () => {
     else {
       console.log(formData);
       try {
-        response = await axios.post(`${URL}/signup`, formData);
+        let response = await axios.post(`${URL}/signup`, formData);
         console.log(response);
         alert("Form submitted successfully I think");
       } catch (e) {
