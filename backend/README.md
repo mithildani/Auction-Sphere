@@ -5,6 +5,12 @@
 
 ### Activate the virtual env
  `myproject/bin/activate`  
+ 
+ **if permission denied error, try the below** 
+ 
+ `. venv/bin/activate`
+ or
+ `source venv/bin/activate`
 
 ### Install flask
 `pip install Flask`
