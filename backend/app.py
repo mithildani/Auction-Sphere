@@ -165,7 +165,25 @@ def get_product_details():
     topbids = list(c.fetchall())
     
     response = {"product": result, "bids": topbids}
-    return response 
+    return response
+
+@app.route("/product/update", methods=["POST"])
+def update_product_details():
+    productId = request.get_json()['productID']
+    productName = request.get_json()['productName']
+    initialPrice = request.get_json()['initialPrice']
+    deadlineDate = request.get_json()['deadlineDate']
+    description = request.get_json()['description']
+    increment = request.get_json()['increment']
+
+    query = "UPDATE product SET name='" + str(productName) + "',initial_price='" + str(initialPrice) + "',deadline_date='" + str(deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "' WHERE prod_id=" + str(productId) + ";"
+    print(query)
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    conn.commit()
+    response = {"result": "Updated product successfully"}
+    return response
 
 database = r"auction.db"
 # write queries for creating database here:
