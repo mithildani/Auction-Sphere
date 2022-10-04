@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
@@ -19,6 +20,14 @@ def create_table(conn, create_table_sql):
         conn.commit()
     except Error as e:
         print(e)
+
+def convertToBinaryData(filename):
+    # Convert digital data to binary format
+
+    print(filename)
+    with open(filename, 'rb') as file:
+        blobData = file.read()
+    return blobData
 
 database = r"auction.db"
 
@@ -123,10 +132,20 @@ def create_product():
     c = conn.cursor()
     response = {}
     currentTime= int(datetime.utcnow().timestamp())
-    query = "INSERT INTO product( name, seller_email, initial_price, date, increment, deadline_date, description) VALUES('" + str(productName) + "','" + str(sellerEmail) + "'," + str(initialPrice) + ",'" + str(currentTime) + "'," + str(increment) + ",'" + str(deadlineDate) + "','" + str(description) + "');"
-    c.execute(query)
+    print (os.getcwd()) 
+    # os.path.expanduser('~')
+    # # photo_loc = os.path.expanduser('~/Desktop/Sem 1/SE/project/Auction-Sphere/backend/photos/photo1.jpeg')
+    photo_loc = 'photos/photo1.jpeg'
+    empPhoto = convertToBinaryData(photo_loc)
+    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)"
+    c.execute(query,('" + str(productName) + "','" + str(sellerEmail) + "',empPhoto," + str(initialPrice) + ",'" + str(currentTime) + "'," + str(increment) + ",'" + str(deadlineDate) + "','" + str(description) + "'))
     conn.commit()
     response["result"] = "Added product successfully"
+
+    query = "SELECT * FROM product WHERE prod_id = 1"
+    c.execute(query)
+
+
 
     return response
 
@@ -134,7 +153,7 @@ database = r"auction.db"
 # write queries for creating database here:
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
-create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date INTEGER NOT NULL, increment REAL, deadline_date INTEGER NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
+create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo BLOB, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date INTEGER NOT NULL, increment REAL, deadline_date INTEGER NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
 
 create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
 
@@ -148,6 +167,8 @@ if conn is not None:
     create_table(conn, create_table_claims)
 else:
     print("Error! Cannot create the database connection")
+
+
 
 if __name__ == "__main__":
   app.debug = True
