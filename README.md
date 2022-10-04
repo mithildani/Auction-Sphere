@@ -3,6 +3,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/kartikson1/Auction-Sphere?style=social)
 [![DOI](https://zenodo.org/badge/545100230.svg)](https://zenodo.org/badge/latestdoi/545100230)
 [![GitHub contributors](https://img.shields.io/github/contributors/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
+[![GitHub last commit](https://img.shields.io/github/last-commit/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/commits/main)
 
 # Auction-Sphere
 
