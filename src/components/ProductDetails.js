@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Button } from "reactstrap";
+import axios from "axios";
+
 import AddBid from "./AddBid";
 import Footer from "./Footer";
 import Navv from "./Navv";
-import { Button } from "reactstrap";
+import { URL } from "../global";
 
 const ProductDetails = () => {
   let { id } = useParams();
   const [showAddBid, setShowAddBid] = useState(false);
+  const getProductDetails = async () => {
+    let data = await axios.get(`${URL}/product/getDetails`, { productID: id });
+    console.log(data);
+  };
+  useEffect(() => {
+    getProductDetails();
+  }, []);
   return (
     <>
       <Navv />
