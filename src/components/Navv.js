@@ -19,6 +19,10 @@ function Navv(args) {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggle = () => setIsOpen(!isOpen);
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
 
   return (
     <div>
@@ -43,25 +47,27 @@ function Navv(args) {
             <NavItem>
               <NavLink href="/products">Products</NavLink>
             </NavItem>
-            {/* {localStorage.getItem('auth') === true ? (<></>) : (
+            {localStorage.getItem("auth") === "true" ? (
               <>
-              <NavItem>
-              <NavLink href="/login">Login</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">Signup</NavLink>
-            </NavItem>
+                <NavItem>
+                  <NavLink href="/sell">Sell</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/" onClick={handleLogout}>
+                    Logout
+                  </NavLink>
+                </NavItem>
               </>
-            )} */}
-            <NavItem>
-              <NavLink href="/login">Login</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">Signup</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/sell">Sell</NavLink>
-            </NavItem>
+            ) : (
+              <>
+                <NavItem>
+                  <NavLink href="/login">Login</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href="/">Signup</NavLink>
+                </NavItem>
+              </>
+            )}
           </Nav>
         </Collapse>
       </Navbar>

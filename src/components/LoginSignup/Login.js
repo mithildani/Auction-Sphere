@@ -21,7 +21,7 @@ const Login = () => {
     try {
       response = await axios.post(`${URL}/login`, formData);
       console.log(response);
-      alert("Form submitted successfully I think");
+      alert("Login success!");
       // Set local storage
       if (response.data.message === "Logged in successfully") {
         localStorage.setItem("auth", "true");
