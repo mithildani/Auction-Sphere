@@ -21,12 +21,14 @@ const Login = () => {
     try {
       response = await axios.post(`${URL}/login`, formData);
       console.log(response);
-      alert("Login success!");
       // Set local storage
       if (response.data.message === "Logged in successfully") {
+        alert("Login success!");
         localStorage.setItem("auth", "true");
         localStorage.setItem("email", formData.email);
         navigate("/products");
+      } else {
+        alert("Invalid credentials!");
       }
     } catch (e) {
       alert("Something went wrong");
