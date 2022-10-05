@@ -2,6 +2,8 @@ import React, { useState, useCallback } from "react";
 import { Form, FormGroup, Label, Input, Navbar, Button } from "reactstrap";
 import Navv from "./Navv";
 import Footer from "./Footer";
+import { URL } from "../global";
+import axios from "axios";
 
 const toBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -22,18 +24,27 @@ const Sell = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    //formData.email = localStorage.getItem('email');
+    formData.sellerEmail = localStorage.getItem("email");
     formData.encodedImages = encodedImages;
     console.log(formData);
+    let response;
+    try {
+      response = await axios.post(`${URL}/product/create`, formData);
+      console.log("POST RESPONSE");
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+      alert("Something went wrong");
+    }
     //Set local storage
     // if(api.response == success)
     //   localStorage.setItem("auth", true);
   };
 
   const [formData, setFormData] = useState({
-    pname: "",
+    productName: "",
     initialPrice: "",
     increment: "",
     datePosted: Date.now(),
@@ -60,10 +71,10 @@ const Sell = () => {
           <Label for="ProductName">Product Name</Label>
           <Input
             id="ProductName"
-            name="pname"
+            name="productName"
             placeholder="Enter a cool name for your item here"
             type="text"
-            value={formData.pname}
+            value={formData.productName}
             onChange={(e) => handleChange(e)}
           />
         </FormGroup>
