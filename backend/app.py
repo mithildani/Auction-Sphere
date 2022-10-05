@@ -132,7 +132,7 @@ def create_product():
     sellerEmail = request.get_json()['sellerEmail']
     initialPrice = request.get_json()['initialPrice']
     increment = request.get_json()['increment']
-    # deadlineDate = request.get_json()['deadlineDate']
+    photo = request.get_json()['photo']
     description = request.get_json()['description']
     
     conn = create_connection(database)
@@ -143,13 +143,8 @@ def create_product():
     deadlineDate = currentTime + timedelta(days = 7)
     print(deadlineDate)
 
-    print (os.getcwd()) 
-    # os.path.expanduser('~')
-    # # photo_loc = os.path.expanduser('~/Desktop/Sem 1/SE/project/Auction-Sphere/backend/photos/photo1.jpeg')
-    photo_loc = 'photos/photo1.jpeg'
-    empPhoto = convertToBinaryData(photo_loc)
     query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)"
-    c.execute(query,('" + str(productName) + "','" + str(sellerEmail) + "',empPhoto," + str(initialPrice) + ",'" + str(currentTime) + "'," + str(increment) + ",deadlineDate,'" + str(description) + "'))
+    c.execute(query, (str(productName), str(sellerEmail), str(photo), initialPrice, currentTime, increment, deadlineDate, str(description)))
     conn.commit()
     response["result"] = "Added product successfully"
 
@@ -229,7 +224,7 @@ def get_landing_page():
 database = r"auction.db"
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
-create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo BLOB, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date INTEGER NOT NULL, increment REAL, deadline_date INTEGER NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
+create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
 
 create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
 
