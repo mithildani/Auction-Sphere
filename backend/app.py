@@ -173,7 +173,6 @@ def get_product_details():
     result = list(c.fetchall())
 
     # get highest 10 bids 
-    #query = "SELECT bid_amount FROM bids WHERE prod_id=" + str(productID) + " ORDER BY bid_amount DESC LIMIT 10;"
     query = "SELECT users.first_name, users.last_name, bids.bid_amount FROM users INNER JOIN bids ON bids.email = users.email WHERE bids.prod_id=" + str(productID) + " ORDER BY bid_amount DESC LIMIT 10;"
     c.execute(query)
     topbids = list(c.fetchall())
