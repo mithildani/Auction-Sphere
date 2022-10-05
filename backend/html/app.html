@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>app API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>app</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import os
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import sqlite3
+from sqlite3 import Error
+from datetime import datetime, timedelta
+
+app = Flask(__name__)
+CORS(app)
+
+def create_connection(db_file):
+  conn = None
+  conn = sqlite3.connect(db_file)
+  return conn
+
+def create_table(conn, create_table_sql):
+    try:
+        c = conn.cursor()
+        c.execute(create_table_sql)
+        conn.commit()
+    except Error as e:
+        print(e)
+
+def convertToBinaryData(filename):
+    # Convert digital data to binary format
+
+    print(filename)
+    with open(filename, &#39;rb&#39;) as file:
+        blobData = file.read()
+    return blobData
+
+database = r&#34;auction.db&#34;
+
+@app.route(&#34;/&#34;)
+def hello_world():
+    return &#34;&lt;p&gt;Hello, World!&lt;/p&gt;&#34;
+
+#API to retrieve sign-up details sent by the user
+@app.route(&#34;/signup&#34;, methods=[&#34;POST&#34;])
+def signup(): 
+    firstName = request.get_json()[&#39;firstName&#39;]
+    lastName = request.get_json()[&#39;lastName&#39;]
+    email = request.get_json()[&#39;email&#39;]
+    contact = request.get_json()[&#39;contact&#39;]
+    password = request.get_json()[&#39;password&#39;]
+
+    conn = create_connection(database)
+    c = conn.cursor()
+    
+    #check if email already exists 
+    query = &#34;SELECT COUNT(*) FROM users WHERE email=&#39;&#34; + str(email) + &#34;&#39;;&#34;
+    c.execute(query)
+
+    result = list(c.fetchall())
+    response = {}
+    if(result[0][0] == 0): 
+        query = &#34;SELECT COUNT(*) FROM users WHERE contact_number=&#39;&#34; + str(contact) + &#34;&#39;;&#34;
+        c.execute(query)
+        result = list(c.fetchall())
+
+        if(result[0][0] != 0): 
+            response[&#34;message&#34;] = &#34;An account with this contact already exists&#34;
+        else:
+            query = &#34;INSERT INTO users(first_name, last_name, email, contact_number, password) VALUES(&#39;&#34; + str(firstName) + &#34;&#39;,&#39;&#34; + str(lastName) + &#34;&#39;,&#39;&#34; + str(email) + &#34;&#39;,&#39;&#34; + str(contact) + &#34;&#39;,&#39;&#34; + str(password) +&#34;&#39;);&#34;
+            c.execute(query)
+            conn.commit()
+            response[&#34;message&#34;] = &#34;Added successfully&#34;
+    else: 
+        response[&#34;message&#34;] = &#34;An account with this email already exists&#34;
+    return response
+
+#API to be used while the user tries to login
+@app.route(&#34;/login&#34;, methods=[&#34;POST&#34;])
+def login(): 
+    email = request.get_json()[&#39;email&#39;]
+    password = request.get_json()[&#39;password&#39;]
+    
+    conn = create_connection(database)
+    c = conn.cursor()
+    
+    # check if email and password pair exists
+    query = &#34;SELECT * FROM users WHERE email=&#39;&#34; + str(email) + &#34;&#39; AND password=&#39;&#34; + str(password) + &#34;&#39;;&#34;
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {}
+
+    if(len(result) == 1): 
+        response[&#34;message&#34;] = &#34;Logged in successfully&#34;
+    else: 
+        # check if email exists, but password is incorrect
+        query = &#34;SELECT COUNT(*) FROM users WHERE email=&#39;&#34; + str(email) + &#34;&#39;;&#34;
+        c.execute(query)
+        result = list(c.fetchall())
+        if(result[0][0] == 1): 
+            response[&#34;message&#34;] = &#34;Invalid credentials!&#34;
+        else: 
+            response[&#34;message&#34;] = &#34;Please create an account!&#34;
+    return jsonify(response)
+
+
+@app.route(&#34;/bid/create&#34;, methods=[&#34;POST&#34;])
+def create_bid():
+    # Get relevant data
+    productId=request.get_json()[&#39;prodId&#39;]
+    email=request.get_json()[&#39;email&#39;]
+    amount=request.get_json()[&#39;bidAmount&#39;]
+
+    # create db connection
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    # get initial price wanted by seller
+    select_query=&#34;SELECT initial_price FROM product WHERE prod_id=&#39;&#34; + str(productId) + &#34;&#39;;&#34;
+    c.execute(select_query)
+    result = list(c.fetchall())
+    response = {}
+
+    #  if bid amount is less than price by seller then don&#39;t save in db
+    if (result[0][0]&gt;(float)(amount)):
+        response[&#34;message&#34;]= &#34;Amount less than initial price&#34;
+    else:
+        currentTime= int(datetime.utcnow().timestamp())
+        # print(currentTime)
+        insert_query= &#34;INSERT OR REPLACE INTO bids(prod_id,email,bid_amount,created_at) VALUES (&#39;&#34; + str(productId) + &#34;&#39;,&#39;&#34; + \
+                      str(email) + &#34;&#39;,&#39;&#34; + str(amount) + &#34;&#39;,&#39;&#34; + str(currentTime) + &#34;&#39;);&#34;
+        c.execute(insert_query)
+        conn.commit()
+
+        response[&#34;message&#34;]=&#34;Saved Bid&#34;
+    return jsonify(response)
+
+&#34;&#34;&#34;API to add a new product. This takes the parameters like productName, sellerEmail, initialPrice, increment, photo(encoded), and description.&#34;&#34;&#34;
+@app.route(&#34;/product/create&#34;, methods=[&#34;POST&#34;])
+def create_product():
+    productName = request.get_json()[&#39;productName&#39;]
+    sellerEmail = request.get_json()[&#39;sellerEmail&#39;]
+    initialPrice = request.get_json()[&#39;initialPrice&#39;]
+    increment = request.get_json()[&#39;increment&#39;]
+    photo = request.get_json()[&#39;photo&#39;]
+    description = request.get_json()[&#39;description&#39;]
+    
+    conn = create_connection(database)
+    c = conn.cursor()
+    response = {}
+    currentTime = int(datetime.utcnow().timestamp())
+    currentTime = datetime.fromtimestamp(currentTime)
+    deadlineDate = currentTime + timedelta(days = 7)
+    print(deadlineDate)
+
+    query = &#34;INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)&#34;
+    c.execute(query, (str(productName), str(sellerEmail), str(photo), initialPrice, currentTime, increment, deadlineDate, str(description)))
+    conn.commit()
+    response[&#34;result&#34;] = &#34;Added product successfully&#34;
+
+    return response
+
+@app.route(&#34;/product/listAll&#34;, methods=[&#34;GET&#34;])
+def get_all_products(): 
+    query = &#34;SELECT * FROM product ORDER BY date DESC&#34;
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {&#34;result&#34;: result}
+    return(response)
+
+@app.route(&#34;/product/getDetails&#34;, methods=[&#34;POST&#34;])
+def get_product_details():
+    productID = request.get_json()[&#39;productID&#39;]
+    
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    # gets product details
+    query = &#34;SELECT * FROM product WHERE prod_id=&#34; + str(productID) + &#34;;&#34;
+    c.execute(query)
+    result = list(c.fetchall())
+
+    # get highest 10 bids 
+    query = &#34;SELECT users.first_name, users.last_name, bids.bid_amount FROM users INNER JOIN bids ON bids.email = users.email WHERE bids.prod_id=&#34; + str(productID) + &#34; ORDER BY bid_amount DESC LIMIT 10;&#34;
+    c.execute(query)
+    topbids = list(c.fetchall())
+    
+    response = {&#34;product&#34;: result, &#34;bids&#34;: topbids}
+    return response
+
+@app.route(&#34;/product/update&#34;, methods=[&#34;POST&#34;])
+def update_product_details():
+    productId = request.get_json()[&#39;productID&#39;]
+    productName = request.get_json()[&#39;productName&#39;]
+    initialPrice = request.get_json()[&#39;initialPrice&#39;]
+    deadlineDate = request.get_json()[&#39;deadlineDate&#39;]
+    description = request.get_json()[&#39;description&#39;]
+    increment = request.get_json()[&#39;increment&#39;]
+
+    query = &#34;UPDATE product SET name=&#39;&#34; + str(productName) + &#34;&#39;,initial_price=&#39;&#34; + str(initialPrice) + &#34;&#39;,deadline_date=&#39;&#34; + str(deadlineDate) + &#34;&#39;,increment=&#39;&#34; + str(increment) + &#34;&#39;,description=&#39;&#34; + str(description) + &#34;&#39; WHERE prod_id=&#34; + str(productId) + &#34;;&#34;
+    print(query)
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    conn.commit()
+    response = {&#34;message&#34;: &#34;Updated product successfully&#34;}
+    return response
+
+@app.route(&#34;/getLatestProducts&#34;, methods=[&#34;GET&#34;])
+def get_landing_page(): 
+    response = {}
+    query = &#34;SELECT * FROM product ORDER BY date DESC LIMIT 10;&#34;
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    products = list(c.fetchall())
+    highestBids = []
+    names = []
+    for product in products: 
+        query = &#34;SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=&#34; + str(product[0]) +&#34;;&#34;
+        c.execute(query)
+        result = list(c.fetchall())
+        if(result[0][0] != None): 
+            result = result[0]
+            highestBids.append(result[1])
+            query = &#34;SELECT first_name, last_name FROM users WHERE email=&#39;&#34; + str(result[0]) +&#34;&#39;;&#34;
+            c.execute(query)
+            names.append(list(c.fetchall())[0])
+        else: 
+            highestBids.append(-1)
+            names.append(&#34;N/A&#34;)
+    response = {&#34;products&#34;: products, &#34;maximumBids&#34;: highestBids, &#34;names&#34;: names}
+    return response
+
+database = r&#34;auction.db&#34;
+create_users_table = &#34;&#34;&#34;CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);&#34;&#34;&#34;
+
+create_product_table = &#34;&#34;&#34;CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));&#34;&#34;&#34;
+
+create_bids_table = &#34;&#34;&#34;CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));&#34;&#34;&#34;
+
+create_table_claims = &#34;&#34;&#34;CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NULL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));&#34;&#34;&#34;
+
+conn = create_connection(database)
+if conn is not None:
+    create_table(conn, create_users_table)
+    create_table(conn, create_product_table)
+    create_table(conn, create_bids_table)
+    create_table(conn, create_table_claims)
+else:
+    print(&#34;Error! Cannot create the database connection&#34;)
+
+if __name__ == &#34;__main__&#34;:
+  app.debug = True
+  app.run()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="app.convertToBinaryData"><code class="name flex">
+<span>def <span class="ident">convertToBinaryData</span></span>(<span>filename)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def convertToBinaryData(filename):
+    # Convert digital data to binary format
+
+    print(filename)
+    with open(filename, &#39;rb&#39;) as file:
+        blobData = file.read()
+    return blobData</code></pre>
+</details>
+</dd>
+<dt id="app.create_bid"><code class="name flex">
+<span>def <span class="ident">create_bid</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/bid/create&#34;, methods=[&#34;POST&#34;])
+def create_bid():
+    # Get relevant data
+    productId=request.get_json()[&#39;prodId&#39;]
+    email=request.get_json()[&#39;email&#39;]
+    amount=request.get_json()[&#39;bidAmount&#39;]
+
+    # create db connection
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    # get initial price wanted by seller
+    select_query=&#34;SELECT initial_price FROM product WHERE prod_id=&#39;&#34; + str(productId) + &#34;&#39;;&#34;
+    c.execute(select_query)
+    result = list(c.fetchall())
+    response = {}
+
+    #  if bid amount is less than price by seller then don&#39;t save in db
+    if (result[0][0]&gt;(float)(amount)):
+        response[&#34;message&#34;]= &#34;Amount less than initial price&#34;
+    else:
+        currentTime= int(datetime.utcnow().timestamp())
+        # print(currentTime)
+        insert_query= &#34;INSERT OR REPLACE INTO bids(prod_id,email,bid_amount,created_at) VALUES (&#39;&#34; + str(productId) + &#34;&#39;,&#39;&#34; + \
+                      str(email) + &#34;&#39;,&#39;&#34; + str(amount) + &#34;&#39;,&#39;&#34; + str(currentTime) + &#34;&#39;);&#34;
+        c.execute(insert_query)
+        conn.commit()
+
+        response[&#34;message&#34;]=&#34;Saved Bid&#34;
+    return jsonify(response)</code></pre>
+</details>
+</dd>
+<dt id="app.create_connection"><code class="name flex">
+<span>def <span class="ident">create_connection</span></span>(<span>db_file)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_connection(db_file):
+  conn = None
+  conn = sqlite3.connect(db_file)
+  return conn</code></pre>
+</details>
+</dd>
+<dt id="app.create_product"><code class="name flex">
+<span>def <span class="ident">create_product</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/product/create&#34;, methods=[&#34;POST&#34;])
+def create_product():
+    productName = request.get_json()[&#39;productName&#39;]
+    sellerEmail = request.get_json()[&#39;sellerEmail&#39;]
+    initialPrice = request.get_json()[&#39;initialPrice&#39;]
+    increment = request.get_json()[&#39;increment&#39;]
+    photo = request.get_json()[&#39;photo&#39;]
+    description = request.get_json()[&#39;description&#39;]
+    
+    conn = create_connection(database)
+    c = conn.cursor()
+    response = {}
+    currentTime = int(datetime.utcnow().timestamp())
+    currentTime = datetime.fromtimestamp(currentTime)
+    deadlineDate = currentTime + timedelta(days = 7)
+    print(deadlineDate)
+
+    query = &#34;INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)&#34;
+    c.execute(query, (str(productName), str(sellerEmail), str(photo), initialPrice, currentTime, increment, deadlineDate, str(description)))
+    conn.commit()
+    response[&#34;result&#34;] = &#34;Added product successfully&#34;
+
+    return response</code></pre>
+</details>
+</dd>
+<dt id="app.create_table"><code class="name flex">
+<span>def <span class="ident">create_table</span></span>(<span>conn, create_table_sql)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_table(conn, create_table_sql):
+    try:
+        c = conn.cursor()
+        c.execute(create_table_sql)
+        conn.commit()
+    except Error as e:
+        print(e)</code></pre>
+</details>
+</dd>
+<dt id="app.get_all_products"><code class="name flex">
+<span>def <span class="ident">get_all_products</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/product/listAll&#34;, methods=[&#34;GET&#34;])
+def get_all_products(): 
+    query = &#34;SELECT * FROM product ORDER BY date DESC&#34;
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {&#34;result&#34;: result}
+    return(response)</code></pre>
+</details>
+</dd>
+<dt id="app.get_landing_page"><code class="name flex">
+<span>def <span class="ident">get_landing_page</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/getLatestProducts&#34;, methods=[&#34;GET&#34;])
+def get_landing_page(): 
+    response = {}
+    query = &#34;SELECT * FROM product ORDER BY date DESC LIMIT 10;&#34;
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    products = list(c.fetchall())
+    highestBids = []
+    names = []
+    for product in products: 
+        query = &#34;SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=&#34; + str(product[0]) +&#34;;&#34;
+        c.execute(query)
+        result = list(c.fetchall())
+        if(result[0][0] != None): 
+            result = result[0]
+            highestBids.append(result[1])
+            query = &#34;SELECT first_name, last_name FROM users WHERE email=&#39;&#34; + str(result[0]) +&#34;&#39;;&#34;
+            c.execute(query)
+            names.append(list(c.fetchall())[0])
+        else: 
+            highestBids.append(-1)
+            names.append(&#34;N/A&#34;)
+    response = {&#34;products&#34;: products, &#34;maximumBids&#34;: highestBids, &#34;names&#34;: names}
+    return response</code></pre>
+</details>
+</dd>
+<dt id="app.get_product_details"><code class="name flex">
+<span>def <span class="ident">get_product_details</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/product/getDetails&#34;, methods=[&#34;POST&#34;])
+def get_product_details():
+    productID = request.get_json()[&#39;productID&#39;]
+    
+    conn = create_connection(database)
+    c = conn.cursor()
+
+    # gets product details
+    query = &#34;SELECT * FROM product WHERE prod_id=&#34; + str(productID) + &#34;;&#34;
+    c.execute(query)
+    result = list(c.fetchall())
+
+    # get highest 10 bids 
+    query = &#34;SELECT users.first_name, users.last_name, bids.bid_amount FROM users INNER JOIN bids ON bids.email = users.email WHERE bids.prod_id=&#34; + str(productID) + &#34; ORDER BY bid_amount DESC LIMIT 10;&#34;
+    c.execute(query)
+    topbids = list(c.fetchall())
+    
+    response = {&#34;product&#34;: result, &#34;bids&#34;: topbids}
+    return response</code></pre>
+</details>
+</dd>
+<dt id="app.hello_world"><code class="name flex">
+<span>def <span class="ident">hello_world</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/&#34;)
+def hello_world():
+    return &#34;&lt;p&gt;Hello, World!&lt;/p&gt;&#34;</code></pre>
+</details>
+</dd>
+<dt id="app.login"><code class="name flex">
+<span>def <span class="ident">login</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/login&#34;, methods=[&#34;POST&#34;])
+def login(): 
+    email = request.get_json()[&#39;email&#39;]
+    password = request.get_json()[&#39;password&#39;]
+    
+    conn = create_connection(database)
+    c = conn.cursor()
+    
+    # check if email and password pair exists
+    query = &#34;SELECT * FROM users WHERE email=&#39;&#34; + str(email) + &#34;&#39; AND password=&#39;&#34; + str(password) + &#34;&#39;;&#34;
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {}
+
+    if(len(result) == 1): 
+        response[&#34;message&#34;] = &#34;Logged in successfully&#34;
+    else: 
+        # check if email exists, but password is incorrect
+        query = &#34;SELECT COUNT(*) FROM users WHERE email=&#39;&#34; + str(email) + &#34;&#39;;&#34;
+        c.execute(query)
+        result = list(c.fetchall())
+        if(result[0][0] == 1): 
+            response[&#34;message&#34;] = &#34;Invalid credentials!&#34;
+        else: 
+            response[&#34;message&#34;] = &#34;Please create an account!&#34;
+    return jsonify(response)</code></pre>
+</details>
+</dd>
+<dt id="app.signup"><code class="name flex">
+<span>def <span class="ident">signup</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/signup&#34;, methods=[&#34;POST&#34;])
+def signup(): 
+    firstName = request.get_json()[&#39;firstName&#39;]
+    lastName = request.get_json()[&#39;lastName&#39;]
+    email = request.get_json()[&#39;email&#39;]
+    contact = request.get_json()[&#39;contact&#39;]
+    password = request.get_json()[&#39;password&#39;]
+
+    conn = create_connection(database)
+    c = conn.cursor()
+    
+    #check if email already exists 
+    query = &#34;SELECT COUNT(*) FROM users WHERE email=&#39;&#34; + str(email) + &#34;&#39;;&#34;
+    c.execute(query)
+
+    result = list(c.fetchall())
+    response = {}
+    if(result[0][0] == 0): 
+        query = &#34;SELECT COUNT(*) FROM users WHERE contact_number=&#39;&#34; + str(contact) + &#34;&#39;;&#34;
+        c.execute(query)
+        result = list(c.fetchall())
+
+        if(result[0][0] != 0): 
+            response[&#34;message&#34;] = &#34;An account with this contact already exists&#34;
+        else:
+            query = &#34;INSERT INTO users(first_name, last_name, email, contact_number, password) VALUES(&#39;&#34; + str(firstName) + &#34;&#39;,&#39;&#34; + str(lastName) + &#34;&#39;,&#39;&#34; + str(email) + &#34;&#39;,&#39;&#34; + str(contact) + &#34;&#39;,&#39;&#34; + str(password) +&#34;&#39;);&#34;
+            c.execute(query)
+            conn.commit()
+            response[&#34;message&#34;] = &#34;Added successfully&#34;
+    else: 
+        response[&#34;message&#34;] = &#34;An account with this email already exists&#34;
+    return response</code></pre>
+</details>
+</dd>
+<dt id="app.update_product_details"><code class="name flex">
+<span>def <span class="ident">update_product_details</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/product/update&#34;, methods=[&#34;POST&#34;])
+def update_product_details():
+    productId = request.get_json()[&#39;productID&#39;]
+    productName = request.get_json()[&#39;productName&#39;]
+    initialPrice = request.get_json()[&#39;initialPrice&#39;]
+    deadlineDate = request.get_json()[&#39;deadlineDate&#39;]
+    description = request.get_json()[&#39;description&#39;]
+    increment = request.get_json()[&#39;increment&#39;]
+
+    query = &#34;UPDATE product SET name=&#39;&#34; + str(productName) + &#34;&#39;,initial_price=&#39;&#34; + str(initialPrice) + &#34;&#39;,deadline_date=&#39;&#34; + str(deadlineDate) + &#34;&#39;,increment=&#39;&#34; + str(increment) + &#34;&#39;,description=&#39;&#34; + str(description) + &#34;&#39; WHERE prod_id=&#34; + str(productId) + &#34;;&#34;
+    print(query)
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    conn.commit()
+    response = {&#34;message&#34;: &#34;Updated product successfully&#34;}
+    return response</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="app.convertToBinaryData" href="#app.convertToBinaryData">convertToBinaryData</a></code></li>
+<li><code><a title="app.create_bid" href="#app.create_bid">create_bid</a></code></li>
+<li><code><a title="app.create_connection" href="#app.create_connection">create_connection</a></code></li>
+<li><code><a title="app.create_product" href="#app.create_product">create_product</a></code></li>
+<li><code><a title="app.create_table" href="#app.create_table">create_table</a></code></li>
+<li><code><a title="app.get_all_products" href="#app.get_all_products">get_all_products</a></code></li>
+<li><code><a title="app.get_landing_page" href="#app.get_landing_page">get_landing_page</a></code></li>
+<li><code><a title="app.get_product_details" href="#app.get_product_details">get_product_details</a></code></li>
+<li><code><a title="app.hello_world" href="#app.hello_world">hello_world</a></code></li>
+<li><code><a title="app.login" href="#app.login">login</a></code></li>
+<li><code><a title="app.signup" href="#app.signup">signup</a></code></li>
+<li><code><a title="app.update_product_details" href="#app.update_product_details">update_product_details</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
