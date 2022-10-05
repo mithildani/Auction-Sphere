@@ -65,7 +65,9 @@ const Login = () => {
         </FormGroup>
         <Button color="primary">Submit</Button>
       </Form>
-      <Footer />
+      <div style={{ marginTop: "25rem", marginRight: "2rem" }}>
+        <Footer />
+      </div>
     </div>
   );
 };

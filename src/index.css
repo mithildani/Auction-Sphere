@@ -18,3 +18,14 @@ code {
   margin-left: 0.5rem;
   padding: 0;
 }
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color:white;
+  background: #1E0252;
+  margin-top: auto;
+  margin-bottom: '3rem';
+}
