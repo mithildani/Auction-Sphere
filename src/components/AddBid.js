@@ -1,14 +1,30 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Navbar, Button } from "reactstrap";
+import axios from "axios";
+import { URL } from "../global";
 
 const AddBid = ({ productId }) => {
   const [amount, setAmount] = useState(0);
   const handleChange = (event) => {
     setAmount(event.target.value);
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(amount);
+    let response;
+    try {
+      if (typeof window !== "undefined") {
+        response = await axios.post(`${URL}/bid/create`, {
+          bidAmount: amount,
+          prodId: productId,
+          email: localStorage.getItem("email"),
+        });
+        console.log(response);
+      }
+    } catch (e) {
+      console.log(e);
+      alert(e.response.data);
+    }
   };
   return (
     <>
