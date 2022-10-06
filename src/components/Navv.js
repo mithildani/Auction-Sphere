@@ -43,7 +43,7 @@ function Navv(args) {
         />
 
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="justify-content-end" navbar>
             <NavItem>
               <NavLink href="/products">Products</NavLink>
             </NavItem>
@@ -60,11 +60,11 @@ function Navv(args) {
               </>
             ) : (
               <>
-                <NavItem>
+                <NavItem className="float-right">
                   <NavLink href="/login">Login</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/">Signup</NavLink>
+                  <NavLink href="/signup">Signup</NavLink>
                 </NavItem>
               </>
             )}
