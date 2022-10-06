@@ -1,9 +1,11 @@
 import React from "react";
+import Navv from "./Navv";
 import logo from "../assets/Logo.png";
 
 const About = () => {
   return (
     <>
+      <Navv />
       <h1>About Auction-Sphere</h1>
       <p>
         Auction Sphere is an auctioning system where people can bid on exciting

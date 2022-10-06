@@ -1,6 +1,7 @@
 import "./App.css";
 // import { Routes ,Route } from 'react-router-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from "./components/About";
 import Signup from "./components/LoginSignup/Signup.js";
 import Login from "./components/LoginSignup/Login";
 import Products from "./components/Products";
@@ -12,9 +13,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Signup />}>
+        <Route path="/" element={<About />}>
           {/* <Route index element={<Signup />} /> */}
         </Route>
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
         <Route path="/sell" element={<Sell />} />
