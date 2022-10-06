@@ -24,6 +24,16 @@ Code formatter: Prettier
 
 Tech stack: React.js, Flask, SQLite
 
+### Code coverage
+
+#### Code coverage in React app (frontend):
+To run code coverage, just do:
+
+```yarn coverage``` 
+
+This will not only give you a detailed report on your terminal, but will also generate a .html file for the reporrt as seen here in our project: 
+https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/index.html
+
 ## Group-3
 
 [Kartik Soni](https://github.com/kartikson1)
