@@ -18,14 +18,16 @@
     "react-styleguidist": "^12.0.0",
     "reactstrap": "^9.1.4",
     "ts-jest": "^29.0.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "doc": "react-doc-generator src -o DOCUMENTATION.md"
+    "doc": "react-doc-generator src -o DOCUMENTATION.md",
+    "coverage": "yarn test --coverage --watchAll --collectCoverageFrom='src/components/**/*.{js, jsx}'"
   },
   "eslintConfig": {
     "extends": [
