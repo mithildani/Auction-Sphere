@@ -12,8 +12,13 @@ const Products = () => {
     { id: 2, name: "prod2", description: "jhadsbfusjkan fksdufj,nsajfkjdsa" },
   ];
   const getProducts = async () => {
-    let data = await axios.get(`${URL}/getLatestProducts`);
-    console.log(data);
+    try {
+      let data = await axios.get(`${URL}/getLatestProducts`);
+      console.log(data);
+    } catch (error) {
+      alert("Something went wrong");
+      console.log(error);
+    }
   };
   useEffect(() => {
     getProducts();

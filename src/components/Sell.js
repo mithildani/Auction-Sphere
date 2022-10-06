@@ -26,8 +26,10 @@ const Sell = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    formData.sellerEmail = localStorage.getItem("email");
-    formData.encodedImages = encodedImages;
+    if (typeof window !== "undefined")
+      formData.sellerEmail = localStorage.getItem("email");
+
+    formData.photo = encodedImages;
     console.log(formData);
     let response;
     try {
