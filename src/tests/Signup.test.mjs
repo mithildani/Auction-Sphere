@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Signup from "../components/LoginSignup/Signup";
+import Signup from "../components/LoginSignup/Signup.js";
 
 const fields = [
   "First Name",
