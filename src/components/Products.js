@@ -22,7 +22,7 @@ const Products = () => {
   };
   useEffect(() => {
     getProducts();
-  }, []);
+  });
 
   return (
     <>

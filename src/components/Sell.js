@@ -118,7 +118,7 @@ const Sell = () => {
           <Input
             id="biddingTime"
             name="biddingTime"
-            placeholder="What's the minimum by which you'd like a new bid to win?"
+            placeholder="Bidding window closes in..."
             type="number"
             value={formData.biddingTime}
             onChange={(e) => handleChange(e)}
