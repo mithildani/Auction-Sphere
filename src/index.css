@@ -24,8 +24,8 @@ code {
   bottom: 0;
   width: 100%;
   text-align: center;
-  color:white;
-  background: #1E0252;
+  color:black;
+  /* background: #1E0252; */
   margin-top: auto;
   margin-bottom: '3rem';
 }

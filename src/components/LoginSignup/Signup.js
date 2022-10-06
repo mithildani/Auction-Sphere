@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-import About from "../About";
 import Navv from "../Navv";
 import Footer from "../Footer";
 import axios from "axios";
@@ -129,10 +128,6 @@ const Signup = () => {
           <br />
         </>
       )}
-
-      <div style={{ marginLeft: "0.5rem" }}>
-        <About />
-      </div>
       <Footer />
     </div>
   );
