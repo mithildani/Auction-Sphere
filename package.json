@@ -2,7 +2,6 @@
   "name": "my_app",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "dependencies": {
     "@babel/preset-env": "^7.19.3",
     "@testing-library/jest-dom": "^5.16.5",
