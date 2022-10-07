@@ -12,11 +12,14 @@ Repository for CSC 510 Software Engineering project 1, created by Group 3: Shrey
 
 ## About Auction-Sphere
 
+Want to sell something you own in a bidding war? Want to snatch something you really want like a boss?
+Congratulations, you have come to the perfect place: the #### **Auction Sphere**
+
 <img src="./src/assets/Logo.png">
 
 Auction Sphere is an auctioning system where people can bid on exciting items and also put items up for sale. Every item has a bidding window, and the item goes to the highest bidder by the end of that window.
 
-On the homepage, people can view all the latest items being put up for sale and their respective highest bids. On the product details page, apart from product details, people can view the latest bids as well as the highest bid, and can also place a bid. It's upto the seller to decide the minimum price of the product, as well as bid increments.
+On the products, people can view all the latest items being put up for sale and their respective highest bids. On the product details page, apart from product details, people can view the latest bids as well as the highest bid, and can also place a bid. It's upto the seller to decide the minimum price of the product, as well as bid increments.
 
 ## Tools used
 
@@ -27,11 +30,12 @@ Tech stack: React.js, Flask, SQLite
 ### Code coverage
 
 #### Code coverage in React app (frontend):
+
 To run code coverage, just do:
 
-```yarn coverage``` 
+`yarn coverage`
 
-This will not only give you a detailed report on your terminal, but will also generate a .html file for the reporrt as seen here in our project: 
+This will not only give you a detailed report on your terminal, but will also generate a .html file for the reporrt as seen here in our project:
 https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/index.html
 
 ## Group-3
