@@ -43,7 +43,7 @@ const ProductDetails = () => {
           {bids.map((bid, index) => (
             <div key={index}>
               <p>Bidder: {bid[0] + " " + bid[1]}</p>
-              <p>Bid amount: {bid[2]}</p>
+              <p>Bid amount: ${bid[2]}</p>
             </div>
           ))}
         </>
