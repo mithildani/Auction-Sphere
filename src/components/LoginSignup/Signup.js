@@ -18,7 +18,6 @@ import axios from "axios";
 import { URL } from "../../global";
 
 const Signup = () => {
-  console.log("Signup");
   const navigate = useNavigate();
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
