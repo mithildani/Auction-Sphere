@@ -6,7 +6,7 @@ import { URL } from "../global";
 import axios from "axios";
 
 const Products = () => {
-  const [allProducts, setAllProducts] = useState([]);
+  const [apiData, setApiData] = useState([]);
   let products = [
     { id: 1, name: "prod1", description: "jhadsbfusjkan fksdufj,nsajfkjdsa" },
     { id: 2, name: "prod2", description: "jhadsbfusjkan fksdufj,nsajfkjdsa" },
@@ -14,7 +14,8 @@ const Products = () => {
   const getProducts = async () => {
     try {
       let data = await axios.get(`${URL}/getLatestProducts`);
-      console.log(data);
+      console.log(data.data);
+      setApiData(data.data);
     } catch (error) {
       alert("Something went wrong");
       console.log(error);
@@ -22,14 +23,24 @@ const Products = () => {
   };
   useEffect(() => {
     getProducts();
-  });
+  }, []);
 
   return (
     <>
       <Navv />
-      {products.map((product) => (
+      {/* {products.map((product) => (
         <ProductCard product={product} />
-      ))}
+      ))} */}
+      {apiData &&
+        apiData.products &&
+        apiData.products.map((product, index) => (
+          <ProductCard
+            key={index}
+            product={product}
+            maxBid={apiData.maximumBids[index]}
+            name={apiData.names[index]}
+          />
+        ))}
       <Footer />
     </>
   );

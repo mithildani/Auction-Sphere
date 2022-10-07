@@ -9,8 +9,8 @@ import {
   Button,
 } from "reactstrap";
 
-const ProductCard = ({ product }) => {
-  const [url, setUrl] = useState(`/details/${product.id}`);
+const ProductCard = ({ product, maxBid, name }) => {
+  const [url, setUrl] = useState(`/details/${product[0]}`);
 
   return (
     <>
@@ -25,10 +25,10 @@ const ProductCard = ({ product }) => {
           width="50%"
         />
         <CardBody>
-          <CardTitle tag="h5">Product Name = {product.name}</CardTitle>
-          <CardText>Product description = {product.description}</CardText>
+          <CardTitle tag="h5">Product Name = {product[1]}</CardTitle>
+          <CardText>Product description = {product[7]}</CardText>
           <CardText>
-            <small className="text-muted">id = {product.id}</small>
+            <small className="text-muted">id = {product[0]}</small>
           </CardText>
         </CardBody>
         <Button
