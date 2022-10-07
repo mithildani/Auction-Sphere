@@ -11,18 +11,18 @@ import AddBid from "./components/AddBid";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<About />}>
-          {/* <Route index element={<Signup />} /> */}
-        </Route>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/sell" element={<Sell />} />
-        <Route path="/details/:id" element={<ProductDetails />} />
-      </Routes>
-    </BrowserRouter>
+    // <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<About />}>
+        {/* <Route index element={<Signup />} /> */}
+      </Route>
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/sell" element={<Sell />} />
+      <Route path="/details/:id" element={<ProductDetails />} />
+    </Routes>
+    // </BrowserRouter>
   );
 }
 

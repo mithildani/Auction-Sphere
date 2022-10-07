@@ -1007,19 +1007,7 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/preset-react@^7.12.5", "@babel/preset-react@^7.16.0":
-  version "7.18.6"
-  resolved "https://registry.npmjs.org/@babel/preset-react/-/preset-react-7.18.6.tgz"
-  integrity sha512-zXr6atUmyYdiWRVLOZahakYmOBHtWc2WGCkP8PYTgZi0iJXDY2CN180TdrIW4OGOAdLc7TifzDIvtx6izaRIzg==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.18.6"
-    "@babel/helper-validator-option" "^7.18.6"
-    "@babel/plugin-transform-react-display-name" "^7.18.6"
-    "@babel/plugin-transform-react-jsx" "^7.18.6"
-    "@babel/plugin-transform-react-jsx-development" "^7.18.6"
-    "@babel/plugin-transform-react-pure-annotations" "^7.18.6"
-
-"@babel/preset-react@^7.18.6":
+"@babel/preset-react@^7.12.5", "@babel/preset-react@^7.16.0", "@babel/preset-react@^7.18.6":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.18.6.tgz#979f76d6277048dc19094c217b507f3ad517dd2d"
   integrity sha512-zXr6atUmyYdiWRVLOZahakYmOBHtWc2WGCkP8PYTgZi0iJXDY2CN180TdrIW4OGOAdLc7TifzDIvtx6izaRIzg==
@@ -2943,7 +2931,7 @@ babel-jest@^27.4.2, babel-jest@^27.5.1:
 
 babel-jest@^29.1.2:
   version "29.1.2"
-  resolved "https://registry.npmjs.org/babel-jest/-/babel-jest-29.1.2.tgz"
+  resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-29.1.2.tgz#540d3241925c55240fb0c742e3ffc5f33a501978"
   integrity sha512-IuG+F3HTHryJb7gacC7SQ59A9kO56BctUsT67uJHp1mMCHUOMXpDwOHWGifWqdWVknN2WNkCVQELPjXx0aLJ9Q==
   dependencies:
     "@jest/transform" "^29.1.2"
