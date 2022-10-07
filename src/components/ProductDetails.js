@@ -8,6 +8,10 @@ import Footer from './Footer'
 import Navv from './Navv'
 import { URL } from '../global'
 
+/**
+ * This component is the details page of a single product.
+ */
+
 const ProductDetails = () => {
     let { id } = useParams()
     const [showAddBid, setShowAddBid] = useState(false)
