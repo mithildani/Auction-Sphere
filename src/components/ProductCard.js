@@ -25,11 +25,15 @@ const ProductCard = ({ product, maxBid, name }) => {
           width="50%"
         />
         <CardBody>
-          <CardTitle tag="h5">Product Name = {product[1]}</CardTitle>
-          <CardText>Product description = {product[7]}</CardText>
-          <CardText>
+          <CardTitle tag="h5">{product[1]}</CardTitle>
+          <CardText>Seller: {product[2]}</CardText>
+          {/* <CardText>Description: {product[7]}</CardText> */}
+          <CardText>Minimum price: ${product[3]}</CardText>
+          <CardText>Current highest bid: ${maxBid}</CardText>
+          <CardText>Current highest bidder: {name}</CardText>
+          {/* <CardText>
             <small className="text-muted">id = {product[0]}</small>
-          </CardText>
+          </CardText> */}
         </CardBody>
         <Button
           color="warning"

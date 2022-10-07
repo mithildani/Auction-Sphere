@@ -12,9 +12,19 @@ const ProductDetails = () => {
   let { id } = useParams();
   const [showAddBid, setShowAddBid] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [bids, setBids] = useState([]);
+  const [product, setProduct] = useState(null);
   const getProductDetails = async () => {
-    let data = await axios.get(`${URL}/product/getDetails`, { productID: id });
-    console.log(data);
+    try {
+      let data = await axios.post(`${URL}/product/getDetails`, {
+        productID: id,
+      });
+      console.log(data);
+      setBids(data.data.bids);
+      setProduct(data.data.product[0]);
+    } catch (error) {
+      alert("Something went wrong");
+    }
   };
   useEffect(() => {
     getProductDetails();
@@ -28,6 +38,19 @@ const ProductDetails = () => {
     <>
       <Navv />
       <p>Details page for product id {id} </p>
+      {product && (
+        <div>
+          <p>Product ID: {product[0]} </p>
+          <p>Product Name: {product[1]} </p>
+          <p>Image: {product[2]} </p>
+          <p>Seller: {product[3]} </p>
+          <p>Minimum price {product[4]} </p>
+          <p>Date posted: {product[5]} </p>
+          <p>Bidding window closes on: {product[7]} </p>
+          <p>Minimum price increment to beat a bid: {product[6]} </p>
+          <p>Product Description: {product[8]} </p>
+        </div>
+      )}
       {showButton && (
         <>
           <Button color="info" onClick={() => setShowAddBid(!showAddBid)}>
