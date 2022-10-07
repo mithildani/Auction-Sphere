@@ -37,7 +37,20 @@ const ProductDetails = () => {
   return (
     <>
       <Navv />
-      <p>Details page for product id {id} </p>
+      {bids.length > 0 ? (
+        <>
+          <h5>Current Highest bid:</h5>
+          {bids.map((bid, index) => (
+            <div key={index}>
+              <p>Bidder: {bid[0] + " " + bid[1]}</p>
+              <p>Bid amount: {bid[2]}</p>
+            </div>
+          ))}
+        </>
+      ) : (
+        <h5>No bids so far</h5>
+      )}
+      <h5>Product details:</h5>
       {product && (
         <div>
           <p>Product ID: {product[0]} </p>
@@ -59,7 +72,7 @@ const ProductDetails = () => {
           {showAddBid && <AddBid productId={id} />}
         </>
       )}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

@@ -19,20 +19,23 @@ const AddBid = ({ productId }) => {
           prodId: productId,
           email: localStorage.getItem("email"),
         });
+        window.location.reload(false);
         console.log(response);
+        alert(response.data.message);
       }
     } catch (e) {
       console.log(e);
-      alert(e.response.data);
+      alert(e);
     }
   };
   return (
-    <>
-      AddBid for {productId}
+    <div style={{ marginTop: "1rem" }}>
+      Add a bid for product {productId}
       <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <Label for="amount">Amount</Label>
+          <Label for="amount">Amount:</Label>
           <Input
+            style={{ width: "50%" }}
             id="amount"
             name="amount"
             placeholder="Enter your bid amount here"
@@ -43,7 +46,7 @@ const AddBid = ({ productId }) => {
         </FormGroup>
         <Button color="primary">Submit</Button>
       </Form>
-    </>
+    </div>
   );
 };
 
