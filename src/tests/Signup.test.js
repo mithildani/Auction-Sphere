@@ -28,3 +28,7 @@ test.each(fields)("Fields have labels", (field) => {
   const inputNode = screen.getByLabelText(field.field_label);
   expect(inputNode.getAttribute("name")).toBe(field.node_name);
 });
+
+// "transform": {
+//   "^.+\\.[t|j]sx?$": "babel-jest"
+// },
