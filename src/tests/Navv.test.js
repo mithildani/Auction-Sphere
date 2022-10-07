@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Navv from "../components/Navv";
 
 const tabs = [
-  { text: "Signup", location: "/" },
+  { text: "Signup", location: "/signup" },
   { text: "Login", location: "/login" },
   { text: "Products", location: "/products" },
 ];
