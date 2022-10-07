@@ -15,7 +15,7 @@ Repository for CSC 510 Software Engineering project 1, created by Group 3: Shrey
 Want to sell something you own in a bidding war? Want to snatch something you really want like a boss?
 Congratulations, you have come to the perfect place: the **Auction Sphere**
 
-<img src="./src/assets/Logo.png">
+<img src="./src/assets/Logo.png" width="400" height="300">
 
 Auction Sphere is an auctioning system where people can bid on exciting items and also put items up for sale. Every item has a bidding window, and the item goes to the highest bidder by the end of that window.
 
@@ -23,9 +23,6 @@ On the products, people can view all the latest items being put up for sale and 
 
 
 ## Built with
-  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="40" height="40"/> React.js  |  
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" width="40" height="40"/> JavaScript  | 
-  <img src = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" width="40" height="40"/> Flask  |
   <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="40" height="40"/> React.js
   <br/>
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" width="40" height="40"/> JavaScript
