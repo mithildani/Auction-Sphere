@@ -201,7 +201,7 @@ def update_product_details():
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page(): 
     response = {}
-    query = "SELECT * FROM product ORDER BY date DESC LIMIT 10;"
+    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC LIMIT 10;"
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -222,7 +222,8 @@ def get_landing_page():
             highestBids.append(-1)
             names.append("N/A")
     response = {"products": products, "maximumBids": highestBids, "names": names}
-    return response
+    print(response)
+    return jsonify(response)
 
 database = r"auction.db"
 create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
