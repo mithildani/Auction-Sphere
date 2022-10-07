@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Label, Input, Navbar, Button } from "reactstrap";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Navbar,
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  CardText,
+} from "reactstrap";
 import axios from "axios";
 import Navv from "../Navv";
 import Footer from "../Footer";
@@ -42,31 +53,40 @@ const Login = () => {
   return (
     <div>
       <Navv />
-      <Form onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label for="Email">Email</Label>
-          <Input
-            id="Email"
-            name="email"
-            placeholder="The email you registered with us"
-            type="email"
-            value={formData.email}
-            onChange={(e) => handleChange(e)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="Password">Password</Label>
-          <Input
-            id="Password"
-            name="password"
-            placeholder="Your password"
-            type="password"
-            value={formData.password}
-            onChange={(e) => handleChange(e)}
-          />
-        </FormGroup>
-        <Button color="primary">Submit</Button>
-      </Form>
+      <Card body className="mx-auto" style={{ width: "60%" }}>
+        <CardHeader>
+          <h3>Welcome! Login to continue</h3>
+        </CardHeader>
+        <CardBody>
+          <CardText>
+            <Form onSubmit={handleSubmit}>
+              <FormGroup>
+                <Label for="Email">Email</Label>
+                <Input
+                  id="Email"
+                  name="email"
+                  placeholder="The email you registered with us"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleChange(e)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="Password">Password</Label>
+                <Input
+                  id="Password"
+                  name="password"
+                  placeholder="Your password"
+                  type="password"
+                  value={formData.password}
+                  onChange={(e) => handleChange(e)}
+                />
+              </FormGroup>
+              <Button color="primary">Submit</Button>
+            </Form>
+          </CardText>
+        </CardBody>
+      </Card>
       <div style={{ marginTop: "25rem", marginRight: "2rem" }}>
         <Footer />
       </div>

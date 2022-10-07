@@ -60,9 +60,6 @@ const Signup = () => {
               <h3>Sign up and bid away!</h3>
             </CardHeader>
             <CardBody>
-              {/* <CardTitle className="text-center mx-auto">
-              <h3>Sign up and bid away!</h3>
-            </CardTitle> */}
               <CardText>
                 <Form onSubmit={handleSubmit}>
                   <FormGroup>
