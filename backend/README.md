@@ -1,10 +1,12 @@
 # Getting Started with Flask Locally
 
 ### Before we start the Python project, we will create a virtual environment
-`python3 -m venv venv`
+Windows: `py -3 -m venv venv`
+Mac: `python3 -m venv venv`
 
 ### Activate the virtual env
- `venv/bin/activate`  
+Windows: `venv\Scripts\activate` 
+Mac: `venv/bin/activate`  
  
  **if permission denied error, try the below** 
  
@@ -14,7 +16,6 @@
 
 ### Install requirements
 Windows: `pip install -e .`
-
 Mac: `pip3 install -e .`
 
 ### To run project
