@@ -12,10 +12,10 @@
  or
  `source venv/bin/activate`
 
-### Install flask
-`pip install Flask`
+### Install requirements
+Windows: `pip install -e .`
 
-`pip install Flask-Cors`
+Mac: `pip3 install -e .`
 
 ### To run project
 `flask --app app run`
