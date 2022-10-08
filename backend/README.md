@@ -12,7 +12,6 @@ Mac: `venv/bin/activate`
  
  Windows: 
  `. venv/Scripts/activate`<br>
- 
  Mac: 
  `. venv/bin/activate` or `source venv/bin/activate`
 
