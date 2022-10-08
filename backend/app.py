@@ -152,13 +152,24 @@ def create_product():
 
 @app.route("/product/listAll", methods=["GET"])
 def get_all_products(): 
-    query = "SELECT * FROM product ORDER BY date DESC"
+    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC"
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
     result = list(c.fetchall())
     response = {"result": result}
     return(response)
+  
+@app.route("/product/getImage", methods=["POST"])
+def get_product_image(): 
+    productId = request.get_json()['productID']
+    query = "SELECT photo FROM product WHERE prod_id=" + str(productId) + ";"
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {"result": result}
+    return response
 
 @app.route("/product/getDetails", methods=["POST"])
 def get_product_details():
