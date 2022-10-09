@@ -21,7 +21,7 @@
 |Other automated analysis tools||
 |Test cases exist|3| Test cases present
 |Test cases are routinely executed|3| Visible in [workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/code_cov.yml)
-|The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up||
+|The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up|3| [CONTRIBUTING.md](https://github.com/kartikson1/Auction-Sphere/blob/main/CONTRIBUTING.md)
 |Issues are discussed before they are closed, even if you discuss in slack, need a sumamry statement here||
 |Chat channel: exists||
 |Test cases: a large proportion of the issues related to handling failing cases.||
