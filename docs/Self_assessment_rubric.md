@@ -5,7 +5,7 @@
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|||
 |Number of commits|3|From GH Insights|
 |Number of commits: by different people|3|From GH Insights|
-|Issues reports: there are **many**||
+|Issues reports: there are **many**|3|[issues](https://github.com/kartikson1/Auction-Sphere/issues)|
 |Issues are being closed||
 |DOI badge: exists|||
 |Docs: doco generated, format not ugly |||
