@@ -88,8 +88,8 @@
 |Question 13.7: Can users subscribe to notifications to changes to your source code repository?||No|
 |Question 13.8: If your software is developed as an open source project (and, not just a project developing open source software), do you have a governance model?||No|
 |Question 14.1: Do you accept contributions (e.g. bug fixes, enhancements, documentation updates, tutorials) from people who are not part of your project?||Yes|
-|Question 14.2: Do you have a contributions policy?||Yes|
-|Question 14.3: Is your contributions' policy publicly available?||Yes|
+|Question 14.2: Do you have a contributions policy?|3|[CONTRIBUTING.md](https://github.com/kartikson1/Auction-Sphere/blob/main/CONTRIBUTING.md)|
+|Question 14.3: Is your contributions' policy publicly available?|3|Yes|
 |Question 14.4: Do contributors keep the copyright/IP of their contributions?||Yes|
 |Question 15.1: Does your website and documentation clearly state the copyright owners of your software and documentation?||Yes|
 |Question 15.2: Does each of your source code files include a copyright statement?||Yes|
