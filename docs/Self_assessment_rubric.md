@@ -5,9 +5,9 @@
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|||
 |Number of commits|3|From GH Insights|
 |Number of commits: by different people|3|From GH Insights|
-|Issues reports: there are **many**|3|[issues](https://github.com/kartikson1/Auction-Sphere/issues)|
+|Issues reports: there are **many**|3|[Total issues](https://github.com/kartikson1/Auction-Sphere/issues)|
 |Issues are being closed|3|[closed issues](https://github.com/kartikson1/Auction-Sphere/issues?q=is%3Aissue+is%3Aclosed)
-|DOI badge: exists|||
+|DOI badge: exists|3|Visible in [README](https://github.com/kartikson1/Auction-Sphere#readme)|
 |Docs: doco generated, format not ugly |||
 |Docs: what: point descriptions of each class/function (in isolation) ||
 |Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|||
