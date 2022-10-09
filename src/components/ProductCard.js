@@ -16,6 +16,7 @@ import {
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import { URL } from '../global'
+import '../css/card.css'
 
 /**
  * This component displays a single product card on the products page.
@@ -39,17 +40,17 @@ const ProductCard = ({ product, maxBid, name }) => {
     useEffect(() => {
         fetchImage()
     }, [])
-    const myStyle = {
-        boxShadow:
-            'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
-        width: '30%',
-        padding: '50px',
-        margin: '20px',
-    }
+    // const myStyle = {
+    //     boxShadow:'0 4px 8px 0 rgba(0,0,0,0.2)',
+    //     transition: "0.3s",
+    //     width: '30%',
+    //     padding: '30px',
+    //     margin: '20px',
+    // }
 
     return (
         <>
-            <Card style={myStyle}>
+            <Card class="card">
                 <CardTitle tag="h3" style={{ textAlign: 'center' }}>
                     {product[1]}
                 </CardTitle>
