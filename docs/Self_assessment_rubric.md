@@ -34,13 +34,13 @@
 |Question 1.1: Does your website and documentation provide a clear, high-level overview of your software?|3|Visible in README and docs/|
 |Question 1.2: Does your website and documentation clearly describe the type of user who should use your software?|3|Visible in README|
 |Question 1.3: Do you publish case studies to show how your software has been used by yourself and others?|3|Video|
-|Question 2.1: Is the name of your project/software unique?||Yes|
-|Question 2.2: Is your project/software name free from trademark violations?||Yes|
-|Question 3.1: Is your software available as a package that can be deployed without building it?||No|
-|Question 3.2: Is your software available for free?||Yes|
-|Question 3.3: Is your source code publicly available to download, either as a downloadable bundle or via access to a source code repository?||Yes|
-|Question 3.4: Is your software hosted in an established, third-party repository likeGitHub (https://github.com), BitBucket (https://bitbucket.org),LaunchPad (https://launchpad.net) orSourceForge (https://sourceforge.net)?||Yes|
-|Question 4.1: Is your documentation clearly available on your website or within your software?||Yes|
+|Question 2.1: Is the name of your project/software unique?|3|Yes|
+|Question 2.2: Is your project/software name free from trademark violations?|3|Yes|
+|Question 3.1: Is your software available as a package that can be deployed without building it?|0|No|
+|Question 3.2: Is your software available for free?|3|Yes|
+|Question 3.3: Is your source code publicly available to download, either as a downloadable bundle or via access to a source code repository?|3|Yes [source code](https://github.com/kartikson1/Auction-Sphere)|
+|Question 3.4: Is your software hosted in an established, third-party repository likeGitHub (https://github.com), BitBucket (https://bitbucket.org),LaunchPad (https://launchpad.net) orSourceForge (https://sourceforge.net)?|3|Yes, GH|
+|Question 4.1: Is your documentation clearly available on your website or within your software?|3|[docs]((https://github.com/kartikson1/Auction-Sphere/tree/main/docs)|
 |Question 4.2: Does your documentation include a "quick start" guide, that provides a short overview of how to use your software with some basic examples of use?||Yes|
 |Question 4.3: If you provide more extensive documentation, does this provide clear, step-by-step instructions on how to deploy and use your software?||Yes|
 |Question 4.4: Do you provide a comprehensive guide to all your software’s commands, functions and options?||Yes|
