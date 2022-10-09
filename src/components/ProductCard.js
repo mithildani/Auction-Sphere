@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
     Card,
@@ -9,6 +9,8 @@ import {
     Button,
 } from 'reactstrap'
 import PropTypes from 'prop-types'
+import axios from 'axios'
+import { URL } from '../global'
 
 /**
  * This component displays a single product card on the products page.
@@ -16,13 +18,29 @@ import PropTypes from 'prop-types'
 
 const ProductCard = ({ product, maxBid, name }) => {
     const [url, setUrl] = useState(`/details/${product[0]}`)
+    const [image, setImage] = useState('https://picsum.photos/900/180')
+
+    const fetchImage = async () => {
+        try {
+            const response = await axios.post(`${URL}/product/getImage`, {
+                productID: product[0],
+            })
+            console.log(response)
+            setImage(response.data.result[0])
+        } catch (e) {
+            alert(e)
+        }
+    }
+    useEffect(() => {
+        fetchImage()
+    }, [])
 
     return (
         <>
             <Card className="my-2" style={{ width: '70%' }}>
                 <CardImg
                     alt="Card image cap"
-                    src="https://picsum.photos/900/180"
+                    src={image}
                     style={{
                         height: 180,
                         width: 500,
