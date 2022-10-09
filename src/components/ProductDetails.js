@@ -85,7 +85,9 @@ const ProductDetails = () => {
                     >
                         {showAddBid ? <span>-</span> : <span>+</span>} Add a Bid
                     </Button>
-                    {showAddBid && <AddBid productId={id} />}
+                    {showAddBid && (
+                        <AddBid productId={id} sellerEmail={product[3]} />
+                    )}
                 </>
             )}
             {/* <Footer /> */}

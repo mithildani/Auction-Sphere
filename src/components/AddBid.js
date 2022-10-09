@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
  * This component lets you bid on a product you like.
  */
 
-const AddBid = ({ productId }) => {
+const AddBid = ({ productId, sellerEmail }) => {
     const [amount, setAmount] = useState(0)
     const handleChange = (event) => {
         setAmount(event.target.value)
@@ -19,14 +19,18 @@ const AddBid = ({ productId }) => {
         let response
         try {
             if (typeof window !== 'undefined') {
-                response = await axios.post(`${URL}/bid/create`, {
-                    bidAmount: amount,
-                    prodId: productId,
-                    email: localStorage.getItem('email'),
-                })
-                window.location.reload(false)
-                console.log(response)
-                alert(response.data.message)
+                if (localStorage.getItem('email') === sellerEmail) {
+                    alert('Cannot bid on your own product!')
+                } else {
+                    response = await axios.post(`${URL}/bid/create`, {
+                        bidAmount: amount,
+                        prodId: productId,
+                        email: localStorage.getItem('email'),
+                    })
+                    window.location.reload(false)
+                    console.log(response)
+                    alert(response.data.message)
+                }
             }
         } catch (e) {
             console.log(e)
