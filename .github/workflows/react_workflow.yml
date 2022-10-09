@@ -28,3 +28,7 @@ jobs:
     - name: Run the tests Generate coverage report
       run: npm test
       
+    - name: Documentation generator
+      run: npx styleguidist build
+      
+      
