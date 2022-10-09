@@ -38,6 +38,11 @@ On the products, people can view all the latest items being put up for sale and 
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/SQLite370.svg" width="40" height="40" /> SQLite
   
 
+## Project documentation
+
+The `docs` folder incorporates all necessary documents and documentation in our project.
+
+
 ## Tools used
 
 Code formatter: Prettier
