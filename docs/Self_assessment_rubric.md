@@ -6,7 +6,7 @@
 |Number of commits|3|From GH Insights|
 |Number of commits: by different people|3|From GH Insights|
 |Issues reports: there are **many**|3|[issues](https://github.com/kartikson1/Auction-Sphere/issues)|
-|Issues are being closed||
+|Issues are being closed|3|[closed issues](https://github.com/kartikson1/Auction-Sphere/issues?q=is%3Aissue+is%3Aclosed)
 |DOI badge: exists|||
 |Docs: doco generated, format not ugly |||
 |Docs: what: point descriptions of each class/function (in isolation) ||
