@@ -63,7 +63,10 @@ database = r&#34;auction.db&#34;
 def hello_world():
     return &#34;&lt;p&gt;Hello, World!&lt;/p&gt;&#34;
 
-#API to retrieve sign-up details sent by the user
+&#34;&#34;&#34; 
+API end point for user creation.
+firstName, lastName, email, contact details are extracted from the json.
+&#34;&#34;&#34;
 @app.route(&#34;/signup&#34;, methods=[&#34;POST&#34;])
 def signup(): 
     firstName = request.get_json()[&#39;firstName&#39;]
@@ -97,7 +100,10 @@ def signup():
         response[&#34;message&#34;] = &#34;An account with this email already exists&#34;
     return response
 
-#API to be used while the user tries to login
+&#34;&#34;&#34; 
+API end point for user login.
+email and password are extracted from the json.
+&#34;&#34;&#34;
 @app.route(&#34;/login&#34;, methods=[&#34;POST&#34;])
 def login(): 
     email = request.get_json()[&#39;email&#39;]
@@ -125,7 +131,10 @@ def login():
             response[&#34;message&#34;] = &#34;Please create an account!&#34;
     return jsonify(response)
 
-
+&#34;&#34;&#34; 
+API end point to create a new bid.
+product ID, email and bidAmount are extracted from the json.
+&#34;&#34;&#34;
 @app.route(&#34;/bid/create&#34;, methods=[&#34;POST&#34;])
 def create_bid():
     # Get relevant data
@@ -157,7 +166,10 @@ def create_bid():
         response[&#34;message&#34;]=&#34;Saved Bid&#34;
     return jsonify(response)
 
-&#34;&#34;&#34;API to add a new product. This takes the parameters like productName, sellerEmail, initialPrice, increment, photo(encoded), and description.&#34;&#34;&#34;
+&#34;&#34;&#34; 
+API end point for new product creation.
+productName, sellerEmail, initialPrice, increment, photo(byte 64 encoded) and product description are extracted from the json.
+&#34;&#34;&#34;
 @app.route(&#34;/product/create&#34;, methods=[&#34;POST&#34;])
 def create_product():
     productName = request.get_json()[&#39;productName&#39;]
@@ -182,9 +194,12 @@ def create_product():
 
     return response
 
+&#34;&#34;&#34; 
+API end point to list all the products.
+&#34;&#34;&#34;
 @app.route(&#34;/product/listAll&#34;, methods=[&#34;GET&#34;])
 def get_all_products(): 
-    query = &#34;SELECT * FROM product ORDER BY date DESC&#34;
+    query = &#34;SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC&#34;
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -192,6 +207,25 @@ def get_all_products():
     response = {&#34;result&#34;: result}
     return(response)
 
+&#34;&#34;&#34; 
+API end point to get image from product ID.
+productId is  extracted from the json.
+&#34;&#34;&#34;
+@app.route(&#34;/product/getImage&#34;, methods=[&#34;POST&#34;])
+def get_product_image(): 
+    productId = request.get_json()[&#39;productID&#39;]
+    query = &#34;SELECT photo FROM product WHERE prod_id=&#34; + str(productId) + &#34;;&#34;
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {&#34;result&#34;: result}
+    return response
+
+&#34;&#34;&#34; 
+API end point to details of a product from product ID.
+productId is  extracted from the json.
+&#34;&#34;&#34;
 @app.route(&#34;/product/getDetails&#34;, methods=[&#34;POST&#34;])
 def get_product_details():
     productID = request.get_json()[&#39;productID&#39;]
@@ -212,6 +246,10 @@ def get_product_details():
     response = {&#34;product&#34;: result, &#34;bids&#34;: topbids}
     return response
 
+&#34;&#34;&#34; 
+API end point to update a product.
+productId, productName, initialPrice, deadlineDate, description and increment value is  extracted from the json.
+&#34;&#34;&#34;
 @app.route(&#34;/product/update&#34;, methods=[&#34;POST&#34;])
 def update_product_details():
     productId = request.get_json()[&#39;productID&#39;]
@@ -230,10 +268,13 @@ def update_product_details():
     response = {&#34;message&#34;: &#34;Updated product successfully&#34;}
     return response
 
+&#34;&#34;&#34; 
+API end point to get top 10 latest products.
+&#34;&#34;&#34;
 @app.route(&#34;/getLatestProducts&#34;, methods=[&#34;GET&#34;])
 def get_landing_page(): 
     response = {}
-    query = &#34;SELECT * FROM product ORDER BY date DESC LIMIT 10;&#34;
+    query = &#34;SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC LIMIT 10;&#34;
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -254,7 +295,8 @@ def get_landing_page():
             highestBids.append(-1)
             names.append(&#34;N/A&#34;)
     response = {&#34;products&#34;: products, &#34;maximumBids&#34;: highestBids, &#34;names&#34;: names}
-    return response
+    print(response)
+    return jsonify(response)
 
 database = r&#34;auction.db&#34;
 create_users_table = &#34;&#34;&#34;CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);&#34;&#34;&#34;
@@ -423,7 +465,7 @@ def create_product():
 </summary>
 <pre><code class="python">@app.route(&#34;/product/listAll&#34;, methods=[&#34;GET&#34;])
 def get_all_products(): 
-    query = &#34;SELECT * FROM product ORDER BY date DESC&#34;
+    query = &#34;SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC&#34;
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -444,7 +486,7 @@ def get_all_products():
 <pre><code class="python">@app.route(&#34;/getLatestProducts&#34;, methods=[&#34;GET&#34;])
 def get_landing_page(): 
     response = {}
-    query = &#34;SELECT * FROM product ORDER BY date DESC LIMIT 10;&#34;
+    query = &#34;SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC LIMIT 10;&#34;
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
@@ -465,7 +507,8 @@ def get_landing_page():
             highestBids.append(-1)
             names.append(&#34;N/A&#34;)
     response = {&#34;products&#34;: products, &#34;maximumBids&#34;: highestBids, &#34;names&#34;: names}
-    return response</code></pre>
+    print(response)
+    return jsonify(response)</code></pre>
 </details>
 </dd>
 <dt id="app.get_product_details"><code class="name flex">
@@ -495,6 +538,27 @@ def get_product_details():
     topbids = list(c.fetchall())
     
     response = {&#34;product&#34;: result, &#34;bids&#34;: topbids}
+    return response</code></pre>
+</details>
+</dd>
+<dt id="app.get_product_image"><code class="name flex">
+<span>def <span class="ident">get_product_image</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#34;/product/getImage&#34;, methods=[&#34;POST&#34;])
+def get_product_image(): 
+    productId = request.get_json()[&#39;productID&#39;]
+    query = &#34;SELECT photo FROM product WHERE prod_id=&#34; + str(productId) + &#34;;&#34;
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    result = list(c.fetchall())
+    response = {&#34;result&#34;: result}
     return response</code></pre>
 </details>
 </dd>
@@ -641,6 +705,7 @@ def update_product_details():
 <li><code><a title="app.get_all_products" href="#app.get_all_products">get_all_products</a></code></li>
 <li><code><a title="app.get_landing_page" href="#app.get_landing_page">get_landing_page</a></code></li>
 <li><code><a title="app.get_product_details" href="#app.get_product_details">get_product_details</a></code></li>
+<li><code><a title="app.get_product_image" href="#app.get_product_image">get_product_image</a></code></li>
 <li><code><a title="app.hello_world" href="#app.hello_world">hello_world</a></code></li>
 <li><code><a title="app.login" href="#app.login">login</a></code></li>
 <li><code><a title="app.signup" href="#app.signup">signup</a></code></li>

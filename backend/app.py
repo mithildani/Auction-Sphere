@@ -35,6 +35,10 @@ database = r"auction.db"
 def hello_world():
     return "<p>Hello, World!</p>"
 
+""" 
+API end point for user creation.
+firstName, lastName, email, contact details are extracted from the json.
+"""
 @app.route("/signup", methods=["POST"])
 def signup(): 
     firstName = request.get_json()['firstName']
@@ -68,6 +72,10 @@ def signup():
         response["message"] = "An account with this email already exists"
     return response
 
+""" 
+API end point for user login.
+email and password are extracted from the json.
+"""
 @app.route("/login", methods=["POST"])
 def login(): 
     email = request.get_json()['email']
@@ -95,6 +103,10 @@ def login():
             response["message"] = "Please create an account!"
     return jsonify(response)
 
+""" 
+API end point to create a new bid.
+product ID, email and bidAmount are extracted from the json.
+"""
 @app.route("/bid/create", methods=["POST"])
 def create_bid():
     # Get relevant data
@@ -126,6 +138,10 @@ def create_bid():
         response["message"]="Saved Bid"
     return jsonify(response)
 
+""" 
+API end point for new product creation.
+productName, sellerEmail, initialPrice, increment, photo(byte 64 encoded) and product description are extracted from the json.
+"""
 @app.route("/product/create", methods=["POST"])
 def create_product():
     productName = request.get_json()['productName']
@@ -150,6 +166,9 @@ def create_product():
 
     return response
 
+""" 
+API end point to list all the products.
+"""
 @app.route("/product/listAll", methods=["GET"])
 def get_all_products(): 
     query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC"
@@ -159,7 +178,11 @@ def get_all_products():
     result = list(c.fetchall())
     response = {"result": result}
     return(response)
-  
+
+""" 
+API end point to get image from product ID.
+productId is  extracted from the json.
+"""
 @app.route("/product/getImage", methods=["POST"])
 def get_product_image(): 
     productId = request.get_json()['productID']
@@ -171,6 +194,10 @@ def get_product_image():
     response = {"result": result}
     return response
 
+""" 
+API end point to details of a product from product ID.
+productId is  extracted from the json.
+"""
 @app.route("/product/getDetails", methods=["POST"])
 def get_product_details():
     productID = request.get_json()['productID']
@@ -191,6 +218,10 @@ def get_product_details():
     response = {"product": result, "bids": topbids}
     return response
 
+""" 
+API end point to update a product.
+productId, productName, initialPrice, deadlineDate, description and increment value is  extracted from the json.
+"""
 @app.route("/product/update", methods=["POST"])
 def update_product_details():
     productId = request.get_json()['productID']
@@ -209,6 +240,9 @@ def update_product_details():
     response = {"message": "Updated product successfully"}
     return response
 
+""" 
+API end point to get top 10 latest products.
+"""
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page(): 
     response = {}
