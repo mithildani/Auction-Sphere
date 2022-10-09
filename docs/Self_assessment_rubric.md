@@ -27,7 +27,7 @@
 |Test cases: a large proportion of the issues related to handling failing cases.|3| Visible in [issues](https://github.com/kartikson1/Auction-Sphere/issues)
 |Evidence that the whole team is using the same tools: everyone can get to all tools and files|3| Visible in [insights](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
 |Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)|3| Visible in GH [insights](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
-|Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer)|
+|Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer)|3| Visible in commits
 |Evidence that the members of the team are working across multiple places in the code base|3|Visible in GH individual file contributors|
 |Short release cycles |3| GH environment|
 ||||
