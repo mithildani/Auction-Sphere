@@ -5,6 +5,8 @@
 [![DOI](https://zenodo.org/badge/545100230.svg)](https://zenodo.org/badge/latestdoi/545100230)
 [![GitHub contributors](https://img.shields.io/github/contributors/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
 [![GitHub last commit](https://img.shields.io/github/last-commit/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/commits/main)
+[![GitHub contributors](https://img.shields.io/github/contributors/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
+
 
 # Auction-Sphere
 
