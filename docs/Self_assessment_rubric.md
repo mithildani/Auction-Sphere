@@ -23,7 +23,7 @@
 |Test cases are routinely executed|3| Visible in [workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/code_cov.yml)
 |The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up|3| [CONTRIBUTING.md](https://github.com/kartikson1/Auction-Sphere/blob/main/CONTRIBUTING.md)
 |Issues are discussed before they are closed, even if you discuss in slack, need a sumamry statement here|3| [closed issues](https://github.com/kartikson1/Auction-Sphere/issues?q=is%3Aissue+is%3Aclosed)
-|Chat channel: exists||
+|Chat channel: exists|3| [discord channel](https://discord.gg/2PKBMapCKz)
 |Test cases: a large proportion of the issues related to handling failing cases.|3| Visible in [issues](https://github.com/kartikson1/Auction-Sphere/issues)
 |Evidence that the whole team is using the same tools: everyone can get to all tools and files|3| Visible in [insights](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
 |Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)|3| Visible in GH [insights](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
