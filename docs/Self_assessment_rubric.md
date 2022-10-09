@@ -20,7 +20,7 @@
 |Use of code coverage |3| Visible in workflows and code-cov badge
 |Other automated analysis tools||
 |Test cases exist|3| Test cases present
-|Test cases are routinely executed||
+|Test cases are routinely executed|3| Visible in [workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/code_cov.yml)
 |The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up||
 |Issues are discussed before they are closed, even if you discuss in slack, need a sumamry statement here||
 |Chat channel: exists||
