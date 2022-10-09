@@ -1,6 +1,6 @@
 [![GitHub](https://img.shields.io/github/license/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/blob/main/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/issues)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/kartikson1/Auction-Sphere)(https://github.com/kartikson1/Auction-Sphere/issues?q=is%3Aissue+is%3Aclosed)]
+[![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/issues?q=is%3Aissue+is%3Aclosed)
 ![GitHub forks](https://img.shields.io/github/forks/kartikson1/Auction-Sphere?style=social)
 [![DOI](https://zenodo.org/badge/545100230.svg)](https://zenodo.org/badge/latestdoi/545100230)
 [![GitHub contributors](https://img.shields.io/github/contributors/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
