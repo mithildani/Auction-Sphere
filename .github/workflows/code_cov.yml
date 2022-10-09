@@ -24,7 +24,7 @@
      - name: Run the tests
        run: |
            cd backend
-           pytest --cov=./
+            coverage run -m pytest test.py
      - name: Upload coverage to Codecov
        uses: codecov/codecov-action@v1
        with:
