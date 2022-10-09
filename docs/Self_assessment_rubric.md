@@ -40,15 +40,15 @@
 |Question 3.2: Is your software available for free?|3|Yes|
 |Question 3.3: Is your source code publicly available to download, either as a downloadable bundle or via access to a source code repository?|3|Yes [source code](https://github.com/kartikson1/Auction-Sphere)|
 |Question 3.4: Is your software hosted in an established, third-party repository likeGitHub (https://github.com), BitBucket (https://bitbucket.org),LaunchPad (https://launchpad.net) orSourceForge (https://sourceforge.net)?|3|Yes, GH|
-|Question 4.1: Is your documentation clearly available on your website or within your software?|3|[docs]((https://github.com/kartikson1/Auction-Sphere/tree/main/docs)|
-|Question 4.2: Does your documentation include a "quick start" guide, that provides a short overview of how to use your software with some basic examples of use?||Yes|
-|Question 4.3: If you provide more extensive documentation, does this provide clear, step-by-step instructions on how to deploy and use your software?||Yes|
-|Question 4.4: Do you provide a comprehensive guide to all your software’s commands, functions and options?||Yes|
-|Question 4.5: Do you provide troubleshooting information that describes the symptoms and step-by-step solutions for problems and error messages?||No|
-|Question 4.6: If your software can be used as a library, package or service by other software, do you provide comprehensive API documentation?||N/A|
-|Question 4.7: Do you store your documentation under revision control with your source code?||Yes|
-|Question 4.8: Do you publish your release history e.g. release data, version numbers, key features of each release etc. on your web site or in your documentation?||No|
-|Question 5.1: Does your software describe how a user can get help with using your software?||No|
+|Question 4.1: Is your documentation clearly available on your website or within your software?|3|[docs](https://github.com/kartikson1/Auction-Sphere/tree/main/docs)|
+|Question 4.2: Does your documentation include a "quick start" guide, that provides a short overview of how to use your software with some basic examples of use?|3|[README.md](https://github.com/kartikson1/Auction-Sphere#readme)|
+|Question 4.3: If you provide more extensive documentation, does this provide clear, step-by-step instructions on how to deploy and use your software?|3|Yes|
+|Question 4.4: Do you provide a comprehensive guide to all your software’s commands, functions and options?|3|[docs](https://github.com/kartikson1/Auction-Sphere/tree/main/docs)|
+|Question 4.5: Do you provide troubleshooting information that describes the symptoms and step-by-step solutions for problems and error messages?|2|[README.md](https://github.com/kartikson1/Auction-Sphere/blob/main/backend/README.md)|
+|Question 4.6: If your software can be used as a library, package or service by other software, do you provide comprehensive API documentation?|0|N/A|
+|Question 4.7: Do you store your documentation under revision control with your source code?|3|Yes|
+|Question 4.8: Do you publish your release history e.g. release data, version numbers, key features of each release etc. on your web site or in your documentation?|0|No|
+|Question 5.1: Does your software describe how a user can get help with using your software?|3|Yes|
 |Question 5.2: Does your website and documentation describe what support, if any, you provide to users and developers?||No|
 |Question 5.3: Does your project have an e-mail address or forum that is solely for supporting users?||No|
 |Question 5.4: Are e-mails to your support e-mail address received by more than one person?||N/A|
