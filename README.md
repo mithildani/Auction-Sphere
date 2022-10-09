@@ -42,7 +42,7 @@ Tech stack: React.js, Flask, SQLite
 
 ## To run our React application
 
-You will need Node.js and NPM installed. You can refer this article if not installed already: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+You will need Node.js and NPM installed. You can refer this article if not installed already: https://kinsta.com/blog/how-to-install-node-js/
 
 First, navigate to our application on the terminal and install all the packages using
 `npm i`
