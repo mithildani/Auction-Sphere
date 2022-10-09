@@ -113,7 +113,8 @@ API end point to create a new bid.
 This API allows users to bid ona product which is open for auctioning.
 Details like productId, email, and new bid amount are extracted from the json.
 Then on the basis of productId, initial price of the product is checked to validate if the new bid amount is greater than the initial amount.
-If the bid amount is lesserm new bud isn;t created else this new bid is added in the bids table.
+If the bid amount is lesser than the previous bid amount that the user had put, then the corresponding row in the bid table isn't updated. 
+Otherwise it is updated.
 """
 @app.route("/bid/create", methods=["POST"])
 def create_bid():
