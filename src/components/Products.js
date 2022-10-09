@@ -5,6 +5,7 @@ import ProductCard from './ProductCard'
 import { URL } from '../global'
 import axios from 'axios'
 import { CardGroup, Row } from 'reactstrap'
+import { toast } from 'react-toastify'
 
 /**
  * This component displays all products on the products page.
@@ -19,7 +20,7 @@ const Products = () => {
             console.log(data.data)
             setApiData(data.data)
         } catch (error) {
-            alert('Something went wrong')
+            toast.error('Something went wrong')
             console.log(error)
         }
     }

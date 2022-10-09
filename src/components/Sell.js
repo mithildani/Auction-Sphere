@@ -5,6 +5,7 @@ import Navv from './Navv'
 import Footer from './Footer'
 import { URL } from '../global'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -51,11 +52,11 @@ const Sell = () => {
                 biddingTime: '',
                 photo: '',
             })
-            alert(response.data.result)
+            toast.success(response.data.result)
             navigate('/products')
         } catch (e) {
             console.log(e)
-            alert('Something went wrong')
+            toast.error('Something went wrong')
         }
         //Set local storage
         // if(api.response == success)

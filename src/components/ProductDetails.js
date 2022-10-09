@@ -19,6 +19,7 @@ import AddBid from './AddBid'
 import Footer from './Footer'
 import Navv from './Navv'
 import { URL } from '../global'
+import { toast } from 'react-toastify'
 
 /**
  * This component is the details page of a single product.
@@ -39,7 +40,7 @@ const ProductDetails = () => {
             setBids(data.data.bids)
             setProduct(data.data.product[0])
         } catch (error) {
-            alert('Something went wrong')
+            toast.error('Something went wrong')
         }
     }
     useEffect(() => {

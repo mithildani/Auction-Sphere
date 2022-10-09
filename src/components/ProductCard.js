@@ -17,6 +17,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import { URL } from '../global'
 import '../css/card.css'
+import { toast } from 'react-toastify'
 
 /**
  * This component displays a single product card on the products page.
@@ -34,7 +35,7 @@ const ProductCard = ({ product, maxBid, name }) => {
             console.log(response)
             setImage(response.data.result[0])
         } catch (e) {
-            alert(e)
+            toast.error(e)
         }
     }
     useEffect(() => {

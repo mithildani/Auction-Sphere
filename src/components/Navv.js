@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 import {
     Collapse,
     Navbar,
@@ -26,6 +27,7 @@ function Navv(args) {
     const handleLogout = () => {
         localStorage.clear()
         window.location.reload()
+        toast.info('Logged out')
     }
 
     return (

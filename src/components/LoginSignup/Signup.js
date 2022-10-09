@@ -16,6 +16,7 @@ import Navv from '../Navv'
 import Footer from '../Footer'
 import axios from 'axios'
 import { URL } from '../../global'
+import { toast } from 'react-toastify'
 
 /**
  * This component displays the Signup page of our application.
@@ -29,7 +30,7 @@ const Signup = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         if (formData.password !== formData.confirmPassword)
-            alert('Passwords do not match')
+            toast.error('Passwords do not match')
         else {
             console.log(formData)
             try {
@@ -38,7 +39,7 @@ const Signup = () => {
                 navigate('/login')
                 // alert("Form submitted successfully I think");
             } catch (e) {
-                alert('Something went wrong')
+                toast.error('Something went wrong')
                 console.log(e)
             }
         }

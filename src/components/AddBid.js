@@ -3,6 +3,7 @@ import { Form, FormGroup, Label, Input, Navbar, Button } from 'reactstrap'
 import axios from 'axios'
 import { URL } from '../global'
 import PropTypes from 'prop-types'
+import { toast } from 'react-toastify'
 
 /**
  * This component lets you bid on a product you like.
@@ -20,7 +21,7 @@ const AddBid = ({ productId, sellerEmail }) => {
         try {
             if (typeof window !== 'undefined') {
                 if (localStorage.getItem('email') === sellerEmail) {
-                    alert('Cannot bid on your own product!')
+                    toast.error('Cannot bid on your own product!')
                 } else {
                     response = await axios.post(`${URL}/bid/create`, {
                         bidAmount: amount,
@@ -29,12 +30,12 @@ const AddBid = ({ productId, sellerEmail }) => {
                     })
                     window.location.reload(false)
                     console.log(response)
-                    alert(response.data.message)
+                    toast.success(response.data.message)
                 }
             }
         } catch (e) {
             console.log(e)
-            alert(e)
+            toast.error(e)
         }
     }
     return (
