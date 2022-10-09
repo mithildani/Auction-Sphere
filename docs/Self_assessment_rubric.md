@@ -32,8 +32,8 @@
 |Short release cycles |3| GH environment|
 ||||
 |Question 1.1: Does your website and documentation provide a clear, high-level overview of your software?|3|Visible in README and docs/|
-|Question 1.2: Does your website and documentation clearly describe the type of user who should use your software?||Yes|
-|Question 1.3: Do you publish case studies to show how your software has been used by yourself and others?||Yes|
+|Question 1.2: Does your website and documentation clearly describe the type of user who should use your software?|3|Visible in README|
+|Question 1.3: Do you publish case studies to show how your software has been used by yourself and others?|3|Video|
 |Question 2.1: Is the name of your project/software unique?||Yes|
 |Question 2.2: Is your project/software name free from trademark violations?||Yes|
 |Question 3.1: Is your software available as a package that can be deployed without building it?||No|
