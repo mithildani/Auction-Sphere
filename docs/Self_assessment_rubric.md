@@ -49,13 +49,13 @@
 |Question 4.7: Do you store your documentation under revision control with your source code?|3|Yes|
 |Question 4.8: Do you publish your release history e.g. release data, version numbers, key features of each release etc. on your web site or in your documentation?|0|No|
 |Question 5.1: Does your software describe how a user can get help with using your software?|3|Yes|
-|Question 5.2: Does your website and documentation describe what support, if any, you provide to users and developers?||No|
-|Question 5.3: Does your project have an e-mail address or forum that is solely for supporting users?||No|
-|Question 5.4: Are e-mails to your support e-mail address received by more than one person?||N/A|
-|Question 5.5: Does your project have a ticketing system to manage bug reports and feature requests?||Yes|
-|Question 5.6: Is your project's ticketing system publicly visible to your users, so they can view bug reports and feature requests?||Yes|
-|Question 6.1: Is your software’s architecture and design modular?||Yes|
-|Question 6.2: Does your software use an accepted coding standard or convention?||Yes|
+|Question 5.2: Does your website and documentation describe what support, if any, you provide to users and developers?|0|No|
+|Question 5.3: Does your project have an e-mail address or forum that is solely for supporting users?|0|No|
+|Question 5.4: Are e-mails to your support e-mail address received by more than one person?|0|N/A|
+|Question 5.5: Does your project have a ticketing system to manage bug reports and feature requests?|3|Yes|
+|Question 5.6: Is your project's ticketing system publicly visible to your users, so they can view bug reports and feature requests?|3|GH|
+|Question 6.1: Is your software’s architecture and design modular?|3|Yes|
+|Question 6.2: Does your software use an accepted coding standard or convention?|3|Yes|
 |Question 7.1: Does your software allow data to be imported and exported using open data formats?||Yes|
 |Question 7.2:Does your software allow communications using open communications protocols?||Yes|
 |Question 8.1: Is your software cross-platform compatible?||Yes|
