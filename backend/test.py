@@ -20,3 +20,16 @@ def test_get_product_image(mock_create_call):
         result = app.get_product_image()
         # print("result=", result)
     assert m.values.keys().__contains__("productID")
+
+@patch('app.create_connection')
+def test_get_product_details(mock_create_call):
+    mock_create_call = MagicMock()
+    connection = Mock()
+    cursor = connection.cursor()
+    mock_create_call.return_value = connection
+    m = mock.MagicMock()
+    m.values = {"productID": "1"}
+    with mock.patch("app.request", m):
+        result = app.get_product_details()
+        # print("result=", result)
+    assert m.values.keys().__contains__("productID")
