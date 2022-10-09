@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { Form, FormGroup, Label, Input, Navbar, Button } from 'reactstrap'
+import { useNavigate } from 'react-router-dom'
 import Navv from './Navv'
 import Footer from './Footer'
 import { URL } from '../global'
@@ -23,6 +24,7 @@ const toBase64 = (file) =>
  */
 
 const Sell = () => {
+    const navigate = useNavigate()
     const [encodedImages, setEncodedImages] = useState()
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -50,6 +52,7 @@ const Sell = () => {
                 photo: '',
             })
             alert(response.data.result)
+            navigate('/products')
         } catch (e) {
             console.log(e)
             alert('Something went wrong')
