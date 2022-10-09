@@ -31,7 +31,7 @@
 |Evidence that the members of the team are working across multiple places in the code base|3|Visible in GH individual file contributors|
 |Short release cycles |3| GH environment|
 ||||
-|Question 1.1: Does your website and documentation provide a clear, high-level overview of your software?|3|Visible in README and docs/|
+|Question 1.1: Does your website and documentation provide a clear, high-level overview of your software?|3|Visible in [README ] (https://github.com/kartikson1/Auction-Sphere/graphs/contributors) and docs/
 |Question 1.2: Does your website and documentation clearly describe the type of user who should use your software?|3|Visible in README|
 |Question 1.3: Do you publish case studies to show how your software has been used by yourself and others?|3|Video|
 |Question 2.1: Is the name of your project/software unique?|3|Yes|
