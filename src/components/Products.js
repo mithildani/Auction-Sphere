@@ -32,8 +32,9 @@ const Products = () => {
             {/* {products.map((product) => (
         <ProductCard product={product} />
       ))} */}
-            {apiData &&
-                apiData.products &&
+            {apiData && apiData.products && apiData.products.length == 0 ? (
+                <div>No products yet</div>
+            ) : (
                 apiData.products.map((product, index) => (
                     <ProductCard
                         key={index}
@@ -41,7 +42,8 @@ const Products = () => {
                         maxBid={apiData.maximumBids[index]}
                         name={apiData.names[index]}
                     />
-                ))}
+                ))
+            )}
             <Footer />
         </>
     )
