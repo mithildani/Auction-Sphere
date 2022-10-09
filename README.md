@@ -40,6 +40,22 @@ Code formatter: Prettier
 
 Tech stack: React.js, Flask, SQLite
 
+## To run our React application
+
+You will need Node.js and NPM installed. You can refer this article if not installed already: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
+First, navigate to our application on the terminal and install all the packages using
+`npm i`
+
+In case this throws any error, install the yarn package manager:
+`npm install --global yarn`
+
+And then to install all the packages, run
+`yarn`
+
+Now, to run our application, run
+`npm start`
+
 ### Code coverage
 
 #### Code coverage in React app (frontend):
@@ -50,6 +66,7 @@ To run code coverage, just do:
 
 This will not only give you a detailed report on your terminal, but will also generate a .html file for the reporrt as seen here in our project:
 https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/index.html
+
 
 ## Group-3
 
