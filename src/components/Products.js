@@ -47,7 +47,7 @@ const Products = () => {
                     <div>No products found</div>
                 )}
             </Row>
-            {/* <Footer /> */}
+            <Footer />
         </>
     )
 }

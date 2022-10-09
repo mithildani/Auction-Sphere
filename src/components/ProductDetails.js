@@ -134,7 +134,7 @@ const ProductDetails = () => {
                     </div>
                 )}
             </Card>
-            {/* <Footer /> */}
+            <Footer />
         </>
     )
 }

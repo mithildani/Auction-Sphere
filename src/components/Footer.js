@@ -6,16 +6,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <div
-            style={{
-                position: 'fixed',
-                bottom: '0',
-                width: '100%',
-                height: '9%',
-                backgroundColor: '#F4F6F6 ',
-            }}
-            className="footer"
-        >
+        <div className="footer">
             <div className="container">
                 <div className="row">
                     <hr />
