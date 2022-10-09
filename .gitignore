@@ -1,3 +1,6 @@
 node_modules/
 .env
 venv
+
+coverage/lcov-report/components
+coverage/lcov-report/src
