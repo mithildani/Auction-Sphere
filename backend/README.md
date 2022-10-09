@@ -8,7 +8,7 @@ Mac: `python3 -m venv venv`
 Windows: `venv\Scripts\activate` <br>
 Mac: `venv/bin/activate`  
  
- **if permission denied error/virtual env doesn't get activated, try the below** 
+ **If permission denied error/virtual env doesn't get activated, try the below** 
  
  Windows: 
  `. venv/Scripts/activate`<br>
