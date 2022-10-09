@@ -3,7 +3,7 @@
 |Video1|0|Not required for hw| 
 |Video2|0|Not required for hw| 
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|||
-|Number of commits|||
+|Number of commits|3|From GH Insights|
 |Number of commits: by different people|||
 |Issues reports: there are **many**||
 |Issues are being closed||
