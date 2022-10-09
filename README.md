@@ -6,7 +6,7 @@
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kartikson1/Auction-Sphere/Running%20Code%20Coverage)](https://github.com/kartikson1/Auction-Sphere/actions)
 [![GitHub contributors](https://img.shields.io/github/contributors/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
 [![GitHub last commit](https://img.shields.io/github/last-commit/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/commits/main)
-[![GitHub contributors](https://img.shields.io/github/contributors/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
+
 [![codecov](https://codecov.io/github/kartikson1/Auction-Sphere/branch/main/graph/badge.svg?token=eucr4X9Mtx)](https://codecov.io/github/kartikson1/Auction-Sphere)
 
 
