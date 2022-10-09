@@ -50,7 +50,11 @@ const ProductDetails = () => {
                     {/* <p>Image: {product[2]} </p> */}
                     <img
                         src={product[2]}
-                        style={{ marginBottom: '2rem' }}
+                        style={{
+                            marginBottom: '2rem',
+                            width: '50%',
+                            height: '50%',
+                        }}
                     ></img>
                     <p>Seller: {product[3]} </p>
                     <p>Minimum price {product[4]} </p>

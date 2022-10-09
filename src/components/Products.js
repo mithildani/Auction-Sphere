@@ -11,18 +11,7 @@ import axios from 'axios'
 
 const Products = () => {
     const [apiData, setApiData] = useState([])
-    let products = [
-        {
-            id: 1,
-            name: 'prod1',
-            description: 'jhadsbfusjkan fksdufj,nsajfkjdsa',
-        },
-        {
-            id: 2,
-            name: 'prod2',
-            description: 'jhadsbfusjkan fksdufj,nsajfkjdsa',
-        },
-    ]
+
     const getProducts = async () => {
         try {
             let data = await axios.get(`${URL}/getLatestProducts`)

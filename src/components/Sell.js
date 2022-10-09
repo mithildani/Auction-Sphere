@@ -40,6 +40,16 @@ const Sell = () => {
             response = await axios.post(`${URL}/product/create`, formData)
             console.log('POST RESPONSE')
             console.log(response)
+            setFormData({
+                productName: '',
+                initialPrice: '',
+                increment: '',
+                datePosted: Date.now(),
+                description: '',
+                biddingTime: '',
+                photo: '',
+            })
+            alert(response.data.result)
         } catch (e) {
             console.log(e)
             alert('Something went wrong')
@@ -111,7 +121,7 @@ const Sell = () => {
                     <Input
                         id="Description"
                         name="description"
-                        placeholder="Enter a cool name for your item here"
+                        placeholder="Enter an interesting description for your item here"
                         type="text"
                         value={formData.description}
                         onChange={(e) => handleChange(e)}
