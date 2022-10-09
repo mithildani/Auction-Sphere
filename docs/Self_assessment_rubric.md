@@ -17,9 +17,9 @@
 |Use of style checkers |3| Visible in [style-checker workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/style_checker.yml)
 |Use of code formatters. |3| Visible in [code-formatter workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/code_formatter.yml)
 |Use of syntax checkers. ||
-|Use of code coverage ||
+|Use of code coverage |3| Visible in workflows and code-cov badge
 |Other automated analysis tools||
-|Test cases exist||
+|Test cases exist|3| Test cases present
 |Test cases are routinely executed||
 |The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up||
 |Issues are discussed before they are closed, even if you discuss in slack, need a sumamry statement here||
