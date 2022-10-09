@@ -37,7 +37,10 @@ def hello_world():
 
 """ 
 API end point for user creation.
-firstName, lastName, email, contact details are extracted from the json.
+It extracts firstName, lastName, email, contact number and password from the json.
+This further checks if the email provided is already there in the database or not.
+If the account is already created, the API returns (An account with this contact already exists) 
+otherwise, a new user is created in the users table with all the details extracted from json. 
 """
 @app.route("/signup", methods=["POST"])
 def signup(): 
@@ -74,7 +77,9 @@ def signup():
 
 """ 
 API end point for user login.
-email and password are extracted from the json.
+User email and password are extracted from the json.
+These are validated from the data already available in users table.
+If the email and password are correct, login is successful else user is asked to create an account.
 """
 @app.route("/login", methods=["POST"])
 def login(): 
@@ -105,7 +110,10 @@ def login():
 
 """ 
 API end point to create a new bid.
-product ID, email and bidAmount are extracted from the json.
+This API allows users to bid ona product which is open for auctioning.
+Details like productId, email, and new bid amount are extracted from the json.
+Then on the basis of productId, initial price of the product is checked to validate if the new bid amount is greater than the initial amount.
+If the bid amount is lesserm new bud isn;t created else this new bid is added in the bids table.
 """
 @app.route("/bid/create", methods=["POST"])
 def create_bid():
@@ -140,7 +148,9 @@ def create_bid():
 
 """ 
 API end point for new product creation.
-productName, sellerEmail, initialPrice, increment, photo(byte 64 encoded) and product description are extracted from the json.
+This API is used to create new entries for the products open for auctioning.
+Here, productName, sellerEmail, initialPrice, increment, photo(byte 64 encoded) and product description are extracted from the json.
+These values are entered into the product table.
 """
 @app.route("/product/create", methods=["POST"])
 def create_product():
@@ -168,6 +178,7 @@ def create_product():
 
 """ 
 API end point to list all the products.
+This API lists down all the product details present in product table sorted in the descending order of date created.
 """
 @app.route("/product/listAll", methods=["GET"])
 def get_all_products(): 
@@ -181,7 +192,9 @@ def get_all_products():
 
 """ 
 API end point to get image from product ID.
-productId is  extracted from the json.
+This API is used to get image of the product on the basis of productId extracted from the json.
+This returns photo from the product table.
+
 """
 @app.route("/product/getImage", methods=["POST"])
 def get_product_image(): 
@@ -196,7 +209,9 @@ def get_product_image():
 
 """ 
 API end point to details of a product from product ID.
-productId is  extracted from the json.
+This API is used to get details of the product on the basis of productId extracted from json.
+This returns all the details from from the product table.
+It also lists down top ten bids of a particular product.
 """
 @app.route("/product/getDetails", methods=["POST"])
 def get_product_details():
@@ -220,7 +235,9 @@ def get_product_details():
 
 """ 
 API end point to update a product.
-productId, productName, initialPrice, deadlineDate, description and increment value is  extracted from the json.
+This API is used while updating the details of a product.
+User provides productId, productName, initialPrice, deadlineDate, description and increment value which is extracted from the json.
+These new values are updated in the product table on the basis of productId.
 """
 @app.route("/product/update", methods=["POST"])
 def update_product_details():
@@ -241,7 +258,10 @@ def update_product_details():
     return response
 
 """ 
-API end point to get top 10 latest products.
+API end point to get top ten latest products.
+This API extracts details of the top products sorted by descending order of date created.
+It also fetches the highest bids on the those products from the bids table and the user details from the user table.
+If there is no such bid on the product, -1 is appended to the list.
 """
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page(): 
