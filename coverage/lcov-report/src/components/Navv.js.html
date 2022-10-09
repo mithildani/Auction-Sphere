@@ -141,7 +141,16 @@
 <a name='L76'></a><a href='#L76'>76</a>
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,15 +168,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -219,84 +237,93 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from "react";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react'
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
-} from "reactstrap";
-import logo from "../assets/NavLogo.png";
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    NavbarText,
+} from 'reactstrap'
+import logo from '../assets/NavLogo.png'
+&nbsp;
+/**
+ * This component is the Navigation bar of our application.
+ */
 &nbsp;
 function Navv(args) {
-  const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(true)
 &nbsp;
-  const toggle = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setIsOpen(!isOpen);</span>
-  const handleLogout = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    localStorage.clear();</span>
-<span class="cstat-no" title="statement not covered" >    window.location.reload();</span>
-  };
+    const toggle = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setIsOpen(!isOpen)</span>
+    const handleLogout = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >        localStorage.clear()</span>
+<span class="cstat-no" title="statement not covered" >        window.location.reload()</span>
+    }
 &nbsp;
-  return (
-    &lt;div&gt;
-      &lt;Navbar style={{ marginBottom: "1rem" }} color="light" light expand="md"&gt;
-        &lt;NavbarBrand href="/"&gt;
-          &lt;img
-            src={logo}
-            style={{
-              height: 40,
-              width: 60,
-            }}
-          /&gt;
-        &lt;/NavbarBrand&gt;
-        &lt;NavbarToggler
-          onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >            setIsOpen(!isOpen);</span>
-          }}
-        /&gt;
+    return (
+        &lt;div&gt;
+            &lt;Navbar
+                style={{ marginBottom: '1rem' }}
+                color="light"
+                light
+                expand="md"
+            &gt;
+                &lt;NavbarBrand href="/"&gt;
+                    &lt;img
+                        src={logo}
+                        style={{
+                            height: 40,
+                            width: 60,
+                        }}
+                    /&gt;
+                &lt;/NavbarBrand&gt;
+                &lt;NavbarToggler
+                    onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >                        setIsOpen(!isOpen)</span>
+                    }}
+                /&gt;
 &nbsp;
-        &lt;Collapse isOpen={isOpen} navbar&gt;
-          &lt;Nav className="justify-content-end" navbar&gt;
-            &lt;NavItem&gt;
-              &lt;NavLink href="/products"&gt;Products&lt;/NavLink&gt;
-            &lt;/NavItem&gt;
-            {localStorage.getItem("auth") === "true" ? (
-<span class="branch-0 cbranch-no" title="branch not covered" >              &lt;&gt;</span>
-                &lt;NavItem&gt;
-                  &lt;NavLink href="/sell"&gt;Sell&lt;/NavLink&gt;
-                &lt;/NavItem&gt;
-                &lt;NavItem&gt;
-                  &lt;NavLink href="/" onClick={handleLogout}&gt;
-                    Logout
-                  &lt;/NavLink&gt;
-                &lt;/NavItem&gt;
-              &lt;/&gt;
-            ) : (
-              &lt;&gt;
-                &lt;NavItem className="float-right"&gt;
-                  &lt;NavLink href="/login"&gt;Login&lt;/NavLink&gt;
-                &lt;/NavItem&gt;
-                &lt;NavItem&gt;
-                  &lt;NavLink href="/signup"&gt;Signup&lt;/NavLink&gt;
-                &lt;/NavItem&gt;
-              &lt;/&gt;
-            )}
-          &lt;/Nav&gt;
-        &lt;/Collapse&gt;
-      &lt;/Navbar&gt;
-    &lt;/div&gt;
-  );
+                &lt;Collapse isOpen={isOpen} navbar&gt;
+                    &lt;Nav className="justify-content-end" navbar&gt;
+                        &lt;NavItem&gt;
+                            &lt;NavLink href="/products"&gt;Products&lt;/NavLink&gt;
+                        &lt;/NavItem&gt;
+                        {localStorage.getItem('auth') === 'true' ? (
+<span class="branch-0 cbranch-no" title="branch not covered" >                            &lt;&gt;</span>
+                                &lt;NavItem&gt;
+                                    &lt;NavLink href="/sell"&gt;Sell&lt;/NavLink&gt;
+                                &lt;/NavItem&gt;
+                                &lt;NavItem&gt;
+                                    &lt;NavLink href="/" onClick={handleLogout}&gt;
+                                        Logout
+                                    &lt;/NavLink&gt;
+                                &lt;/NavItem&gt;
+                            &lt;/&gt;
+                        ) : (
+                            &lt;&gt;
+                                &lt;NavItem className="float-right"&gt;
+                                    &lt;NavLink href="/login"&gt;Login&lt;/NavLink&gt;
+                                &lt;/NavItem&gt;
+                                &lt;NavItem&gt;
+                                    &lt;NavLink href="/signup"&gt;Signup&lt;/NavLink&gt;
+                                &lt;/NavItem&gt;
+                            &lt;/&gt;
+                        )}
+                    &lt;/Nav&gt;
+                &lt;/Collapse&gt;
+            &lt;/Navbar&gt;
+        &lt;/div&gt;
+    )
 }
 &nbsp;
-export default Navv;
+export default Navv
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -304,7 +331,7 @@ export default Navv;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-07T06:53:26.722Z
+                at 2022-10-09T16:30:01.576Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -7,6 +7,9 @@ import {
     CardTitle,
     CardText,
     Button,
+    Row,
+    Col,
+    CardHeader,
 } from 'reactstrap'
 import PropTypes from 'prop-types'
 import axios from 'axios'
@@ -37,7 +40,23 @@ const ProductCard = ({ product, maxBid, name }) => {
 
     return (
         <>
-            <Card className="my-2" style={{ width: '70%' }}>
+            <Card style={{ width: '18rem' }}>
+                <CardHeader tag="h5">{product[1]}</CardHeader>
+                <img alt="Sample" src={image} />
+                <CardBody>
+                    <CardText>Seller: {product[2]}</CardText>
+                    <CardText>Minimum price: ${product[3]}</CardText>
+                    <CardText>
+                        Current highest bids: ${maxBid === -1 ? 'N/A' : maxBid}
+                    </CardText>
+                    <CardText>Current highest bidder: {name}</CardText>
+                    <Button color="warning" href={url}>
+                        Details
+                    </Button>
+                </CardBody>
+            </Card>
+
+            {/* <Card className="my-2" style={{ width: '70%' }}>
                 <CardImg
                     alt="Card image cap"
                     src={image}
@@ -50,28 +69,13 @@ const ProductCard = ({ product, maxBid, name }) => {
                 <CardBody>
                     <CardTitle tag="h5">{product[1]}</CardTitle>
                     <CardText>Seller: {product[2]}</CardText>
-                    {/* <CardText>Description: {product[7]}</CardText> */}
                     <CardText>Minimum price: ${product[3]}</CardText>
                     <CardText>
                         Current highest bids: ${maxBid === -1 ? 'N/A' : maxBid}
                     </CardText>
                     <CardText>Current highest bidder: {name}</CardText>
-                    {/* <CardText>
-            <small className="text-muted">id = {product[0]}</small>
-          </CardText> */}
                 </CardBody>
-                <Button
-                    color="warning"
-                    href={url}
-                    style={{
-                        width: '15%',
-                        marginLeft: '0.5rem',
-                        marginBottom: '0.5rem',
-                    }}
-                >
-                    Details
-                </Button>
-            </Card>
+            </Card> */}
         </>
     )
 }

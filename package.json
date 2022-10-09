@@ -32,10 +32,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": " CI=true react-scripts test --coverage",
     "eject": "react-scripts eject",
     "doc": "react-doc-generator src -o DOCUMENTATION.md",
-    "coverage": "yarn test --coverage --watchAll --collectCoverageFrom='src/**/*.{js,jsx}'"
+    "coverage": "CI=true yarn test --coverage --watchAll --collectCoverageFrom='src/**/*.{js,jsx}'"
   },
   "eslintConfig": {
     "extends": [
