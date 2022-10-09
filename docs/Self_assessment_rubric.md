@@ -14,8 +14,8 @@
 |Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing|3|Visible in [README](https://github.com/kartikson1/Auction-Sphere#readme)|
 |Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.||
 |Use of version control tools|3| GH
-|Use of style checkers |3| Visible in [workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/style_checker.yml)
-|Use of code formatters. ||
+|Use of style checkers |3| Visible in [style-checker workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/style_checker.yml)
+|Use of code formatters. |3| Visible in [code-formatter workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/code_formatter.yml)
 |Use of syntax checkers. ||
 |Use of code coverage ||
 |Other automated analysis tools||
