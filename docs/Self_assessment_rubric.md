@@ -57,7 +57,7 @@
 |Question 6.1: Is your software’s architecture and design modular?|3|Yes|
 |Question 6.2: Does your software use an accepted coding standard or convention?|3|Yes|
 |Question 7.1: Does your software allow data to be imported and exported using open data formats?|3|Yes|
-|Question 7.2:Does your software allow communications using open communications protocols?||Yes|
+|Question 7.2:Does your software allow communications using open communications protocols?|3|Yes|
 |Question 8.1: Is your software cross-platform compatible?||Yes|
 |Question 9.1: Does your software adhere to appropriate accessibility conventions or standards?||Yes|
 |Question 9.2: Does your documentation adhere to appropriate accessibility conventions or standards?||Yes|
