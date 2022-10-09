@@ -9,8 +9,8 @@
 |Issues are being closed|3|[closed issues](https://github.com/kartikson1/Auction-Sphere/issues?q=is%3Aissue+is%3Aclosed)
 |DOI badge: exists|3|Visible in [README](https://github.com/kartikson1/Auction-Sphere#readme)|
 |Docs: doco generated, format not ugly |3|[Docs](https://github.com/kartikson1/Auction-Sphere/tree/main/docs) exist|
-|Docs: what: point descriptions of each class/function (in isolation) ||
-|Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|||
+|Docs: what: point descriptions of each class/function (in isolation) |3| Detailed [docs](https://github.com/kartikson1/Auction-Sphere/tree/main/docs) present
+|Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|3|Detailed [docs](https://github.com/kartikson1/Auction-Sphere/tree/main/docs) present|
 |Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing|3|Visible in [README](https://github.com/kartikson1/Auction-Sphere#readme)|
 |Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.||
 |Use of version control tools|3| GH
