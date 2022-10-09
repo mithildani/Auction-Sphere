@@ -11,7 +11,7 @@
 |Docs: doco generated, format not ugly |||
 |Docs: what: point descriptions of each class/function (in isolation) ||
 |Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|||
-|Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing||
+|Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing|3|Visible in [README](https://github.com/kartikson1/Auction-Sphere#readme)|
 |Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.||
 |Use of version control tools||
 |Use of style checkers ||
