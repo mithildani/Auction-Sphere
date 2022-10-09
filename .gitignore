@@ -4,3 +4,18 @@ venv
 
 coverage/lcov-report/components
 coverage/lcov-report/src
+coverage/lcov-report/About.js.html
+coverage/lcov-report/AddBid.js.html
+coverage/lcov-report/Footer.js.html
+coverage/lcov-report/Login.js.html
+coverage/lcov-report/Navv.js.html
+coverage/lcov-report/ProductCard.js.html
+coverage/lcov-report/ProductDetails.js.html
+coverage/lcov-report/Products.js.html
+coverage/lcov-report/Sell.js.html
+coverage/lcov-report/Signup.js.html
+
+
+
+
+
