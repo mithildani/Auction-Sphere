@@ -2,34 +2,34 @@
 |-----|---------------|--------|
 |Video1|0|Not required for hw| 
 |Video2|0|Not required for hw| 
-|Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|3|https://github.com/ekanshsinghal/se-group26-proj1/graphs/contributors|
-|Number of commits|3|https://github.com/ekanshsinghal/se-group26-proj1/graphs/commit-activity|
-|Number of commits: by different people|3|https://github.com/ekanshsinghal/se-group26-proj1/graphs/contributors|
-|Issues reports: there are **many**|0|https://github.com/ekanshsinghal/se-group26-proj1/issues
-|Issues are being closed|0|https://github.com/ekanshsinghal/se-group26-proj1/issues
-|DOI badge: exists|3|https://github.com/ekanshsinghal/se-group26-proj1/blob/main/README.md|
-|Docs: doco generated, format not ugly |3|https://github.com/ekanshsinghal/se-group26-proj1/tree/main/docs|
-|Docs: what: point descriptions of each class/function (in isolation) |3|https://github.com/ekanshsinghal/se-group26-proj1/tree/main/docs
-|Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|0|https://github.com/ekanshsinghal/se-group26-proj1/tree/main/docs|
-|Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing|3|https://github.com/ekanshsinghal/se-group26-proj1/tree/main/docs
-|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|0|NA
-|Use of version control tools|3|
-|Use of style checkers |0|
-|Use of code formatters. |1|
-|Use of syntax checkers. |1|
-|Use of code coverage |0|https://github.com/ekanshsinghal/se-group26-proj1
-|Other automated analysis tools|1|https://github.com/ekanshsinghal/se-group26-proj1
-|Test cases exist|3|https://github.com/ekanshsinghal/se-group26-proj1/blob/main/__tests__/App.test.jsx
-|Test cases are routinely executed|3|https://github.com/ekanshsinghal/se-group26-proj1/actions
-|The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up|3|https://github.com/ekanshsinghal/se-group26-proj1/blob/main/CONTRIBUTING.md
-|Issues are discussed before they are closed, even if you discuss in slack, need a sumamry statement here|3|Yes. We have a WhatsApp group where we discuss issues. We also use github issues to keep track of the issues found in the application(https://github.com/ekanshsinghal/se-group26-proj1/issues)
-|Chat channel: exists|3|Yes. We have a WhatsApp group to discuss the projects.
-|Test cases: a large proportion of the issues related to handling failing cases.|3|https://github.com/ekanshsinghal/se-group26-proj1/issues
-|Evidence that the whole team is using the same tools: everyone can get to all tools and files|3|no such evidence
-|Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)|2|
-|Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer)|3
-|Evidence that the members of the team are working across multiple places in the code base|3
-|Short release cycles |3|https://github.com/ekanshsinghal/se-group26-proj1/commits/main|
+|Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|||
+|Number of commits|||
+|Number of commits: by different people|||
+|Issues reports: there are **many**||
+|Issues are being closed||
+|DOI badge: exists|||
+|Docs: doco generated, format not ugly |||
+|Docs: what: point descriptions of each class/function (in isolation) ||
+|Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|||
+|Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing||
+|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.||
+|Use of version control tools||
+|Use of style checkers ||
+|Use of code formatters. ||
+|Use of syntax checkers. ||
+|Use of code coverage ||
+|Other automated analysis tools||
+|Test cases exist||
+|Test cases are routinely executed||
+|The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up||
+|Issues are discussed before they are closed, even if you discuss in slack, need a sumamry statement here||
+|Chat channel: exists||
+|Test cases: a large proportion of the issues related to handling failing cases.||
+|Evidence that the whole team is using the same tools: everyone can get to all tools and files||
+|Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)||
+|Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer)|
+|Evidence that the members of the team are working across multiple places in the code base|||
+|Short release cycles |||
 ||||
 |Question 1.1: Does your website and documentation provide a clear, high-level overview of your software?||Yes|
 |Question 1.2: Does your website and documentation clearly describe the type of user who should use your software?||Yes|
