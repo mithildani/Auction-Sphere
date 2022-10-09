@@ -134,51 +134,6 @@ const ProductDetails = () => {
                     </div>
                 )}
             </Card>
-            {product && (
-                <div>
-                    <h2>{product[1]} </h2>
-                    <img
-                        src={product[2]}
-                        style={{
-                            marginBottom: '2rem',
-                            width: '20%',
-                            height: '20%',
-                        }}
-                    ></img>
-                    <p>Seller: {product[3]} </p>
-                    <p>Minimum price: {product[4]}$ </p>
-                    <p>Date posted: {product[5]} </p>
-                    <p>Bidding window closes on: {product[7]} </p>
-                    <p>Minimum price increment to beat a bid: {product[6]}$ </p>
-                    <p>Product Description: {product[8]} </p>
-                </div>
-            )}
-            {bids.length > 0 ? (
-                <>
-                    <h5>Current Highest bids:</h5>
-                    {bids.map((bid, index) => (
-                        <div key={index}>
-                            <p>Bidder: {bid[0] + ' ' + bid[1]}</p>
-                            <p>Bid amount: ${bid[2]}</p>
-                        </div>
-                    ))}
-                </>
-            ) : (
-                <h5>No bids so far</h5>
-            )}
-            {showButton && (
-                <>
-                    <Button
-                        color="info"
-                        onClick={() => setShowAddBid(!showAddBid)}
-                    >
-                        {showAddBid ? <span>-</span> : <span>+</span>} Add a Bid
-                    </Button>
-                    {showAddBid && (
-                        <AddBid productId={id} sellerEmail={product[3]} />
-                    )}
-                </>
-            )}
             {/* <Footer /> */}
         </>
     )
