@@ -44,6 +44,7 @@ const AddBid = ({ productId, sellerEmail }) => {
                 <FormGroup>
                     <Label for="amount">Amount:</Label>
                     <Input
+                        className="mx-auto"
                         style={{ width: '50%' }}
                         id="amount"
                         name="amount"
