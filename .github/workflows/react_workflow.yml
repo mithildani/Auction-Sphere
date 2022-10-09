@@ -27,3 +27,6 @@ jobs:
 
     - name: Run the tests
       run: npm test
+      
+    - name: Generate coverage report
+      run: yarn coverage
