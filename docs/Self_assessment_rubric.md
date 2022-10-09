@@ -2,7 +2,7 @@
 |-----|---------------|--------|
 |Video1|0|Not applicable| 
 |Video2|0|Not applicable| 
-|Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|||
+|Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|3|GH Insights|
 |Number of commits|3|From GH Insights|
 |Number of commits: by different people|3|From GH Insights|
 |Issues reports: there are **many**|3|[Total issues](https://github.com/kartikson1/Auction-Sphere/issues)|
