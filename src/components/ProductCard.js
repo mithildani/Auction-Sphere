@@ -10,6 +10,8 @@ import {
     Row,
     Col,
     CardHeader,
+    CardGroup,
+    CardSubtitle,
 } from 'reactstrap'
 import PropTypes from 'prop-types'
 import axios from 'axios'
@@ -37,12 +39,22 @@ const ProductCard = ({ product, maxBid, name }) => {
     useEffect(() => {
         fetchImage()
     }, [])
+    const myStyle = {
+        boxShadow:
+            'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
+        width: '30%',
+    }
 
     return (
         <>
-            <Card style={{ width: '18rem' }}>
+            <Card style={myStyle}>
                 <CardHeader tag="h5">{product[1]}</CardHeader>
-                <img alt="Sample" src={image} />
+                <CardImg
+                    className="mx-auto"
+                    src={image}
+                    style={{ width: '50%', textAlign: 'center' }}
+                />
+                {/* <img alt="Sample" src={image} /> */}
                 <CardBody>
                     <CardText>Seller: {product[2]}</CardText>
                     <CardText>Minimum price: ${product[3]}</CardText>

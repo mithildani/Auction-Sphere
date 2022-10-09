@@ -4,6 +4,7 @@ import Navv from './Navv'
 import ProductCard from './ProductCard'
 import { URL } from '../global'
 import axios from 'axios'
+import { CardGroup, Row } from 'reactstrap'
 
 /**
  * This component displays all products on the products page.
@@ -32,19 +33,21 @@ const Products = () => {
             {/* {products.map((product) => (
         <ProductCard product={product} />
       ))} */}
-            {apiData && apiData.products ? (
-                apiData.products.map((product, index) => (
-                    <ProductCard
-                        key={index}
-                        product={product}
-                        maxBid={apiData.maximumBids[index]}
-                        name={apiData.names[index]}
-                    />
-                ))
-            ) : (
-                <div>No products found</div>
-            )}
-            <Footer />
+            <Row>
+                {apiData && apiData.products ? (
+                    apiData.products.map((product, index) => (
+                        <ProductCard
+                            key={index}
+                            product={product}
+                            maxBid={apiData.maximumBids[index]}
+                            name={apiData.names[index]}
+                        />
+                    ))
+                ) : (
+                    <div>No products found</div>
+                )}
+            </Row>
+            {/* <Footer /> */}
         </>
     )
 }

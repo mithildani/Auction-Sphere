@@ -52,8 +52,8 @@ const ProductDetails = () => {
                         src={product[2]}
                         style={{
                             marginBottom: '2rem',
-                            width: '50%',
-                            height: '50%',
+                            width: '20%',
+                            height: '20%',
                         }}
                     ></img>
                     <p>Seller: {product[3]} </p>
