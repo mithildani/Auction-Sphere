@@ -43,12 +43,17 @@ const ProductCard = ({ product, maxBid, name }) => {
         boxShadow:
             'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
         width: '30%',
+        padding: '50px',
+        margin: '20px',
     }
 
     return (
         <>
             <Card style={myStyle}>
-                <CardHeader tag="h5">{product[1]}</CardHeader>
+                <CardTitle tag="h3" style={{ textAlign: 'center' }}>
+                    {product[1]}
+                </CardTitle>
+                <hr />
                 <CardImg
                     className="mx-auto"
                     src={image}
