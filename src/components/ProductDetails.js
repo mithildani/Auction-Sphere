@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Button } from 'reactstrap'
+import {
+    Button,
+    Card,
+    CardImg,
+    CardBody,
+    CardTitle,
+    CardText,
+    Row,
+    Col,
+    CardHeader,
+    CardGroup,
+    CardSubtitle,
+} from 'reactstrap'
 import axios from 'axios'
 
 import AddBid from './AddBid'
@@ -41,13 +53,26 @@ const ProductDetails = () => {
     return (
         <>
             <Navv />
-
-            {/* <h5>Product details:</h5> */}
+            <Card
+                className="my-2"
+                color="light"
+                outline
+                style={{
+                    width: '18rem',
+                }}
+            >
+                <CardHeader>Header</CardHeader>
+                <CardBody>
+                    <CardTitle tag="h5">Special Title Treatment</CardTitle>
+                    <CardText>
+                        With supporting text below as a natural lead-in to
+                        additional content.
+                    </CardText>
+                </CardBody>
+            </Card>
             {product && (
                 <div>
-                    {/* <p>Product ID: {product[0]} </p> */}
                     <h2>{product[1]} </h2>
-                    {/* <p>Image: {product[2]} </p> */}
                     <img
                         src={product[2]}
                         style={{
@@ -57,10 +82,10 @@ const ProductDetails = () => {
                         }}
                     ></img>
                     <p>Seller: {product[3]} </p>
-                    <p>Minimum price {product[4]} </p>
+                    <p>Minimum price: {product[4]}$ </p>
                     <p>Date posted: {product[5]} </p>
                     <p>Bidding window closes on: {product[7]} </p>
-                    <p>Minimum price increment to beat a bid: {product[6]} </p>
+                    <p>Minimum price increment to beat a bid: {product[6]}$ </p>
                     <p>Product Description: {product[8]} </p>
                 </div>
             )}
