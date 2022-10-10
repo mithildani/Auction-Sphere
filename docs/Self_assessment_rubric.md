@@ -1,4 +1,4 @@
-|Notes|Self Assessment (Total:)|evidence|
+|Notes|Self Assessment|evidence|
 |-----|---------------|--------|
 |Video1|0|Not applicable| 
 |Video2|0|Not applicable| 
