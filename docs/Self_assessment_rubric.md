@@ -62,13 +62,13 @@
 |Question 9.1: Does your software adhere to appropriate accessibility conventions or standards?||Yes|
 |Question 9.2: Does your documentation adhere to appropriate accessibility conventions or standards?||Yes|
 |Question 10.1: Is your source code stored in a repository under revision control?||Yes|
-|Question 10.2: Is each source code release a snapshot of the repository?||Yes|
+|Question 10.2: Is each source code release a snapshot of the repository?|3|Yes|
 |Question 10.3: Are releases tagged in the repository?|3|Yes|
 |Question 10.4: Is there a branch of the repository that is always stable? (i.e. tests always pass, code always builds successfully)|3|Yes - https://github.com/kartikson1/Auction-Sphere/actions|
 |Question 10.5: Do you back-up your repository?||Yes|
-|Question 11.1: Do you provide publicly-available instructions for building your software from the source code?||Yes|
+|Question 11.1: Do you provide publicly-available instructions for building your software from the source code?|3|Yes|
 |Question 11.2: Can you build, or package, your software using an automated tool?|3|Yes|
-|Question 11.3: Do you provide publicly-available instructions for deploying your software?||Yes|
+|Question 11.3: Do you provide publicly-available instructions for deploying your software?|3|Yes|
 |Question 11.4: Does your documentation list all third-party dependencies?||Yes|
 |Question 11.5: Does your documentation list the version number for all third-party dependencies?||Yes|
 |Question 11.6: Does your software list the web address, and licences for all third-party dependencies and say whether the dependencies are mandatory or optional?||N/A|
