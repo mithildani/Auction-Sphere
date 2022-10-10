@@ -71,22 +71,22 @@
 |Question 11.3: Do you provide publicly-available instructions for deploying your software?|3|Yes|
 |Question 11.4: Does your documentation list all third-party dependencies?|3|Yes - https://github.com/kartikson1/Auction-Sphere/blob/main/docs/Backend%20Documentation.pdf|
 |Question 11.5: Does your documentation list the version number for all third-party dependencies?|3|Yes - https://github.com/kartikson1/Auction-Sphere/blob/main/package.json|
-|Question 11.6: Does your software list the web address, and licences for all third-party dependencies and say whether the dependencies are mandatory or optional?||N/A|
+|Question 11.6: Does your software list the web address, and licences for all third-party dependencies and say whether the dependencies are mandatory or optional?|0|N/A|
 |Question 11.7: Can you download dependencies using a dependency management tool or package manager?|3|Yes - pip for backend, npm for frontend|
 |Question 11.8: Do you have tests that can be run after your software has been built or deployed to show whether the build or deployment has been successful?|3|Yes|
 |Question 12.1: Do you have an automated test suite for your software?|3|Yes|
-|Question 12.2: Do you have a framework to periodically (e.g. nightly) run your tests on the latest version of the source code?||No|
+|Question 12.2: Do you have a framework to periodically (e.g. nightly) run your tests on the latest version of the source code?|0|No|
 |Question 12.3: Do you use continuous integration, automatically running tests whenever changes are made to your source code?|3|Yes|
 |Question 12.4: Are your test results publicly visible?|3|Yes|
 |Question 12.5: Are all manually-run tests documented?|3|Yes|
-|Question 13.1: Does your project have resources (e.g. blog, Twitter, RSS feed, Facebook page, wiki, mailing list) that are regularly updated with information about your software?||No|
-|Question 13.2: Does your website state how many projects and users are associated with your project?||No|
-|Question 13.3: Do you provide success stories on your website?||No|
-|Question 13.4: Do you list your important partners and collaborators on your website?||No|
-|Question 13.5: Do you list your project's publications on your website or link to a resource where these are available?||No|
-|Question 13.6: Do you list third-party publications that refer to your software on your website or link to a resource where these are available?||No|
-|Question 13.7: Can users subscribe to notifications to changes to your source code repository?||No|
-|Question 13.8: If your software is developed as an open source project (and, not just a project developing open source software), do you have a governance model?||No|
+|Question 13.1: Does your project have resources (e.g. blog, Twitter, RSS feed, Facebook page, wiki, mailing list) that are regularly updated with information about your software?|0|No|
+|Question 13.2: Does your website state how many projects and users are associated with your project?|0|No|
+|Question 13.3: Do you provide success stories on your website?|0|No|
+|Question 13.4: Do you list your important partners and collaborators on your website?|0|No|
+|Question 13.5: Do you list your project's publications on your website or link to a resource where these are available?|0|No|
+|Question 13.6: Do you list third-party publications that refer to your software on your website or link to a resource where these are available?|0|No|
+|Question 13.7: Can users subscribe to notifications to changes to your source code repository?|0|No|
+|Question 13.8: If your software is developed as an open source project (and, not just a project developing open source software), do you have a governance model?|0|No|
 |Question 14.1: Do you accept contributions (e.g. bug fixes, enhancements, documentation updates, tutorials) from people who are not part of your project?|3|Yes|
 |Question 14.2: Do you have a contributions policy?|3|[CONTRIBUTING.md](https://github.com/kartikson1/Auction-Sphere/blob/main/CONTRIBUTING.md)|
 |Question 14.3: Is your contributions' policy publicly available?|3|Yes|
