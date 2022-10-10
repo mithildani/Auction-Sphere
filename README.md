@@ -16,6 +16,8 @@
 
 Repository for CSC 510 Software Engineering project 1, created by Group 3: Shreya Maheshwari, Nandini Mundra, Palash Rathod, Tanvi Sinha, and Kartik Soni
 
+Click on the image below to view the demo video of the project
+
 [![Demo Vidoe of the project](https://img.youtube.com/vi/AzgGo2B63z0/0.jpg)](https://www.youtube.com/watch?v=AzgGo2B63z0)
 
 ## About Auction-Sphere
