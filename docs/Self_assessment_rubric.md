@@ -16,7 +16,7 @@
 |Use of version control tools|3| GH
 |Use of style checkers |3| Visible in [style-checker workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/style_checker.yml)
 |Use of code formatters. |3| Visible in [code-formatter workflow](https://github.com/kartikson1/Auction-Sphere/blob/main/.github/workflows/code_formatter.yml)
-|Use of syntax checkers. ||
+|Use of syntax checkers. |3|Yes
 |Use of code coverage |3| Visible in workflows and code-cov badge
 |Other automated analysis tools||
 |Test cases exist|3| Test cases present
@@ -59,13 +59,13 @@
 |Question 7.1: Does your software allow data to be imported and exported using open data formats?|3|Yes|
 |Question 7.2:Does your software allow communications using open communications protocols?|3|Yes|
 |Question 8.1: Is your software cross-platform compatible?|3|Yes|
-|Question 9.1: Does your software adhere to appropriate accessibility conventions or standards?||Yes|
-|Question 9.2: Does your documentation adhere to appropriate accessibility conventions or standards?||Yes|
-|Question 10.1: Is your source code stored in a repository under revision control?||Yes|
+|Question 9.1: Does your software adhere to appropriate accessibility conventions or standards?|3|Yes|
+|Question 9.2: Does your documentation adhere to appropriate accessibility conventions or standards?|3|Yes|
+|Question 10.1: Is your source code stored in a repository under revision control?|3|Yes|
 |Question 10.2: Is each source code release a snapshot of the repository?|3|Yes|
 |Question 10.3: Are releases tagged in the repository?|3|Yes|
 |Question 10.4: Is there a branch of the repository that is always stable? (i.e. tests always pass, code always builds successfully)|3|Yes - https://github.com/kartikson1/Auction-Sphere/actions|
-|Question 10.5: Do you back-up your repository?||Yes|
+|Question 10.5: Do you back-up your repository?|3|Yes|
 |Question 11.1: Do you provide publicly-available instructions for building your software from the source code?|3|Yes|
 |Question 11.2: Can you build, or package, your software using an automated tool?|3|Yes|
 |Question 11.3: Do you provide publicly-available instructions for deploying your software?|3|Yes|
