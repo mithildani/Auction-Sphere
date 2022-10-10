@@ -22,6 +22,7 @@
          pip install flask
          pip install flask-cors
          pip install pytest-cov
+         pip install flake8 pytest
          echo requirements installed
      - name: Lint with flake8
        run: |
