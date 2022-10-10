@@ -63,7 +63,7 @@
 |Question 9.2: Does your documentation adhere to appropriate accessibility conventions or standards?||Yes|
 |Question 10.1: Is your source code stored in a repository under revision control?||Yes|
 |Question 10.2: Is each source code release a snapshot of the repository?||Yes|
-|Question 10.3: Are releases tagged in the repository?||Yes|
+|Question 10.3: Are releases tagged in the repository?|3|Yes|
 |Question 10.4: Is there a branch of the repository that is always stable? (i.e. tests always pass, code always builds successfully)|3|Yes - https://github.com/kartikson1/Auction-Sphere/actions|
 |Question 10.5: Do you back-up your repository?||Yes|
 |Question 11.1: Do you provide publicly-available instructions for building your software from the source code?||Yes|
