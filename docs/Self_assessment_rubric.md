@@ -73,7 +73,7 @@
 |Question 11.5: Does your documentation list the version number for all third-party dependencies?||Yes|
 |Question 11.6: Does your software list the web address, and licences for all third-party dependencies and say whether the dependencies are mandatory or optional?||N/A|
 |Question 11.7: Can you download dependencies using a dependency management tool or package manager?||Yes|
-|Question 11.8: Do you have tests that can be run after your software has been built or deployed to show whether the build or deployment has been successful?||Yes|
+|Question 11.8: Do you have tests that can be run after your software has been built or deployed to show whether the build or deployment has been successful?|3|Yes|
 |Question 12.1: Do you have an automated test suite for your software?|3|Yes|
 |Question 12.2: Do you have a framework to periodically (e.g. nightly) run your tests on the latest version of the source code?||No|
 |Question 12.3: Do you use continuous integration, automatically running tests whenever changes are made to your source code?|3|Yes|
