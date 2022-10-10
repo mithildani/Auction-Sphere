@@ -1,4 +1,4 @@
-|Notes|Self Assessment|evidence|
+|Notes|Self Assessment (Total 236)|evidence|
 |-----|---------------|--------|
 |Video1|3|https://www.youtube.com/watch?v=AzgGo2B63z0| 
 |Video2|0|Not applicable| 
