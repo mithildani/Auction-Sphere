@@ -1,6 +1,6 @@
 |Notes|Self Assessment|evidence|
 |-----|---------------|--------|
-|Video1|0|Not applicable| 
+|Video1|3|https://www.youtube.com/watch?v=AzgGo2B63z0| 
 |Video2|0|Not applicable| 
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others... but nevertheless, here is a track record that everyone is contributing a lot)|3|GH Insights|
 |Number of commits|3|From GH Insights|
