@@ -92,7 +92,7 @@
 |Question 14.3: Is your contributions' policy publicly available?|3|Yes|
 |Question 14.4: Do contributors keep the copyright/IP of their contributions?|3|Yes|
 |Question 15.1: Does your website and documentation clearly state the copyright owners of your software and documentation?|3|Yes|
-|Question 15.2: Does each of your source code files include a copyright statement?||Yes|
+|Question 15.2: Does each of your source code files include a copyright statement?|0|No|
 |Question 15.3: Does your website and documentation clearly state the licence of your software?|3|Yes - https://github.com/kartikson1/Auction-Sphere/blob/main/LICENSE|
 |Question 15.4: Is your software released under an open source licence?|3|Yes - MIT License|
 |Question 15.5: Is your software released under an OSI-approved open-source licence?|3|Yes|
