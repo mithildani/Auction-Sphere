@@ -76,7 +76,7 @@
 |Question 11.8: Do you have tests that can be run after your software has been built or deployed to show whether the build or deployment has been successful?||Yes|
 |Question 12.1: Do you have an automated test suite for your software?|3|Yes|
 |Question 12.2: Do you have a framework to periodically (e.g. nightly) run your tests on the latest version of the source code?||No|
-|Question 12.3: Do you use continuous integration, automatically running tests whenever changes are made to your source code?||Yes|
+|Question 12.3: Do you use continuous integration, automatically running tests whenever changes are made to your source code?|3|Yes|
 |Question 12.4: Are your test results publicly visible?|3|Yes|
 |Question 12.5: Are all manually-run tests documented?|3|Yes|
 |Question 13.1: Does your project have resources (e.g. blog, Twitter, RSS feed, Facebook page, wiki, mailing list) that are regularly updated with information about your software?||No|
