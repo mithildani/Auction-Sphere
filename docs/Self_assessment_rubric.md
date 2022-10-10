@@ -69,8 +69,8 @@
 |Question 11.1: Do you provide publicly-available instructions for building your software from the source code?|3|Yes|
 |Question 11.2: Can you build, or package, your software using an automated tool?|3|Yes|
 |Question 11.3: Do you provide publicly-available instructions for deploying your software?|3|Yes|
-|Question 11.4: Does your documentation list all third-party dependencies?||Yes|
-|Question 11.5: Does your documentation list the version number for all third-party dependencies?||Yes|
+|Question 11.4: Does your documentation list all third-party dependencies?|3|Yes - https://github.com/kartikson1/Auction-Sphere/blob/main/docs/Backend%20Documentation.pdf|
+|Question 11.5: Does your documentation list the version number for all third-party dependencies?|3|Yes - https://github.com/kartikson1/Auction-Sphere/blob/main/package.json|
 |Question 11.6: Does your software list the web address, and licences for all third-party dependencies and say whether the dependencies are mandatory or optional?||N/A|
 |Question 11.7: Can you download dependencies using a dependency management tool or package manager?|3|Yes - pip for backend, npm for frontend|
 |Question 11.8: Do you have tests that can be run after your software has been built or deployed to show whether the build or deployment has been successful?|3|Yes|
