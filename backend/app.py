@@ -266,12 +266,28 @@ If there is no such bid on the product, -1 is appended to the list.
 """
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page(): 
+    pageNum = request.args.get('pageNum')
+    pageNum = int(pageNum)
+    pageSize = request.args.get('pageSize')
+    pageSize = int(pageSize)
+    offset = ((pageNum-1)*pageSize)
     response = {}
-    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC LIMIT 10;"
+
+    # fetch all products - paginated
+    query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC LIMIT {limit} OFFSET {offset}"
+    query = query.format(limit=pageSize, offset=offset)
     conn = create_connection(database)
     c = conn.cursor()
     c.execute(query)
     products = list(c.fetchall())
+
+    # fetch total count - for pagination component
+    query = "SELECT count(*) FROM product"
+    c.execute(query)
+    result = list(c.fetchall())
+    totalProducts = result[0][0]
+
+    # other details of products
     highestBids = []
     names = []
     for product in products: 
@@ -287,7 +303,7 @@ def get_landing_page():
         else: 
             highestBids.append(-1)
             names.append("N/A")
-    response = {"products": products, "maximumBids": highestBids, "names": names}
+    response = {"products": products, "maximumBids": highestBids, "names": names, "total": totalProducts}
     print(response)
     return jsonify(response)
 
