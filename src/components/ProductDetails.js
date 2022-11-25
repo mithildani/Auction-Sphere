@@ -20,6 +20,7 @@ import Footer from './Footer'
 import Navv from './Navv'
 import { URL } from '../global'
 import { toast } from 'react-toastify'
+import Timer from './Timer'
 
 /**
  * This component is the details page of a single product.
@@ -65,6 +66,7 @@ const ProductDetails = () => {
             >
                 {product && (
                     <div>
+                        <Timer product={product}/>
                         <CardTitle tag="h3" style={{ textAlign: 'center' }}>
                             {product[1]}{' '}
                         </CardTitle>
