@@ -14,8 +14,14 @@ import { toast } from 'react-toastify'
 
 const Products = () => {
     const [apiData, setApiData] = useState([])
+
+    // current page, default = 1
     const [currentPage, setCurrentPage] = useState(1);
-    let PageSize = 10; //default page size = 10
+
+    // page size, default = 10
+    let PageSize = 10; 
+    
+    // total count of products, default = 0
     const [totalCount, setTotalCount] = useState(0);
 
     const getProducts = async (page) => {
