@@ -147,6 +147,7 @@ const Sell = () => {
                     <Input
                         type="file"
                         name="file"
+                        accept="image/*"
                         onChange={(e) => handleFileInputChange(e)}
                     />
                 </FormGroup>
