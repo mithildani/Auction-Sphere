@@ -36,79 +36,6 @@ def hello_world():
     return "<p>Hello, World!</p>"
 
 """ 
-API end point for user creation.
-It extracts firstName, lastName, email, contact number and password from the json.
-This further checks if the email provided is already there in the database or not.
-If the account is already created, the API returns (An account with this contact already exists) 
-otherwise, a new user is created in the users table with all the details extracted from json. 
-"""
-@app.route("/signup", methods=["POST"])
-def signup(): 
-    firstName = request.get_json()['firstName']
-    lastName = request.get_json()['lastName']
-    email = request.get_json()['email']
-    contact = request.get_json()['contact']
-    password = request.get_json()['password']
-
-    conn = create_connection(database)
-    c = conn.cursor()
-    
-    #check if email already exists 
-    query = "SELECT COUNT(*) FROM users WHERE email='" + str(email) + "';"
-    c.execute(query)
-
-    result = list(c.fetchall())
-    response = {}
-    if(result[0][0] == 0): 
-        query = "SELECT COUNT(*) FROM users WHERE contact_number='" + str(contact) + "';"
-        c.execute(query)
-        result = list(c.fetchall())
-
-        if(result[0][0] != 0): 
-            response["message"] = "An account with this contact already exists"
-        else:
-            query = "INSERT INTO users(first_name, last_name, email, contact_number, password) VALUES('" + str(firstName) + "','" + str(lastName) + "','" + str(email) + "','" + str(contact) + "','" + str(password) +"');"
-            c.execute(query)
-            conn.commit()
-            response["message"] = "Added successfully"
-    else: 
-        response["message"] = "An account with this email already exists"
-    return response
-
-""" 
-API end point for user login.
-User email and password are extracted from the json.
-These are validated from the data already available in users table.
-If the email and password are correct, login is successful else user is asked to create an account.
-"""
-@app.route("/login", methods=["POST"])
-def login(): 
-    email = request.get_json()['email']
-    password = request.get_json()['password']
-    
-    conn = create_connection(database)
-    c = conn.cursor()
-    
-    # check if email and password pair exists
-    query = "SELECT * FROM users WHERE email='" + str(email) + "' AND password='" + str(password) + "';"
-    c.execute(query)
-    result = list(c.fetchall())
-    response = {}
-
-    if(len(result) == 1): 
-        response["message"] = "Logged in successfully"
-    else: 
-        # check if email exists, but password is incorrect
-        query = "SELECT COUNT(*) FROM users WHERE email='" + str(email) + "';"
-        c.execute(query)
-        result = list(c.fetchall())
-        if(result[0][0] == 1): 
-            response["message"] = "Invalid credentials!"
-        else: 
-            response["message"] = "Please create an account!"
-    return jsonify(response)
-
-""" 
 API end point to create a new bid.
 This API allows users to bid ona product which is open for auctioning.
 Details like productId, email, and new bid amount are extracted from the json.
@@ -308,8 +235,6 @@ def get_landing_page():
     return jsonify(response)
 
 database = r"auction.db"
-create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
-
 create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
 
 create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
@@ -318,7 +243,6 @@ create_table_claims = """CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, emai
 
 conn = create_connection(database)
 if conn is not None:
-    create_table(conn, create_users_table)
     create_table(conn, create_product_table)
     create_table(conn, create_bids_table)
     create_table(conn, create_table_claims)
