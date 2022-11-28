@@ -7,13 +7,14 @@ from datetime import datetime, timedelta
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_mail import Mail, Message as MailMessage
+from env_config import Config
 
 app = Flask(__name__)
 
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'slackpoint.developers@gmail.com'
-app.config['MAIL_PASSWORD'] = 'drlqytubjyztqkyz' # => 'drlqytubjyztqkyz' for Windows, 'cqarqyfjpedrorfa' for Mac
+app.config['MAIL_SERVER']=Config.MAIL_SERVER
+app.config['MAIL_PORT'] = Config.MAIL_PORT
+app.config['MAIL_USERNAME'] = Config.MAIL_EMAIL_ADDRESS
+app.config['MAIL_PASSWORD'] = Config.MAIL_APP_PASSWORD
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_SUPPRESS_SEND'] = False
