@@ -43,7 +43,7 @@ export const usePagination = ({
 
         const firstPageIndex = 1;
         const lastPageIndex = totalPageCount;
-
+        console.log(shouldShowLeftDots," ",shouldShowRightDots)
         if (!shouldShowLeftDots && shouldShowRightDots) {
             let leftItemCount = 3 + 2 * siblingCount;
             let leftRange = range(1, leftItemCount);
@@ -64,7 +64,8 @@ export const usePagination = ({
             let middleRange = range(leftSiblingIndex, rightSiblingIndex);
             return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
         }
+        return [];
     }, [totalCount, pageSize, siblingCount, currentPage]);
-
+    console.log("helper:",paginationRange)
     return paginationRange;
 };
