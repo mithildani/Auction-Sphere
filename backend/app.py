@@ -4,9 +4,23 @@ from flask_cors import CORS
 import sqlite3
 from sqlite3 import Error
 from datetime import datetime, timedelta
+from flask_caching import Cache
+from backend.cacheHandler.basecache import BaseCacheHandler
+from backend.cacheHandler.create_bid import Create_Bid
+
+config = {
+    "DEBUG": True,          # some Flask specific configs
+    "CACHE_TYPE": "RedisCache",  # Flask-Caching related configs
+    "CACHE_DEFAULT_TIMEOUT": 300,
+    "CACHE_REDIS_HOST": 'localhost',
+    "CACHE_REDIS_PORT":'6379',
+    "CACHE_REDIS_URL": 'redis://localhost:6379/0'
+}
 
 app = Flask(__name__)
 CORS(app)
+app.config.from_mapping(config)
+cache = Cache(app)
 
 def create_connection(db_file):
   conn = None
@@ -119,13 +133,17 @@ Otherwise it is created/updated.
 @app.route("/bid/create", methods=["POST"])
 def create_bid():
     # Get relevant data
-    productId=request.get_json()['prodId']
+    # productId=request.get_json()['prodId']
     email=request.get_json()['email']
     amount=request.get_json()['bidAmount']
 
     # create db connection
     conn = create_connection(database)
     c = conn.cursor()
+
+    bid_cache = Create_Bid(prodId = prodId)
+    bid_cache.get_configuration()
+    
 
     # get initial price wanted by seller
     select_query="SELECT initial_price FROM product WHERE prod_id='" + str(productId) + "';"
