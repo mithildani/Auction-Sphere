@@ -2,3 +2,6 @@ pytest==6.2.5
 pytest-cov==3.0.0
 apscheduler==3.9.1
 Flask-Mail==0.9.1
+flask-sqlalchemy==3.0.0
+flask==2.2.2
+flask-cors==3.0.10

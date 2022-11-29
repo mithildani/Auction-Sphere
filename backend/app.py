@@ -4,15 +4,15 @@ import os
 from flask import Flask, request, jsonify
 import json
 from sqlalchemy import func
-# from flask_cors import CORS
 from models import db
 import sys
 sys.path.append("..")
 from env_config import Config
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
-# CORS(app)
+CORS(app, support_credentials=True)
 app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
 db.init_app(app)
 
@@ -265,7 +265,7 @@ def get_product_image():
     # conn = create_connection(database)
     # c = conn.cursor()
     # c.execute(query)
-    instance = Product.query.select(
+    instance = Product.query.with_entities(
         Product.photo).filter_by(prod_id=productId).first()
     result = list(instance)
     response = {"result": result}
@@ -351,7 +351,7 @@ It also fetches the highest bids on the those products from the bids table and t
 If there is no such bid on the product, -1 is appended to the list.
 """
 
-
+# if pageSize> num of rows then error
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page():
     pageNum = request.args.get('pageNum')
@@ -367,7 +367,7 @@ def get_landing_page():
     # conn = create_connection(database)
     # c = conn.cursor()
     # c.execute(query)
-    instance = Product.query.select(Product.prod_id, Product.name, Product.seller_email, Product.initial_price, Product.date,
+    instance = Product.query.with_entities(Product.prod_id, Product.name, Product.seller_email, Product.initial_price, Product.date,
                                     Product.increment, Product.deadline_date, Product.description).order_by(Product.date.desc()).limit(pageSize).offset(offset)
 
     products = list(instance)
@@ -385,7 +385,7 @@ def get_landing_page():
         # query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + \
         #     str(product[0]) + ";"
         # c.execute(query)
-        instance=Bids.query(func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
+        instance=Bids.query().with_entities(Bids.email, func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
         result = list(instance)
         if(result[0][0] != None):
             result = result[0]
@@ -393,7 +393,7 @@ def get_landing_page():
             # query = "SELECT first_name, last_name FROM users WHERE email='" + \
             #     str(result[0]) + "';"
             # c.execute(query)
-            ins=Users.query.select(Users.first_name, Users.last_name).filter_by(email=result[0])
+            ins=Users.query.with_entities(Users.first_name, Users.last_name).filter_by(email=result[0])
             names.append(list(ins[0]))
         else:
             highestBids.append(-1)
