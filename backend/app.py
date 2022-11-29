@@ -4,8 +4,23 @@ from flask_cors import CORS
 import sqlite3
 from sqlite3 import Error
 from datetime import datetime, timedelta
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
+from flask_mail import Mail, Message as MailMessage
+from env_config import Config
 
 app = Flask(__name__)
+
+app.config['MAIL_SERVER']=Config.MAIL_SERVER
+app.config['MAIL_PORT'] = Config.MAIL_PORT
+app.config['MAIL_USERNAME'] = Config.MAIL_EMAIL_ADDRESS
+app.config['MAIL_PASSWORD'] = Config.MAIL_APP_PASSWORD
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_SUPPRESS_SEND'] = False
+app.config['TESTING'] = False
+mail = Mail(app)
+
 CORS(app)
 
 def create_connection(db_file):
@@ -97,8 +112,8 @@ def create_product():
     deadlineDate = currentTime + timedelta(days = 7)
     print(deadlineDate)
 
-    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)"
-    c.execute(query, (str(productName), str(sellerEmail), str(photo), initialPrice, currentTime, increment, deadlineDate, str(description)))
+    query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description, email_sent) VALUES (?,?,?,?,?,?,?,?,?)"
+    c.execute(query, (str(productName), str(sellerEmail), str(photo), initialPrice, currentTime, increment, deadlineDate, str(description), 0))
     conn.commit()
     response["result"] = "Added product successfully"
 
@@ -235,20 +250,88 @@ def get_landing_page():
     return jsonify(response)
 
 database = r"auction.db"
-create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
+drop_users_table = """DROP TABLE IF EXISTS users"""
+create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
+drop_product_table = """DROP TABLE IF EXISTS product"""
+create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT, email_sent INTEGER NOT NULL, FOREIGN KEY(seller_email) references users(email));"""
+
+drop_bids_table = """DROP TABLE IF EXISTS bids"""
 create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
 
+drop_claims_table = """DROP TABLE IF EXISTS claims"""
 create_table_claims = """CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NULL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));"""
 
 conn = create_connection(database)
 if conn is not None:
+    #create_table(conn, drop_users_table)
+    create_table(conn, create_users_table)
+    # create_table(conn, drop_product_table)
     create_table(conn, create_product_table)
+    # create_table(conn, drop_bids_table)
     create_table(conn, create_bids_table)
+    # create_table(conn, drop_claims_table)
     create_table(conn, create_table_claims)
 else:
     print("Error! Cannot create the database connection")
 
+def mail_job():
+    # fetch products with expired deadline, email not yet sent
+    query = "SELECT prod_id, name, seller_email, deadline_date, email_sent FROM product WHERE email_sent=0 AND deadline_date <= date('now')"
+    conn = create_connection(database)
+    c = conn.cursor()
+    c.execute(query)
+    products = list(c.fetchall())
+
+    print("Products with expired deadline")
+    print(products)
+
+    for product in products:
+        print("----- Product with expired deadline -----")
+        print(product)
+        # send email to highest bidder and product owner
+        query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
+        c.execute(query)
+        result = list(c.fetchall())
+
+        print("Check highest bidder")
+        print(result)
+
+        if(result[0][0] != None):
+            print("Highest bidder found")
+            result = result[0]
+            send_email(str(result[0]), "Congratulations, the product " + str(product[1]) + " has been successfully claimed by you!")
+            send_email(str(product[2]), "Congratulations, the product " + str(product[1]) + " has been successfully claimed!")
+        else:
+            print("No bidder found")
+            # if not claimed, send email to product owner
+            send_email(str(product[2]), "Sorry, your product was not claimed by anyone.")
+
+        print("Update email sent")
+        query = "UPDATE product SET email_sent=1 WHERE prod_id=" + str(product[0]) +";"
+        print(query)
+        c.execute(query)
+        conn.commit()
+
+def send_email(recipient, message):
+    print("Email job started")
+    print(recipient)
+    print(message)
+    try:
+        with app.app_context():
+            msg = MailMessage('Knock knock, its Auction Sphere! We have a notification for you.', sender =  'slackpoint.developers@gmail.com', recipients = [recipient])
+            msg.body = message
+            mail.send(msg)
+            print("Email sent!")
+    except Exception as e:
+        print(e)
+
+scheduler = BackgroundScheduler(daemon=True)
+scheduler.add_job(mail_job, 'interval', minutes=1)
+scheduler.start()
+
 if __name__ == "__main__":
   app.debug = True
   app.run()
+
+atexit.register(lambda: scheduler.shutdown())
