@@ -13,16 +13,18 @@
      steps:
      - name: Checkout repository
        uses: actions/checkout@v2
-     - name: Install Python 3.10.7
+     - name: Install Python 3.10.8
        uses: actions/setup-python@v1
        with:
-         python-version: 3.10.7
+         python-version: 3.10.8
      - name: Install dependencies
        run: |
          pip install flask
          pip install flask-cors
          pip install pytest-cov
          pip install flake8 pytest
+         pip install apscheduler
+         pip install Flask-Mail
          echo requirements installed
      - name: Lint with flake8
        run: |

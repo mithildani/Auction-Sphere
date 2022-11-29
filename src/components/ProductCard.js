@@ -26,13 +26,12 @@ import { toast } from 'react-toastify'
 const ProductCard = ({ product, maxBid, name }) => {
     const [url, setUrl] = useState(`/details/${product[0]}`)
     const [image, setImage] = useState('https://picsum.photos/900/180')
-
+    
     const fetchImage = async () => {
         try {
             const response = await axios.post(`${URL}/product/getImage`, {
                 productID: product[0],
             })
-            console.log(response)
             setImage(response.data.result[0])
         } catch (e) {
             toast.error(e)
@@ -40,7 +39,7 @@ const ProductCard = ({ product, maxBid, name }) => {
     }
     useEffect(() => {
         fetchImage()
-    }, [])
+    }, [product])
 
     return (
         <>
