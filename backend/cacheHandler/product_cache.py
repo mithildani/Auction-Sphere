@@ -6,6 +6,7 @@ class Product_Cache(BaseCacheHandler):
     TIMEOUT = 60 * 60 * 1   # 1 hour
 
     def __init__(self, prodId, cache):
+        self.cache = cache
         self.prodId = prodId
         self.key = Product_Cache.BASE_KEY.format(prodId=self.prodId)
         super().__init__(
@@ -22,7 +23,7 @@ class Product_Cache(BaseCacheHandler):
         self.description = None
 
     def get_configuration(self):
-        _cached_content = cache.get(
+        _cached_content = self.cache.get(
             self.key
         )
         
