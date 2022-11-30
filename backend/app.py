@@ -4,17 +4,18 @@ import os
 from flask import Flask, request, jsonify
 from datetime import datetime, timedelta
 from flask_caching import Cache
-from backend.cacheHandler.basecache import BaseCacheHandler
-from backend.cacheHandler.create_bid import Create_Bid
+from cacheHandler.basecache import BaseCacheHandler
+from cacheHandler.product_cache import Product_Cache
 import json
 from sqlalchemy import func
 # from flask_cors import CORS
 from models import db
 from env_config import Config
+import sqlite3
 import sys
 sys.path.append("..")
 
-config = {
+cache_config = {
     "DEBUG": True,          # some Flask specific configs
     "CACHE_TYPE": "RedisCache",  # Flask-Caching related configs
     "CACHE_DEFAULT_TIMEOUT": 300,
@@ -23,14 +24,46 @@ config = {
     "CACHE_REDIS_URL": 'redis://localhost:6379/0'
 }
 
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
+from flask_mail import Mail, Message as MailMessage
+from env_config import Config
+
+
 
 app = Flask(__name__)
-# CORS(app)
+
+app.config['MAIL_SERVER']=Config.MAIL_SERVER
+app.config['MAIL_PORT'] = Config.MAIL_PORT
+app.config['MAIL_USERNAME'] = Config.MAIL_EMAIL_ADDRESS
+app.config['MAIL_PASSWORD'] = Config.MAIL_APP_PASSWORD
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_SUPPRESS_SEND'] = False
+app.config['TESTING'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Config.SQLALCHEMY_TRACK_MODIFICATIONS
+app.config['SQLALCHEMY_ECHO'] = Config.SQLALCHEMY_ECHO
+# app.config['SQLALCHEMY_BINDS'] = Config.SQLALCHEMY_BINDS
+mail = Mail(app)
+
+# CORS(app)
+app.config.from_mapping(cache_config)
 db.init_app(app)
-app.config.from_mapping(config)
 cache = Cache(app)
 
+def create_connection(db_file):
+  conn = None
+  conn = sqlite3.connect(db_file)
+  return conn
+
+def create_table(conn, create_table_sql):
+    try:
+        c = conn.cursor()
+        c.execute(create_table_sql)
+        conn.commit()
+    except Error as e:
+        print(e)
 
 def convertToBinaryData(filename):
     # Convert digital data to binary format
@@ -140,8 +173,8 @@ def create_bid():
     # conn = create_connection(database)
     # c = conn.cursor()
 
-    bid_cache = Create_Bid(prodId = prodId)
-    bid_cache.get_configuration()
+    # bid_cache = Create_Bid(cache, prodId = productId)
+    # bid_cache.get_configuration()
     
 
     # get initial price wanted by seller
@@ -150,11 +183,14 @@ def create_bid():
     # # c.execute(select_query)
     # result = list(c.fetchall())
 
-    instance = Product.query.filter_by(prod_id=productId).first()
+    price_cache = Product_Cache(prodId = productId)
+    price_cache.get_configuration()
+
+    price = price_cache.initial_price
     response = {}
 
     #  if bid amount is less than price by seller then don't save in db
-    if (instance.initial_price > (float)(amount)):
+    if (price > (float)(amount)):
         response["message"] = "Amount less than initial price"
     else:
         currentTime = int(datetime.utcnow().timestamp())
@@ -232,6 +268,23 @@ def get_all_products():
     # conn = create_connection(database)
     # c = conn.cursor()
     # c.execute(query)
+
+    # product = []
+    # for product in Product.query.all():
+    #     product_cache = Get_Product(prodId = prod_id)
+    #     product_cache.get_configuration()
+
+    #     product.append({
+    #         "prod_id":prod_id,
+    #         "name":name,
+    #         "seller_email":seller_email,
+    #         "initial_price":initial_price,
+    #         "date":date,
+    #         "increment":increment,
+    #         "deadline_date":deadline_date,
+    #         "description":description
+    #     })
+
     instance = Product.query.order_by(Product.date.desc()).all()
     result = list(instance)
     response = {"result": result}
@@ -253,9 +306,15 @@ def get_product_image():
     # conn = create_connection(database)
     # c = conn.cursor()
     # c.execute(query)
-    instance = Product.query.select(
-        Product.photo).filter_by(prod_id=productId).first()
-    result = list(instance)
+
+    photo_cache = Product_Cache(prodId = productId)
+    photo_cache.get_configuration()
+
+    picture = photo_cache.photo
+
+    # instance = Product.query.select(
+    #     Product.photo).filter_by(prod_id=productId).first()
+    result = list(picture)
     response = {"result": result}
     return response
 
@@ -328,6 +387,14 @@ def update_product_details():
     instance.update(dict(name=productName, initial_price=initialPrice,
                          deadline_date=deadlineDate, increment=increment, description=description))
 
+    productcache = Product_Cache(prodId = productId)
+    productcache.initialPrice = initialPrice
+    productcache.name = name
+    productcache.deadline_date = deadline_date
+    productcache.increment = increment
+    productcache.description = description
+    productcache._save_config_to_cache
+
     response = {"message": "Updated product successfully"}
     return response
 
@@ -391,11 +458,15 @@ def get_landing_page():
     print(response)
     return jsonify(response)
 
+database = r"auction.db"
+drop_users_table = """DROP TABLE IF EXISTS users"""
+create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
 
-# database = r"auction.db"
-# create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
+drop_product_table = """DROP TABLE IF EXISTS product"""
+create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT, email_sent INTEGER NOT NULL, FOREIGN KEY(seller_email) references users(email));"""
 
-# create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT,  FOREIGN KEY(seller_email) references users(email));"""
+drop_bids_table = """DROP TABLE IF EXISTS bids"""
+create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
 
 drop_claims_table = """DROP TABLE IF EXISTS claims"""
 create_table_claims = """CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NULL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));"""
@@ -427,7 +498,7 @@ def mail_job():
     for product in products:
         print("----- Product with expired deadline -----")
         print(product)
-        # send email to highest bidder and product owner 
+        # send email to highest bidder and product owner
         query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
         c.execute(query)
         result = list(c.fetchall())
@@ -435,12 +506,12 @@ def mail_job():
         print("Check highest bidder")
         print(result)
 
-        if(result[0][0] != None): 
+        if(result[0][0] != None):
             print("Highest bidder found")
             result = result[0]
             send_email(str(result[0]), "Congratulations, the product " + str(product[1]) + " has been successfully claimed by you!")
             send_email(str(product[2]), "Congratulations, the product " + str(product[1]) + " has been successfully claimed!")
-        else: 
+        else:
             print("No bidder found")
             # if not claimed, send email to product owner
             send_email(str(product[2]), "Sorry, your product was not claimed by anyone.")
@@ -471,3 +542,5 @@ scheduler.start()
 if __name__ == "__main__":
     app.debug = True
     app.run()
+
+atexit.register(lambda: scheduler.shutdown())

@@ -1,7 +1,7 @@
 class BaseCacheHandler:
     BASE_KEY = None
 
-    def __init__(self, key: str, timeout: int = 60, alias: str = "default", cache=cache):
+    def __init__(self, cache, key: str, timeout: int = 60):
         self.key = key
         self.timeout = timeout
         self.cache = cache
@@ -12,13 +12,13 @@ class BaseCacheHandler:
     def set_configuration(self, content=None):
         if not content:
             raise Exception('no data while setting cache.')
-        cache.set(
+        self.cache.set(
             self.key,
             content,
             timeout=self.timeout,
         )
 
     def invalidate_cache(self):
-        cache.delete(
+        self.cache.delete(
             self.key,
         )
