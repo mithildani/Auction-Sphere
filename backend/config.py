@@ -26,7 +26,7 @@ class Config(object):
     CACHE_REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
     CACHE_REDIS_PORT = os.environ.get("REDIS_PORT", "6379")
     CACHE_REDIS_URL = f'redis://{CACHE_REDIS_HOST}:{CACHE_REDIS_PORT}/0'
-    CACHE_TYPE = "RedisCache"
+    CACHE_TYPE = "redis"
     CACHE_DEFAULT_TIMEOUT = 300
 
 
