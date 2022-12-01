@@ -33,6 +33,7 @@ class Product(db.Model):
     increment = db.Column(db.Float)
     deadline_date = db.Column(db.DateTime)
     description = db.Column(db.Text())
+    email_sent = db.Column(db.Boolean(), default = False)
 
     __table_args__ = (
         db.UniqueConstraint('prod_id'),

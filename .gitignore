@@ -1,6 +1,7 @@
 node_modules/
 .env
 venv
+auctionenv/
 
 coverage/lcov-report/components
 coverage/lcov-report/src

@@ -8,7 +8,7 @@ from cacheHandler.basecache import BaseCacheHandler
 from cacheHandler.product_cache import Product_Cache
 import json
 from sqlalchemy import func
-# from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from models import db
 from env_config import Config
 import sqlite3
@@ -32,6 +32,7 @@ from env_config import Config
 
 
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 
 app.config['MAIL_SERVER']=Config.MAIL_SERVER
 app.config['MAIL_PORT'] = Config.MAIL_PORT
@@ -72,85 +73,6 @@ def convertToBinaryData(filename):
     with open(filename, 'rb') as file:
         blobData = file.read()
     return blobData
-
-database = r"auction.db"
-
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
-
-""" 
-API end point for user creation.
-It extracts firstName, lastName, email, contact number and password from the json.
-This further checks if the email provided is already there in the database or not.
-If the account is already created, the API returns (An account with this contact already exists) 
-otherwise, a new user is created in the users table with all the details extracted from json. 
-"""
-@app.route("/signup", methods=["POST"])
-def signup(): 
-    firstName = request.get_json()['firstName']
-    lastName = request.get_json()['lastName']
-    email = request.get_json()['email']
-    contact = request.get_json()['contact']
-    password = request.get_json()['password']
-
-    conn = create_connection(database)
-    c = conn.cursor()
-    
-    #check if email already exists 
-    query = "SELECT COUNT(*) FROM users WHERE email='" + str(email) + "';"
-    c.execute(query)
-
-    result = list(c.fetchall())
-    response = {}
-    if(result[0][0] == 0): 
-        query = "SELECT COUNT(*) FROM users WHERE contact_number='" + str(contact) + "';"
-        c.execute(query)
-        result = list(c.fetchall())
-
-        if(result[0][0] != 0): 
-            response["message"] = "An account with this contact already exists"
-        else:
-            query = "INSERT INTO users(first_name, last_name, email, contact_number, password) VALUES('" + str(firstName) + "','" + str(lastName) + "','" + str(email) + "','" + str(contact) + "','" + str(password) +"');"
-            c.execute(query)
-            conn.commit()
-            response["message"] = "Added successfully"
-    else: 
-        response["message"] = "An account with this email already exists"
-    return response
-
-""" 
-API end point for user login.
-User email and password are extracted from the json.
-These are validated from the data already available in users table.
-If the email and password are correct, login is successful else user is asked to create an account.
-"""
-@app.route("/login", methods=["POST"])
-def login(): 
-    email = request.get_json()['email']
-    password = request.get_json()['password']
-    
-    conn = create_connection(database)
-    c = conn.cursor()
-    
-    # check if email and password pair exists
-    query = "SELECT * FROM users WHERE email='" + str(email) + "' AND password='" + str(password) + "';"
-    c.execute(query)
-    result = list(c.fetchall())
-    response = {}
-
-    if(len(result) == 1): 
-        response["message"] = "Logged in successfully"
-    else: 
-        # check if email exists, but password is incorrect
-        query = "SELECT COUNT(*) FROM users WHERE email='" + str(email) + "';"
-        c.execute(query)
-        result = list(c.fetchall())
-        if(result[0][0] == 1): 
-            response["message"] = "Invalid credentials!"
-        else: 
-            response["message"] = "Please create an account!"
-    return jsonify(response)
 
 """ 
 API end point to create a new bid.
@@ -406,7 +328,7 @@ It also fetches the highest bids on the those products from the bids table and t
 If there is no such bid on the product, -1 is appended to the list.
 """
 
-
+# if pageSize> num of rows then error
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page():
     pageNum = request.args.get('pageNum')
@@ -422,7 +344,7 @@ def get_landing_page():
     # conn = create_connection(database)
     # c = conn.cursor()
     # c.execute(query)
-    instance = Product.query.select(Product.prod_id, Product.name, Product.seller_email, Product.initial_price, Product.date,
+    instance = Product.query.with_entities(Product.prod_id, Product.name, Product.seller_email, Product.initial_price, Product.date,
                                     Product.increment, Product.deadline_date, Product.description).order_by(Product.date.desc()).limit(pageSize).offset(offset)
 
     products = list(instance)
@@ -440,7 +362,7 @@ def get_landing_page():
         # query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + \
         #     str(product[0]) + ";"
         # c.execute(query)
-        instance=Bids.query(func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
+        instance=Bids.query().with_entities(Bids.email, func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
         result = list(instance)
         if(result[0][0] != None):
             result = result[0]
@@ -448,7 +370,7 @@ def get_landing_page():
             # query = "SELECT first_name, last_name FROM users WHERE email='" + \
             #     str(result[0]) + "';"
             # c.execute(query)
-            ins=Users.query.select(Users.first_name, Users.last_name).filter_by(email=result[0])
+            ins=Users.query.with_entities(Users.first_name, Users.last_name).filter_by(email=result[0])
             names.append(list(ins[0]))
         else:
             highestBids.append(-1)
@@ -458,34 +380,14 @@ def get_landing_page():
     print(response)
     return jsonify(response)
 
-database = r"auction.db"
-drop_users_table = """DROP TABLE IF EXISTS users"""
-create_users_table = """CREATE TABLE IF NOT EXISTS users( first_name TEXT NOT NULL, last_name TEXT NOT NULL, contact_number TEXT NOT NULL UNIQUE, email TEXT UNIQUE PRIMARY KEY, password TEXT NOT NULL);"""
-
-drop_product_table = """DROP TABLE IF EXISTS product"""
-create_product_table = """CREATE TABLE IF NOT EXISTS product(prod_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, photo TEXT, seller_email TEXT NOT NULL, initial_price REAL NOT NULL, date TIMESTAMP NOT NULL, increment REAL, deadline_date TIMESTAMP NOT NULL, description TEXT, email_sent INTEGER NOT NULL, FOREIGN KEY(seller_email) references users(email));"""
-
-drop_bids_table = """DROP TABLE IF EXISTS bids"""
-create_bids_table = """CREATE TABLE IF NOT EXISTS bids(prod_id INTEGER, email TEXT NOT NULL , bid_amount REAL NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id), PRIMARY KEY(prod_id, email));"""
-
-drop_claims_table = """DROP TABLE IF EXISTS claims"""
-create_table_claims = """CREATE TABLE IF NOT EXISTS claims(prod_id INTEGER, email TEXT NOT NULL, expiry_date TEXT NOT NULL, claim_status INTEGER, FOREIGN KEY(email) references users(email), FOREIGN KEY(prod_id) references product(prod_id));"""
-
-conn = create_connection(database)
-if conn is not None:
-    #create_table(conn, drop_users_table)
-    create_table(conn, create_users_table)
-    # create_table(conn, drop_product_table)
-    create_table(conn, create_product_table)
-    # create_table(conn, drop_bids_table)
-    create_table(conn, create_bids_table)
-    # create_table(conn, drop_claims_table)
-    create_table(conn, create_table_claims)
-else:
-    print("Error! Cannot create the database connection")
 
 def mail_job():
     # fetch products with expired deadline, email not yet sent
+    instance = Product.query \
+        .with_entities(Product.prod_id, Product.name, Product.seller_email, Product.deadline_date, Product.email_sent) \
+        .filter(Product.email_sent==0, Product.deadline_date <= datetime.now().date()) \
+        .order_by(Product.date.desc())
+    result = list(instance)
     query = "SELECT prod_id, name, seller_email, deadline_date, email_sent FROM product WHERE email_sent=0 AND deadline_date <= date('now')"
     conn = create_connection(database)
     c = conn.cursor()
@@ -499,9 +401,8 @@ def mail_job():
         print("----- Product with expired deadline -----")
         print(product)
         # send email to highest bidder and product owner
-        query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + str(product[0]) +";"
-        c.execute(query)
-        result = list(c.fetchall())
+        instance=Bids.query.with_entities(Bids.email, func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
+        result = list(instance)
 
         print("Check highest bidder")
         print(result)
@@ -521,6 +422,10 @@ def mail_job():
         print(query)
         c.execute(query)
         conn.commit()
+        instance = Product.query.filter_by(prod_id=product[0]).first()
+        instance.update(email_sent=)
+
+
             
 def send_email(recipient, message):
     print("Email job started")
