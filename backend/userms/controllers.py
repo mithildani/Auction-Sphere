@@ -1,8 +1,8 @@
 from flask import request, jsonify
 from flask_restful import Resource
 
-from users.main.database import db
-from users.models import User as user_model
+from userms.main.database import db
+from userms.models import Users as user_model
 
 
 class User(Resource):

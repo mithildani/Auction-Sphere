@@ -2,13 +2,13 @@ from sqlalchemy import Integer, Text
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy_utils import EmailType
 
-from users.main.database import db
+from userms.main.database import db
 
 
-class User(db.Model, SerializerMixin):
+class Users(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    id = db.Column(Integer, primary_key=True)
+    id = db.Column(Integer(), primary_key=True)
 
     first_name = db.Column(Text(), nullable=False)
     last_name = db.Column(Text(), nullable=False)

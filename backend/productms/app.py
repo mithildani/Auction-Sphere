@@ -1,12 +1,12 @@
 import os
-from models import Users, Product, Bids, db
+from models import Product, Bids, db
 from datetime import datetime, timedelta
 from flask import Flask, request, jsonify
 from flask_caching import Cache
 from cacheHandler.productcache import ProductCache
 from sqlalchemy import func
 from flask_cors import CORS
-from config import Config, settings
+from config import settings
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_mail import Mail, Message as MailMessage
@@ -14,6 +14,7 @@ from flask_migrate import Migrate
 
 import sys
 sys.path.append("..")
+from userms.models import Users
 
 
 app = Flask(__name__)
@@ -22,8 +23,10 @@ app.config.from_object(settings[os.environ.get('APPLICATION_ENV', 'default')])
 
 mail = Mail(app)
 cache = Cache(app)
+
 db.init_app(app)
 migrate = Migrate(app, db)
+
 
 def convertToBinaryData(filename):
     # Convert digital data to binary format
@@ -38,15 +41,15 @@ def convertToBinaryData(filename):
 def create_bid():
     """ 
     API end point to create a new bid.
-    This API allows users to bid ona product which is open for auctioning.
-    Details like productId, email, and new bid amount are extracted from the json.
+    This API allows users to bid on a product which is open for auctioning.
+    Details like productId, user_id, and new bid amount are extracted from the json.
     Then on the basis of productId, initial price of the product is checked to validate if the new bid amount is greater than the initial amount.
     If the bid amount is lesser than the value extracted in the previous row, then the bid isn't created/updated. 
     Otherwise it is created/updated.
     """
     # Get relevant data
     productId = request.get_json()['prodId']
-    email = request.get_json()['email']
+    user_id = request.get_json()['user_id']
     amount = request.get_json()['bidAmount']
 
     price_cache = ProductCache(prodId = productId)
@@ -62,7 +65,7 @@ def create_bid():
         currentTime = int(datetime.utcnow().timestamp())
         bid = Bids()
         bid.prod_id = productId
-        bid.email = email
+        bid.user_id = user_id
         bid.bid_amount = amount
         bid.created_at = currentTime
         db.session.add(bid)
@@ -81,7 +84,7 @@ def create_product():
     These values are entered into the product table.
     """
     productName = request.get_json()['productName']
-    sellerEmail = request.get_json()['sellerEmail']
+    seller_id = request.get_json()['seller_id']
     initialPrice = request.get_json()['initialPrice']
     increment = request.get_json()['increment']
     photo = request.get_json()['photo']
@@ -95,7 +98,7 @@ def create_product():
 
     product = Product()
     product.name = productName
-    product.seller_email = sellerEmail
+    product.seller_id = seller_id
     product.initial_price = initialPrice
     product.increment = increment
     product.photo = photo
@@ -212,7 +215,7 @@ def get_landing_page():
 
     instance = Product.query \
         .with_entities(Product.prod_id, Product.name, 
-                        Product.seller_email, Product.initial_price, 
+                        Product.seller.email, Product.initial_price, 
                         Product.date, Product.increment, 
                         Product.deadline_date, Product.description
                         ) \
@@ -262,7 +265,7 @@ def mail_job():
         print("----- Product with expired deadline -----")
         print(product)
         # send email to highest bidder and product owner
-        instance=Bids.query.with_entities(Bids.email, func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
+        instance=Bids.query.with_entities(Bids.user.email, func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
         result = list(instance)
 
         print("Check highest bidder")

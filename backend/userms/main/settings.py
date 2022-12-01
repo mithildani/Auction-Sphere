@@ -16,7 +16,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     ASSETS_DEBUG = True
 
-    SQLALCHEMY_DATABASE_URI = "sqlite:///users.db"
+    SQLALCHEMY_DATABASE_URI = "postgresql:///users.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_ENGINE_OPTIONS = {
         'case_sensitive': False,
