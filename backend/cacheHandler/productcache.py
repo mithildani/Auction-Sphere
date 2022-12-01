@@ -1,6 +1,6 @@
 from models import Product
 from cacheHandler.basecache import BaseCacheHandler
-class Product_Cache(BaseCacheHandler):
+class ProductCache(BaseCacheHandler):
 
     BASE_KEY = "v1_product_{prodId}"
     TIMEOUT = 60 * 60 * 1   # 1 hour
@@ -8,11 +8,11 @@ class Product_Cache(BaseCacheHandler):
     def __init__(self, prodId, cache):
         self.cache = cache
         self.prodId = prodId
-        self.key = Product_Cache.BASE_KEY.format(prodId=self.prodId)
+        self.key = ProductCache.BASE_KEY.format(prodId=self.prodId)
         super().__init__(
             cache,
             self.key,
-            Product_Cache.TIMEOUT
+            ProductCache.TIMEOUT
         )
 
         self.name = None

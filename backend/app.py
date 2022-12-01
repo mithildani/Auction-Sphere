@@ -2,7 +2,7 @@ from models import Users, Product, Bids, db
 from datetime import datetime, timedelta
 from flask import Flask, request, jsonify
 from flask_caching import Cache
-from cacheHandler.product_cache import Product_Cache
+from cacheHandler.productcache import ProductCache
 from sqlalchemy import func
 from flask_cors import CORS
 from env_config import Config
@@ -12,7 +12,6 @@ from flask_mail import Mail, Message as MailMessage
 
 import sys
 sys.path.append("..")
-
 
 
 app = Flask(__name__)
@@ -72,7 +71,7 @@ def create_bid():
     email = request.get_json()['email']
     amount = request.get_json()['bidAmount']
 
-    price_cache = Product_Cache(prodId = productId)
+    price_cache = ProductCache(prodId = productId)
     price_cache.get_configuration()
 
     price = price_cache.initial_price
@@ -154,7 +153,7 @@ def get_product_image():
     """
     productId = request.get_json()['productID']
 
-    photo_cache = Product_Cache(prodId = productId)
+    photo_cache = ProductCache(prodId = productId)
     photo_cache.get_configuration()
     picture = photo_cache.photo
 
@@ -205,7 +204,7 @@ def update_product_details():
     instance.update(dict(name=productName, initial_price=initialPrice,
                          deadline_date=deadlineDate, increment=increment, description=description))
 
-    productcache = Product_Cache(prodId = productId)
+    productcache = ProductCache(prodId = productId)
     productcache.initial_price = initialPrice
     productcache.name = productName
     productcache.deadline_date = deadlineDate
@@ -294,8 +293,14 @@ def mail_job():
         if(result[0][0] != None):
             print("Highest bidder found")
             result = result[0]
-            send_email(str(result[0]), "Congratulations, the product " + str(product[1]) + " has been successfully claimed by you!")
-            send_email(str(product[2]), "Congratulations, the product " + str(product[1]) + " has been successfully claimed!")
+            send_email(
+                str(result[0]), 
+                f"Congratulations, the product {str(product[1])} has been successfully claimed by you!"
+            )
+            send_email(
+                str(product[2]), 
+                f"Congratulations, the product {str(product[1])} has been successfully claimed!"
+            )
         else:
             print("No bidder found")
             # if not claimed, send email to product owner
@@ -305,8 +310,6 @@ def mail_job():
         instance = Product.query.filter_by(prod_id=product[0]).first()
         instance.update(dict(email_sent=1))
 
-
-
             
 def send_email(recipient, message):
     print("Email job started")
@@ -314,7 +317,11 @@ def send_email(recipient, message):
     print(message)
     try:
         with app.app_context():
-            msg = MailMessage('Knock knock, its Auction Sphere! We have a notification for you.', sender =  'slackpoint.developers@gmail.com', recipients = [recipient])
+            msg = MailMessage(
+                'Knock knock, its Auction Sphere! We have a notification for you.', 
+                sender =  'slackpoint.developers@gmail.com', 
+                recipients = [recipient]
+            )
             msg.body = message
             mail.send(msg)
             print("Email sent!")
