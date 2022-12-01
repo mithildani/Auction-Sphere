@@ -1,53 +1,51 @@
-from models import *
+from models import Users, Product, Bids, db
 from datetime import datetime, timedelta
 from flask import Flask, request, jsonify
-from datetime import datetime, timedelta
 from flask_caching import Cache
-from cacheHandler.basecache import BaseCacheHandler
 from cacheHandler.product_cache import Product_Cache
 from sqlalchemy import func
 from flask_cors import CORS
-from models import db
 from env_config import Config
-import sys
-sys.path.append("..")
-
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_mail import Mail, Message as MailMessage
-from env_config import Config
 
-cache_config = {
-    "DEBUG": True,          # some Flask specific configs
-    "CACHE_TYPE": "RedisCache",  # Flask-Caching related configs
-    "CACHE_DEFAULT_TIMEOUT": 300,
-    "CACHE_REDIS_HOST": 'localhost',
-    "CACHE_REDIS_PORT":'6379',
-    "CACHE_REDIS_URL": 'redis://localhost:6379/0'
-}
+import sys
+sys.path.append("..")
+
 
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
-app.config['MAIL_SERVER']=Config.MAIL_SERVER
-app.config['MAIL_PORT'] = Config.MAIL_PORT
-app.config['MAIL_USERNAME'] = Config.MAIL_EMAIL_ADDRESS
-app.config['MAIL_PASSWORD'] = Config.MAIL_APP_PASSWORD
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_SUPPRESS_SEND'] = False
-app.config['TESTING'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Config.SQLALCHEMY_TRACK_MODIFICATIONS
-app.config['SQLALCHEMY_ECHO'] = Config.SQLALCHEMY_ECHO
-# app.config['SQLALCHEMY_BINDS'] = Config.SQLALCHEMY_BINDS
 mail = Mail(app)
+mail_config = {
+    'MAIL_SERVER': Config.MAIL_PORT,
+    'MAIL_PORT': Config.MAIL_SERVER,
+    'MAIL_USERNAME': Config.MAIL_EMAIL_ADDRESS,
+    'MAIL_PASSWORD': Config.MAIL_APP_PASSWORD,
+    'MAIL_USE_TLS': False,
+    'MAIL_USE_SSL': True,
+    'MAIL_SUPPRESS_SEND': False,
+    'TESTING': False,
+    'SQLALCHEMY_DATABASE_URI': Config.SQLALCHEMY_DATABASE_URI,
+    'SQLALCHEMY_TRACK_MODIFICATIONS': Config.SQLALCHEMY_TRACK_MODIFICATIONS,
+    'SQLALCHEMY_ECHO': Config.SQLALCHEMY_ECHO
+}
+# app.config['SQLALCHEMY_BINDS'] = Config.SQLALCHEMY_BINDS
+app.config.from_mapping(mail_config)
 
-# CORS(app)
+cache = Cache(app)
+cache_config = {
+    "DEBUG": True,
+    "CACHE_TYPE": "RedisCache",
+    "CACHE_DEFAULT_TIMEOUT": 300,
+    "CACHE_REDIS_HOST": Config.REDIS_HOST,
+    "CACHE_REDIS_PORT": Config.REDIS_PORT,
+    "CACHE_REDIS_URL": f'redis://{Config.REDIS_HOST}:{Config.REDIS_PORT}/0'
+}
 app.config.from_mapping(cache_config)
 db.init_app(app)
-cache = Cache(app)
 
 
 def convertToBinaryData(filename):
@@ -58,36 +56,21 @@ def convertToBinaryData(filename):
         blobData = file.read()
     return blobData
 
-""" 
-API end point to create a new bid.
-This API allows users to bid ona product which is open for auctioning.
-Details like productId, email, and new bid amount are extracted from the json.
-Then on the basis of productId, initial price of the product is checked to validate if the new bid amount is greater than the initial amount.
-If the bid amount is lesser than the value extracted in the previous row, then the bid isn't created/updated. 
-Otherwise it is created/updated.
-"""
-
 
 @app.route("/bid/create", methods=["POST"])
 def create_bid():
+    """ 
+    API end point to create a new bid.
+    This API allows users to bid ona product which is open for auctioning.
+    Details like productId, email, and new bid amount are extracted from the json.
+    Then on the basis of productId, initial price of the product is checked to validate if the new bid amount is greater than the initial amount.
+    If the bid amount is lesser than the value extracted in the previous row, then the bid isn't created/updated. 
+    Otherwise it is created/updated.
+    """
     # Get relevant data
     productId = request.get_json()['prodId']
     email = request.get_json()['email']
     amount = request.get_json()['bidAmount']
-
-    # create db connection
-    # conn = create_connection(database)
-    # c = conn.cursor()
-
-    # bid_cache = Create_Bid(cache, prodId = productId)
-    # bid_cache.get_configuration()
-    
-
-    # get initial price wanted by seller
-    # select_query = "SELECT initial_price FROM product WHERE prod_id='" + \
-    #     str(productId) + "';"
-    # # c.execute(select_query)
-    # result = list(c.fetchall())
 
     price_cache = Product_Cache(prodId = productId)
     price_cache.get_configuration()
@@ -100,11 +83,6 @@ def create_bid():
         response["message"] = "Amount less than initial price"
     else:
         currentTime = int(datetime.utcnow().timestamp())
-        # print(currentTime)
-        # insert_query = "INSERT OR REPLACE INTO bids(prod_id,email,bid_amount,created_at) VALUES ('" + str(productId) + "','" + \
-        #     str(email) + "','" + str(amount) + \
-        #     "','" + str(currentTime) + "');"
-        # c.execute(insert_query)
         bid = Bids()
         bid.prod_id = productId
         bid.email = email
@@ -117,16 +95,14 @@ def create_bid():
     return jsonify(response)
 
 
-""" 
-API end point for new product creation.
-This API is used to create new entries for the products open for auctioning.
-Here, productName, sellerEmail, initialPrice, increment, photo(byte 64 encoded) and product description are extracted from the json.
-These values are entered into the product table.
-"""
-
-
 @app.route("/product/create", methods=["POST"])
 def create_product():
+    """ 
+    API end point for new product creation.
+    This API is used to create new entries for the products open for auctioning.
+    Here, productName, sellerEmail, initialPrice, increment, photo(byte 64 encoded) and product description are extracted from the json.
+    These values are entered into the product table.
+    """
     productName = request.get_json()['productName']
     sellerEmail = request.get_json()['sellerEmail']
     initialPrice = request.get_json()['initialPrice']
@@ -139,11 +115,6 @@ def create_product():
     currentTime = datetime.fromtimestamp(currentTime)
     deadlineDate = currentTime + timedelta(days=7)
     print(deadlineDate)
-
-    # query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description) VALUES (?,?,?,?,?,?,?,?)"
-    # c.execute(query, (str(productName), str(sellerEmail), str(
-    #     photo), initialPrice, currentTime, increment, deadlineDate, str(description)))
-    # conn.commit()
 
     product = Product()
     product.name = productName
@@ -162,96 +133,48 @@ def create_product():
     return response
 
 
-""" 
-API end point to list all the products.
-This API lists down all the product details present in product table sorted in the descending order of date created.
-"""
-
-
 @app.route("/product/listAll", methods=["GET"])
 def get_all_products():
-    # query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC"
-    # conn = create_connection(database)
-    # c = conn.cursor()
-    # c.execute(query)
-
-    # product = []
-    # for product in Product.query.all():
-    #     product_cache = Get_Product(prodId = prod_id)
-    #     product_cache.get_configuration()
-
-    #     product.append({
-    #         "prod_id":prod_id,
-    #         "name":name,
-    #         "seller_email":seller_email,
-    #         "initial_price":initial_price,
-    #         "date":date,
-    #         "increment":increment,
-    #         "deadline_date":deadline_date,
-    #         "description":description
-    #     })
-
+    """ 
+    API end point to list all the products.
+    This API lists down all the product details present in product table sorted in the descending order of date created.
+    """
     instance = Product.query.order_by(Product.date.desc()).all()
     result = list(instance)
     response = {"result": result}
     return(response)
 
 
-""" 
-API end point to get image from product ID.
-This API is used to get image of the product on the basis of productId extracted from the json.
-This returns photo from the product table.
-
-"""
-
-
 @app.route("/product/getImage", methods=["POST"])
 def get_product_image():
+    """ 
+    API end point to get image from product ID.
+    This API is used to get image of the product on the basis of productId extracted from the json.
+    This returns photo from the product table.
+    """
     productId = request.get_json()['productID']
-    # query = "SELECT photo FROM product WHERE prod_id=" + str(productId) + ";"
-    # conn = create_connection(database)
-    # c = conn.cursor()
-    # c.execute(query)
 
     photo_cache = Product_Cache(prodId = productId)
     photo_cache.get_configuration()
-
     picture = photo_cache.photo
 
-    # instance = Product.query.select(
-    #     Product.photo).filter_by(prod_id=productId).first()
     result = list(picture)
     response = {"result": result}
     return response
 
 
-""" 
-API end point to details of a product from product ID.
-This API is used to get details of the product on the basis of productId extracted from json.
-This returns all the details from from the product table.
-It also lists down top ten bids of a particular product.
-"""
-
-
 @app.route("/product/getDetails", methods=["POST"])
 def get_product_details():
+    """ 
+    API end point to details of a product from product ID.
+    This API is used to get details of the product on the basis of productId extracted from json.
+    This returns all the details from from the product table.
+    It also lists down top ten bids of a particular product.
+    """
     productID = request.get_json()['productID']
-
-    # conn = create_connection(database)
-    # c = conn.cursor()
-
-    # gets product details
-    # query = "SELECT * FROM product WHERE prod_id=" + str(productID) + ";"
-    # c.execute(query)
-    # result = list(c.fetchall())
-
     instance = Product.query.filter_by(prod_id=productID).all()
     result = list(instance)
 
-    # get highest 10 bids
-    # query = "SELECT users.first_name, users.last_name, bids.bid_amount FROM users INNER JOIN bids ON bids.email = users.email WHERE bids.prod_id=" + \
-    #     str(productID) + " ORDER BY bid_amount DESC LIMIT 10;"
-    # c.execute(query)
     instance = Users.query.join(Bids). \
         with_entities(Users.first_name, Users.last_name, Bids.bid_amount). \
         filter(Bids.prod_id == productID). \
@@ -262,32 +185,21 @@ def get_product_details():
     return response
 
 
-""" 
-API end point to update a product.
-This API is used while updating the details of a product.
-User provides productId, productName, initialPrice, deadlineDate, description and increment value which is extracted from the json.
-These new values are updated in the product table on the basis of productId.
-"""
-
-# changed post method to put method
-
-
 @app.route("/product/update", methods=["PUT"])
 def update_product_details():
-    productId = request.get_json()['productID']
-    productName = request.get_json()['productName']
-    initialPrice = request.get_json()['initialPrice']
-    deadlineDate = request.get_json()['deadlineDate']
-    description = request.get_json()['description']
-    increment = request.get_json()['increment']
+    """ 
+    API end point to update a product.
+    This API is used while updating the details of a product.
+    User provides productId, productName, initialPrice, deadlineDate, description and increment value which is extracted from the json.
+    These new values are updated in the product table on the basis of productId.
+    """
 
-    # query = "UPDATE product SET name='" + str(productName) + "',initial_price='" + str(initialPrice) + "',deadline_date='" + str(
-    #     deadlineDate) + "',increment='" + str(increment) + "',description='" + str(description) + "' WHERE prod_id=" + str(productId) + ";"
-    # print(query)
-    # conn = create_connection(database)
-    # c = conn.cursor()
-    # c.execute(query)
-    # conn.commit()
+    productId = request.get_json().get('productID')
+    productName = request.get_json().get('productName')
+    initialPrice = request.get_json().get('initialPrice')
+    deadlineDate = request.get_json().get('deadlineDate')
+    description = request.get_json().get('description')
+    increment = request.get_json().get('increment')
 
     instance = Product.query.filter_by(prod_id=productId).first()
     instance.update(dict(name=productName, initial_price=initialPrice,
@@ -305,37 +217,32 @@ def update_product_details():
     return response
 
 
-""" 
-API end point to get top ten latest products.
-This API extracts details of the top products sorted by descending order of date created.
-It also fetches the highest bids on the those products from the bids table and the user details from the user table.
-If there is no such bid on the product, -1 is appended to the list.
-"""
 
 # if pageSize> num of rows then error
 @app.route("/getLatestProducts", methods=["GET"])
 def get_landing_page():
-    pageNum = request.args.get('pageNum')
-    pageNum = int(pageNum)
-    pageSize = request.args.get('pageSize')
-    pageSize = int(pageSize)
+    """ 
+    API end point to get top ten latest products.
+    This API extracts details of the top products sorted by descending order of date created.
+    It also fetches the highest bids on the those products from the bids table and the user details from the user table.
+    If there is no such bid on the product, -1 is appended to the list.
+    """
+
+    pageNum = int(request.args.get('pageNum'))
+    pageSize = int(request.args.get('pageSize'))
     offset = ((pageNum-1)*pageSize)
     response = {}
 
-    # fetch all products - paginated
-    # query = "SELECT prod_id, name, seller_email, initial_price, date, increment, deadline_date, description FROM product ORDER BY date DESC LIMIT {limit} OFFSET {offset}"
-    # query = query.format(limit=pageSize, offset=offset)
-    # conn = create_connection(database)
-    # c = conn.cursor()
-    # c.execute(query)
-    instance = Product.query.with_entities(Product.prod_id, Product.name, Product.seller_email, Product.initial_price, Product.date,
-                                    Product.increment, Product.deadline_date, Product.description).order_by(Product.date.desc()).limit(pageSize).offset(offset)
-
+    instance = Product.query \
+        .with_entities(Product.prod_id, Product.name, 
+                        Product.seller_email, Product.initial_price, 
+                        Product.date, Product.increment, 
+                        Product.deadline_date, Product.description
+                        ) \
+        .order_by(Product.date.desc()) \
+        .limit(pageSize) \
+        .offset(offset)
     products = list(instance)
-
-    # fetch total count - for pagination component
-    # query = "SELECT count(*) FROM product"
-    # c.execute(query)
     num=Product.query.count()
     totalProducts = num
 
@@ -343,24 +250,22 @@ def get_landing_page():
     highestBids = []
     names = []
     for product in products:
-        # query = "SELECT email, MAX(bid_amount) FROM bids WHERE prod_id=" + \
-        #     str(product[0]) + ";"
-        # c.execute(query)
         instance=Bids.query().with_entities(Bids.email, func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
         result = list(instance)
         if(result[0][0] != None):
             result = result[0]
             highestBids.append(result[1])
-            # query = "SELECT first_name, last_name FROM users WHERE email='" + \
-            #     str(result[0]) + "';"
-            # c.execute(query)
             ins=Users.query.with_entities(Users.first_name, Users.last_name).filter_by(email=result[0])
             names.append(list(ins[0]))
         else:
             highestBids.append(-1)
             names.append("N/A")
-    response = {"products": products, "maximumBids": highestBids,
-                "names": names, "total": totalProducts}
+    response = {
+        "products": products, 
+        "maximumBids": highestBids,
+        "names": names, 
+        "total": totalProducts
+    }
     print(response)
     return jsonify(response)
 
