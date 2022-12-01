@@ -1,3 +1,4 @@
+import os
 from models import Users, Product, Bids, db
 from datetime import datetime, timedelta
 from flask import Flask, request, jsonify
@@ -5,10 +6,11 @@ from flask_caching import Cache
 from cacheHandler.productcache import ProductCache
 from sqlalchemy import func
 from flask_cors import CORS
-from env_config import Config
+from config import Config, settings
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_mail import Mail, Message as MailMessage
+from flask_migrate import Migrate
 
 import sys
 sys.path.append("..")
@@ -16,36 +18,12 @@ sys.path.append("..")
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
+app.config.from_object(settings[os.environ.get('APPLICATION_ENV', 'default')])
 
 mail = Mail(app)
-mail_config = {
-    'MAIL_SERVER': Config.MAIL_PORT,
-    'MAIL_PORT': Config.MAIL_SERVER,
-    'MAIL_USERNAME': Config.MAIL_EMAIL_ADDRESS,
-    'MAIL_PASSWORD': Config.MAIL_APP_PASSWORD,
-    'MAIL_USE_TLS': False,
-    'MAIL_USE_SSL': True,
-    'MAIL_SUPPRESS_SEND': False,
-    'TESTING': False,
-    'SQLALCHEMY_DATABASE_URI': Config.SQLALCHEMY_DATABASE_URI,
-    'SQLALCHEMY_TRACK_MODIFICATIONS': Config.SQLALCHEMY_TRACK_MODIFICATIONS,
-    'SQLALCHEMY_ECHO': Config.SQLALCHEMY_ECHO
-}
-# app.config['SQLALCHEMY_BINDS'] = Config.SQLALCHEMY_BINDS
-app.config.from_mapping(mail_config)
-
 cache = Cache(app)
-cache_config = {
-    "DEBUG": True,
-    "CACHE_TYPE": "RedisCache",
-    "CACHE_DEFAULT_TIMEOUT": 300,
-    "CACHE_REDIS_HOST": Config.REDIS_HOST,
-    "CACHE_REDIS_PORT": Config.REDIS_PORT,
-    "CACHE_REDIS_URL": f'redis://{Config.REDIS_HOST}:{Config.REDIS_PORT}/0'
-}
-app.config.from_mapping(cache_config)
 db.init_app(app)
-
+migrate = Migrate(app, db)
 
 def convertToBinaryData(filename):
     # Convert digital data to binary format
