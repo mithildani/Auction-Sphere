@@ -30,3 +30,4 @@ SQLAlchemy-Utils==0.38.3
 toml==0.10.2
 tomli==2.0.1
 Werkzeug==2.2.2
+Flask-Caching==2.0.1

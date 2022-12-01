@@ -1,19 +1,21 @@
 from models import *
 from datetime import datetime, timedelta
-import os
 from flask import Flask, request, jsonify
 from datetime import datetime, timedelta
 from flask_caching import Cache
 from cacheHandler.basecache import BaseCacheHandler
 from cacheHandler.product_cache import Product_Cache
-import json
 from sqlalchemy import func
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from models import db
 from env_config import Config
-import sqlite3
 import sys
 sys.path.append("..")
+
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
+from flask_mail import Mail, Message as MailMessage
+from env_config import Config
 
 cache_config = {
     "DEBUG": True,          # some Flask specific configs
@@ -23,12 +25,6 @@ cache_config = {
     "CACHE_REDIS_PORT":'6379',
     "CACHE_REDIS_URL": 'redis://localhost:6379/0'
 }
-
-import atexit
-from apscheduler.schedulers.background import BackgroundScheduler
-from flask_mail import Mail, Message as MailMessage
-from env_config import Config
-
 
 
 app = Flask(__name__)
@@ -53,18 +49,6 @@ app.config.from_mapping(cache_config)
 db.init_app(app)
 cache = Cache(app)
 
-def create_connection(db_file):
-  conn = None
-  conn = sqlite3.connect(db_file)
-  return conn
-
-def create_table(conn, create_table_sql):
-    try:
-        c = conn.cursor()
-        c.execute(create_table_sql)
-        conn.commit()
-    except Error as e:
-        print(e)
 
 def convertToBinaryData(filename):
     # Convert digital data to binary format
@@ -310,12 +294,12 @@ def update_product_details():
                          deadline_date=deadlineDate, increment=increment, description=description))
 
     productcache = Product_Cache(prodId = productId)
-    productcache.initialPrice = initialPrice
-    productcache.name = name
-    productcache.deadline_date = deadline_date
+    productcache.initial_price = initialPrice
+    productcache.name = productName
+    productcache.deadline_date = deadlineDate
     productcache.increment = increment
     productcache.description = description
-    productcache._save_config_to_cache
+    productcache._save_config_to_cache()
 
     response = {"message": "Updated product successfully"}
     return response
@@ -387,12 +371,7 @@ def mail_job():
         .with_entities(Product.prod_id, Product.name, Product.seller_email, Product.deadline_date, Product.email_sent) \
         .filter(Product.email_sent==0, Product.deadline_date <= datetime.now().date()) \
         .order_by(Product.date.desc())
-    result = list(instance)
-    query = "SELECT prod_id, name, seller_email, deadline_date, email_sent FROM product WHERE email_sent=0 AND deadline_date <= date('now')"
-    conn = create_connection(database)
-    c = conn.cursor()
-    c.execute(query)
-    products = list(c.fetchall())
+    products = list(instance)
 
     print("Products with expired deadline")
     print(products)
@@ -418,12 +397,9 @@ def mail_job():
             send_email(str(product[2]), "Sorry, your product was not claimed by anyone.")
         
         print("Update email sent")
-        query = "UPDATE product SET email_sent=1 WHERE prod_id=" + str(product[0]) +";"
-        print(query)
-        c.execute(query)
-        conn.commit()
         instance = Product.query.filter_by(prod_id=product[0]).first()
-        instance.update(email_sent=)
+        instance.update(dict(email_sent=1))
+
 
 
             
