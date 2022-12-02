@@ -1,11 +1,11 @@
 from sqlalchemy import Integer, Text
-from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy_utils import EmailType
 
 from userms.main.database import db
 
 
-class Users(db.Model, SerializerMixin):
+"""This model is duplicated in backend/productms/models.py"""
+class Users(db.Model):
     __tablename__ = 'users'
 
     id = db.Column(Integer(), primary_key=True)

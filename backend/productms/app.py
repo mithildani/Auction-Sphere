@@ -251,45 +251,46 @@ def get_landing_page():
 
 
 def mail_job():
-    # fetch products with expired deadline, email not yet sent
-    instance = Product.query \
-        .with_entities(Product.prod_id, Product.name, Product.seller_email, Product.deadline_date, Product.email_sent) \
-        .filter(Product.email_sent==0, Product.deadline_date <= datetime.now().date()) \
-        .order_by(Product.date.desc())
-    products = list(instance)
+    with app.app_context():
+        # fetch products with expired deadline, email not yet sent
+        instance = Product.query \
+            .with_entities(Product.prod_id, Product.name, Product.seller_email, Product.deadline_date, Product.email_sent) \
+            .filter(Product.email_sent==0, Product.deadline_date <= datetime.now().date()) \
+            .order_by(Product.date.desc())
+        products = list(instance)
 
-    print("Products with expired deadline")
-    print(products)
+        print("Products with expired deadline")
+        print(products)
 
-    for product in products:
-        print("----- Product with expired deadline -----")
-        print(product)
-        # send email to highest bidder and product owner
-        instance=Bids.query.with_entities(Bids.user.email, func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
-        result = list(instance)
+        for product in products:
+            print("----- Product with expired deadline -----")
+            print(product)
+            # send email to highest bidder and product owner
+            instance=Bids.query.with_entities(Bids.user.email, func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
+            result = list(instance)
 
-        print("Check highest bidder")
-        print(result)
+            print("Check highest bidder")
+            print(result)
 
-        if(result[0][0] != None):
-            print("Highest bidder found")
-            result = result[0]
-            send_email(
-                str(result[0]), 
-                f"Congratulations, the product {str(product[1])} has been successfully claimed by you!"
-            )
-            send_email(
-                str(product[2]), 
-                f"Congratulations, the product {str(product[1])} has been successfully claimed!"
-            )
-        else:
-            print("No bidder found")
-            # if not claimed, send email to product owner
-            send_email(str(product[2]), "Sorry, your product was not claimed by anyone.")
-        
-        print("Update email sent")
-        instance = Product.query.filter_by(prod_id=product[0]).first()
-        instance.update(dict(email_sent=1))
+            if(result[0][0] != None):
+                print("Highest bidder found")
+                result = result[0]
+                send_email(
+                    str(result[0]), 
+                    f"Congratulations, the product {str(product[1])} has been successfully claimed by you!"
+                )
+                send_email(
+                    str(product[2]), 
+                    f"Congratulations, the product {str(product[1])} has been successfully claimed!"
+                )
+            else:
+                print("No bidder found")
+                # if not claimed, send email to product owner
+                send_email(str(product[2]), "Sorry, your product was not claimed by anyone.")
+            
+            print("Update email sent")
+            instance = Product.query.filter_by(prod_id=product[0]).first()
+            instance.update(dict(email_sent=1))
 
             
 def send_email(recipient, message):
