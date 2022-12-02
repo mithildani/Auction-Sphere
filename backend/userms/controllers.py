@@ -1,8 +1,8 @@
 from flask import request, jsonify
 from flask_restful import Resource
 
-from users.main.database import db
-from users.models import User as user_model
+from userms.main.database import db
+from userms.models import Users as user_model
 
 
 class User(Resource):
@@ -58,13 +58,16 @@ class UserLogin(Resource):
 		email = request.get_json()['email']
 		password = request.get_json()['password']
 
-		is_valid_login = user_model.query.filter_by(email=email, password=password).first() is not None
+		user = user_model.query.filter_by(email=email).first()
 
 		response = {}
 
-		if is_valid_login:
-			response["message"] = "Logged in successfully"
-		else:
+		if user is None:
 			response["message"] = "Please create an account!"
+		elif user.password != password:
+			response["message"] = "Invalid Password!"
+		else:
+			response["user_id"] = user.id
+			response["message"] = "Logged in successfully"
 
 		return response

@@ -1,14 +1,14 @@
 from sqlalchemy import Integer, Text
-from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy_utils import EmailType
 
-from users.main.database import db
+from userms.main.database import db
 
 
-class User(db.Model, SerializerMixin):
+"""This model is duplicated in backend/productms/models.py"""
+class Users(db.Model):
     __tablename__ = 'users'
 
-    id = db.Column(Integer, primary_key=True)
+    id = db.Column(Integer(), primary_key=True)
 
     first_name = db.Column(Text(), nullable=False)
     last_name = db.Column(Text(), nullable=False)
@@ -31,3 +31,12 @@ class User(db.Model, SerializerMixin):
         return f"User(name='{self.first_name} {self.last_name}', " \
                f"email='{self.email}'," \
                f" contact_number='{self.contact_number}')"
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "contact_number": self.contact_number,
+            "email": self.email,
+        }

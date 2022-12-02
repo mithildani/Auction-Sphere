@@ -15,6 +15,9 @@ const Footer = () => {
                         Created by Tanvi Sinha, Kartik Soni, Palash Rathod,
                         Shreya Maheshwari, and Nandini Mundra.
                     </p>
+                    <p>
+                        Improved by Neha Kale, Rishikesh Yelne, Mithil Dani, Vansh Mehta and Ritwik Vaidya :)
+                    </p>
                 </div>
             </div>
         </div>

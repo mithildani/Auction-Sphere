@@ -1,6 +1,6 @@
 from flask_restful import Api
 
-from users.controllers import User, UserSignup, UserLogin
+from userms.controllers import User, UserSignup, UserLogin
 
 api = Api(catch_all_404s=True, prefix='/users/api')
 
