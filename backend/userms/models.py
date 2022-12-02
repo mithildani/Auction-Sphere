@@ -31,3 +31,12 @@ class Users(db.Model):
         return f"User(name='{self.first_name} {self.last_name}', " \
                f"email='{self.email}'," \
                f" contact_number='{self.contact_number}')"
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "contact_number": self.contact_number,
+            "email": self.email,
+        }

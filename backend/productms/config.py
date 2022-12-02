@@ -23,7 +23,7 @@ class Config(object):
     MAIL_SUPPRESS_SEND = False
     TESTING = False
 
-    CACHE_REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
+    CACHE_REDIS_HOST = os.environ.get("REDIS_HOST", "127.0.0.1")
     CACHE_REDIS_PORT = os.environ.get("REDIS_PORT", "6379")
     CACHE_REDIS_URL = f'redis://{CACHE_REDIS_HOST}:{CACHE_REDIS_PORT}/0'
     CACHE_TYPE = "redis"

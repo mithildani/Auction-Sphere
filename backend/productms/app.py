@@ -52,7 +52,7 @@ def create_bid():
     user_id = request.get_json()['user_id']
     amount = request.get_json()['bidAmount']
 
-    price_cache = ProductCache(prodId = productId)
+    price_cache = ProductCache(prodId = productId, cache=cache)
     price_cache.get_configuration()
 
     price = price_cache.initial_price
@@ -62,7 +62,7 @@ def create_bid():
     if (price > (float)(amount)):
         response["message"] = "Amount less than initial price"
     else:
-        currentTime = int(datetime.utcnow().timestamp())
+        currentTime = datetime.utcnow()
         bid = Bids()
         bid.prod_id = productId
         bid.user_id = user_id
@@ -120,7 +120,9 @@ def get_all_products():
     This API lists down all the product details present in product table sorted in the descending order of date created.
     """
     instance = Product.query.order_by(Product.date.desc()).all()
-    result = list(instance)
+    result = []
+    for row in instance:
+        result.append(row.to_dict())
     response = {"result": result}
     return(response)
 
@@ -134,12 +136,10 @@ def get_product_image():
     """
     productId = request.get_json()['productID']
 
-    photo_cache = ProductCache(prodId = productId)
+    photo_cache = ProductCache(prodId = productId, cache=cache)
     photo_cache.get_configuration()
     picture = photo_cache.photo
-
-    result = list(picture)
-    response = {"result": result}
+    response = {"result": picture}
     return response
 
 
@@ -153,15 +153,18 @@ def get_product_details():
     """
     productID = request.get_json()['productID']
     instance = Product.query.filter_by(prod_id=productID).all()
-    result = list(instance)
+    products = []
+    for row in instance:
+        products.append(row.to_dict())
 
-    instance = Users.query.join(Bids). \
+    instance = Bids.query.join(Users, Users.id==Bids.user_id). \
         with_entities(Users.first_name, Users.last_name, Bids.bid_amount). \
         filter(Bids.prod_id == productID). \
         order_by(Bids.bid_amount.desc())[:10]
-    topbids = list(instance)
-
-    response = {"product": result, "bids": topbids}
+    topbids = []
+    for row in instance:
+        topbids.append(dict(row))
+    response = {"product": products, "bids": topbids}
     return response
 
 
@@ -178,14 +181,23 @@ def update_product_details():
     productName = request.get_json().get('productName')
     initialPrice = request.get_json().get('initialPrice')
     deadlineDate = request.get_json().get('deadlineDate')
+    deadlineDate = datetime.strptime(deadlineDate, "%Y-%m-%d")
     description = request.get_json().get('description')
     increment = request.get_json().get('increment')
 
-    instance = Product.query.filter_by(prod_id=productId).first()
-    instance.update(dict(name=productName, initial_price=initialPrice,
-                         deadline_date=deadlineDate, increment=increment, description=description))
+    instance = Product.query.filter_by(prod_id=productId) \
+        .update(
+            dict(
+                name=productName, 
+                initial_price=initialPrice,
+                deadline_date=deadlineDate, 
+                increment=increment, 
+                description=description
+            )
+        )
+    db.session.commit()
 
-    productcache = ProductCache(prodId = productId)
+    productcache = ProductCache(prodId = productId, cache=cache)
     productcache.initial_price = initialPrice
     productcache.name = productName
     productcache.deadline_date = deadlineDate
@@ -213,16 +225,18 @@ def get_landing_page():
     offset = ((pageNum-1)*pageSize)
     response = {}
 
-    instance = Product.query \
+    instance = Product.query.join(Users, Users.id == Product.seller_id) \
         .with_entities(Product.prod_id, Product.name, 
-                        Product.seller.email, Product.initial_price, 
+                        Users.email, Product.initial_price, 
                         Product.date, Product.increment, 
                         Product.deadline_date, Product.description
                         ) \
         .order_by(Product.date.desc()) \
         .limit(pageSize) \
         .offset(offset)
-    products = list(instance)
+    products = []
+    for row in instance:
+        products.append(dict(row))
     num=Product.query.count()
     totalProducts = num
 
@@ -230,13 +244,10 @@ def get_landing_page():
     highestBids = []
     names = []
     for product in products:
-        instance=Bids.query().with_entities(Bids.email, func.max(Bids.bid_amount)).filter_by(prod_id=product[0]).scalar()
-        result = list(instance)
-        if(result[0][0] != None):
-            result = result[0]
-            highestBids.append(result[1])
-            ins=Users.query.with_entities(Users.first_name, Users.last_name).filter_by(email=result[0])
-            names.append(list(ins[0]))
+        result = Bids.query.join(Users, Users.id==Bids.user_id).filter(Bids.prod_id==product.get('prod_id')).order_by(Bids.bid_amount.desc()).limit(1).first()
+        if(result is not None):
+            highestBids.append(result.bid_amount)
+            names.append(result.user.first_name)
         else:
             highestBids.append(-1)
             names.append("N/A")
@@ -246,7 +257,6 @@ def get_landing_page():
         "names": names, 
         "total": totalProducts
     }
-    print(response)
     return jsonify(response)
 
 
@@ -254,7 +264,7 @@ def mail_job():
     with app.app_context():
         # fetch products with expired deadline, email not yet sent
         instance = Product.query \
-            .with_entities(Product.prod_id, Product.name, Product.seller_email, Product.deadline_date, Product.email_sent) \
+            .with_entities(Product.prod_id, Product.name, Product.seller.email, Product.deadline_date, Product.email_sent) \
             .filter(Product.email_sent==0, Product.deadline_date <= datetime.now().date()) \
             .order_by(Product.date.desc())
         products = list(instance)
@@ -316,6 +326,6 @@ scheduler.start()
 
 if __name__ == "__main__":
     app.debug = True
-    app.run()
+    app.run(port=3000)
 
 atexit.register(lambda: scheduler.shutdown())

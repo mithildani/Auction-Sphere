@@ -1,8 +1,8 @@
-"""Initial migration
+"""empty message
 
-Revision ID: 0b586218dc1e
+Revision ID: 695cbeae7221
 Revises: 
-Create Date: 2022-12-01 19:28:09.512756
+Create Date: 2022-12-02 00:24:27.048534
 
 """
 from alembic import op
@@ -11,7 +11,7 @@ import sqlalchemy_utils
 
 
 # revision identifiers, used by Alembic.
-revision = '0b586218dc1e'
+revision = '695cbeae7221'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -49,12 +49,12 @@ def upgrade():
     op.create_table('bids',
     sa.Column('bid_id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('prod_id', sa.Integer(), nullable=True),
-    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('bid_amount', sa.Float(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['prod_id'], ['product.prod_id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('bid_id', 'user_id'),
+    sa.PrimaryKeyConstraint('bid_id'),
     sa.UniqueConstraint('bid_id'),
     sa.UniqueConstraint('prod_id', 'user_id')
     )

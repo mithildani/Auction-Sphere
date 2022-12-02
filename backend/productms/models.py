@@ -38,6 +38,11 @@ class Users(db.Model):
         return f"User(name='{self.first_name} {self.last_name}', " \
                f"email='{self.email}'," \
                f" contact_number='{self.contact_number}')"
+               
+    def to_dict(self):
+        result = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        del result["password"]
+        return result
 
 class Product(db.Model):
     __tablename__ = 'product'
@@ -60,12 +65,18 @@ class Product(db.Model):
         db.UniqueConstraint('prod_id'),
     )
 
+    def to_dict(self):
+        result = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        del result["email_sent"]
+        return result
+
+
 
 class Bids(db.Model):
     __tablename__ = 'bids'
     bid_id = db.Column(Integer, primary_key=True, unique=True, autoincrement=True)
     prod_id = db.Column(Integer, ForeignKey(Product.prod_id))
-    user_id = db.Column(Integer, ForeignKey(Users.id), primary_key=True)
+    user_id = db.Column(Integer, ForeignKey(Users.id))
     bid_amount = db.Column(Float)
     created_at = db.Column(DateTime, default=datetime.now())
 
@@ -76,3 +87,6 @@ class Bids(db.Model):
     __table_args__ = (
         db.UniqueConstraint('prod_id', 'user_id'),
     )
+
+    def to_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}

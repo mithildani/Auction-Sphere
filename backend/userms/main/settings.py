@@ -7,8 +7,6 @@ class Config:
 
     DEBUG = False
     TESTING = False
-    PORT = 8000
-
 
 class DevelopmentConfig(Config):
 
