@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "b2e19e4b-3caa-4468-834f-4c886cf0164d",
+		"name": "auction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3292440"
+	},
+	"item": [
+		{
+			"name": "ProductMS",
+			"item": [
+				{
+					"name": "Create Bid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prodId\": 1,\n    \"user_id\": 1,\n    \"bidAmount\": 15\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{productms_url}}/bid/create",
+							"host": [
+								"{{productms_url}}"
+							],
+							"path": [
+								"bid",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productName\" : \"Gun\",\n    \"seller_id\": \"1\",\n    \"initialPrice\": \"10\",\n    \"increment\": \"2\",\n    \"photo\": \"https://ibb.co/7SpZhTs\",\n    \"description\": \"Good quality Nerf Guns\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{productms_url}}/product/create",
+							"host": [
+								"{{productms_url}}"
+							],
+							"path": [
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productID\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{productms_url}}/product/getImage",
+							"host": [
+								"{{productms_url}}"
+							],
+							"path": [
+								"product",
+								"getImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product Detail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productID\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{productms_url}}/product/getDetails",
+							"host": [
+								"{{productms_url}}"
+							],
+							"path": [
+								"product",
+								"getDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productID\": 1,\n    \"productName\": \"Gunsss\",\n    \"initialPrice\": \"10\",\n    \"deadlineDate\": \"2022-12-03\",\n    \"description\": \"Good quality Nerf Gunssss\",\n    \"increment\": \"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{productms_url}}/product/update",
+							"host": [
+								"{{productms_url}}"
+							],
+							"path": [
+								"product",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{productms_url}}/product/listAll",
+							"host": [
+								"{{productms_url}}"
+							],
+							"path": [
+								"product",
+								"listAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Latest Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{productms_url}}/getLatestProducts?pageNum=1&pageSize=1",
+							"host": [
+								"{{productms_url}}"
+							],
+							"path": [
+								"getLatestProducts"
+							],
+							"query": [
+								{
+									"key": "pageNum",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserMS",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Mithil\",\n    \"lastName\": \"Dani\",\n    \"email\": \"mdani@ncsu.edu\",\n    \"contact\": \"9848109932\",\n    \"password\": \"mithil\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{userms_url}}/signup",
+							"host": [
+								"{{userms_url}}"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mdani@ncsu.edu\",\n    \"password\": \"mithil\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{userms_url}}/login",
+							"host": [
+								"{{userms_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{userms_url}}/user/1",
+							"host": [
+								"{{userms_url}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "productms_url",
+			"value": "http://127.0.0.1:3000"
+		},
+		{
+			"key": "userms_url",
+			"value": "http://127.0.0.1:5000/users/api",
+			"type": "string"
+		}
+	]
+}
