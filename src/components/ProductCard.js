@@ -27,7 +27,7 @@ import Timer from './Timer'
 const ProductCard = ({ product, maxBid, name }) => {
     const [url, setUrl] = useState(`/details/${product[0]}`)
     const [image, setImage] = useState('https://picsum.photos/900/180')
-    
+
     const fetchImage = async () => {
         try {
             const response = await axios.post(`${URL}/product/getImage`, {
@@ -45,12 +45,11 @@ const ProductCard = ({ product, maxBid, name }) => {
     return (
         <>
             <Card class="card">
-                <div className="timer">
-                    <Timer time={product[6]}/>
-                </div>
-                <CardTitle tag="h3" style={{ textAlign: 'center' }}>
+                <CardTitle tag="h3" style={{ display:'flex', flexDirection:'column',textAlign: 'center', justifyContent:'center' }}>
+                    <div className="timer">
+                        <Timer time={product[6]} />
+                    </div>
                     {product[1]}
-                    
                 </CardTitle>
                 <hr />
                 <CardImg
