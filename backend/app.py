@@ -339,7 +339,7 @@ conn = create_connection(database)
 if conn is not None:
     #create_table(conn, drop_users_table)
     create_table(conn, create_users_table)
-    create_table(conn, drop_product_table)
+    # create_table(conn, drop_product_table)
     create_table(conn, create_product_table)
     # create_table(conn, drop_bids_table)
     create_table(conn, create_bids_table)
