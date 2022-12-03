@@ -18,6 +18,7 @@ import axios from 'axios'
 import { URL } from '../global'
 import '../css/card.css'
 import { toast } from 'react-toastify'
+import Timer from './Timer'
 
 /**
  * This component displays a single product card on the products page.
@@ -44,8 +45,12 @@ const ProductCard = ({ product, maxBid, name }) => {
     return (
         <>
             <Card class="card">
+                <div className="timer">
+                    <Timer time={product[6]}/>
+                </div>
                 <CardTitle tag="h3" style={{ textAlign: 'center' }}>
                     {product[1]}
+                    
                 </CardTitle>
                 <hr />
                 <CardImg

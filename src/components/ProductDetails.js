@@ -66,7 +66,7 @@ const ProductDetails = () => {
             >
                 {product && (
                     <div>
-                        <Timer product={product}/>
+                        <Timer time={product[7]}/>
                         <CardTitle tag="h3" style={{ textAlign: 'center' }}>
                             {product[1]}{' '}
                         </CardTitle>
