@@ -1,27 +1,38 @@
-# Getting Started with Flask Locally
+# Getting Started with the backend
 
-### Before we start the Python project, we will create a virtual environment
-Windows: `py -3 -m venv venv` <br>
-Mac: `python3 -m venv venv`
+## Users Microservice
 
-### Activate the virtual env
-Windows: `venv\Scripts\activate` <br>
-Mac: `venv/bin/activate`  
- 
- ** TROUBLESHOOTING: If permission denied error/virtual env doesn't get activated, try the below** 
- 
- Windows: 
- `. venv/Scripts/activate`<br>
- Mac: 
- `. venv/bin/activate` or `source venv/bin/activate`
+### Pre-requisites
+- Python 3
+- Pip
 
-### Install requirements
-Windows: `pip install -e .`<br>
-Mac: `pip3 install -e .`
+### Steps to run Users Microservice Locally
+- Create a virtual environment
+```shell script
+cd backend
+python3 -m venv venv
+``` 
+- Activate the virtual environment
+```shell script
+venv/bin/activate
+```
+- Install required Python packages
+```shell script
+pip3 install -r requirements.txt
+```
+- Initialize the database
+```shell script
+flask --app users db init
+```
+- Run the migration
+```shell script
+flask --app users db upgrade
+```
+- Run the microservice
+```shell script
+flask --app users run
+```
 
-### To run project
-`flask --app app run`
-
-### Reference-
-https://flask.palletsprojects.com/en/2.2.x/quickstart/ <br />
-https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-python-and-flask-development-environment
+### References
+- https://flask.palletsprojects.com/en/2.2.x/quickstart/
+- https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-python-and-flask-development-environment
