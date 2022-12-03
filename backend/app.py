@@ -176,13 +176,13 @@ def create_product():
     increment = request.get_json()['increment']
     photo = request.get_json()['photo']
     description = request.get_json()['description']
-    
+    biddingTime = request.get_json()['biddingTime']
     conn = create_connection(database)
     c = conn.cursor()
     response = {}
     currentTime = int(datetime.utcnow().timestamp())
     currentTime = datetime.fromtimestamp(currentTime)
-    deadlineDate = currentTime + timedelta(days = 7)
+    deadlineDate = currentTime + timedelta(days = int(biddingTime))
     print(deadlineDate)
 
     query = "INSERT INTO product(name, seller_email, photo, initial_price, date, increment, deadline_date, description, email_sent) VALUES (?,?,?,?,?,?,?,?,?)"
@@ -339,7 +339,7 @@ conn = create_connection(database)
 if conn is not None:
     #create_table(conn, drop_users_table)
     create_table(conn, create_users_table)
-    # create_table(conn, drop_product_table)
+    create_table(conn, drop_product_table)
     create_table(conn, create_product_table)
     # create_table(conn, drop_bids_table)
     create_table(conn, create_bids_table)
@@ -347,6 +347,7 @@ if conn is not None:
     create_table(conn, create_table_claims)
 else:
     print("Error! Cannot create the database connection")
+   
 
 def mail_job():
     # fetch products with expired deadline, email not yet sent
