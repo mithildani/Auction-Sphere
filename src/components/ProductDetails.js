@@ -14,6 +14,7 @@ import {
     CardSubtitle,
 } from 'reactstrap'
 import axios from 'axios'
+import moment from 'moment'
 
 import AddBid from './AddBid'
 import Footer from './Footer'
@@ -32,6 +33,10 @@ const ProductDetails = () => {
     const [showButton, setShowButton] = useState(false)
     const [bids, setBids] = useState([])
     const [product, setProduct] = useState(null)
+    const [endTime, setEndTime] = useState()
+    const now = moment()
+    
+    console.log("first",now, endTime)
     const getProductDetails = async () => {
         try {
             let data = await axios.post(`${URL}/product/getDetails`, {
@@ -40,6 +45,7 @@ const ProductDetails = () => {
             console.log(data)
             setBids(data.data.bids)
             setProduct(data.data.product[0])
+            setEndTime(data.data.product[0][7])
         } catch (error) {
             toast.error('Something went wrong')
         }
@@ -66,7 +72,7 @@ const ProductDetails = () => {
             >
                 {product && (
                     <div>
-                        <Timer time={product[7]}/>
+                        <Timer time={endTime}/>
                         <CardTitle tag="h3" style={{ textAlign: 'center' }}>
                             {product[1]}{' '}
                         </CardTitle>
@@ -117,6 +123,7 @@ const ProductDetails = () => {
                                         onClick={() =>
                                             setShowAddBid(!showAddBid)
                                         }
+                                        disabled={endTime>now}
                                     >
                                         {showAddBid ? (
                                             <span>-</span>
