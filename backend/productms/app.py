@@ -152,10 +152,17 @@ def get_product_details():
     It also lists down top ten bids of a particular product.
     """
     productID = request.get_json()['productID']
-    instance = Product.query.filter_by(prod_id=productID).all()
+    instance = Product.query.join(Users, Users.id == Product.seller_id) \
+        .with_entities(Product.prod_id, Product.name, 
+                        Product.photo, Product.seller_id,
+                        Users.email, Product.initial_price, 
+                        Product.date, Product.increment, 
+                        Product.deadline_date, Product.description
+                        ) \
+        .filter_by(prod_id=productID).all()
     products = []
     for row in instance:
-        products.append(row.to_dict())
+        products.append(dict(row))
 
     instance = Bids.query.join(Users, Users.id==Bids.user_id). \
         with_entities(Users.first_name, Users.last_name, Bids.bid_amount). \

@@ -9,7 +9,7 @@ import { toast } from 'react-toastify'
  * This component lets you bid on a product you like.
  */
 
-const AddBid = ({ productId, sellerEmail }) => {
+const AddBid = ({ productId, sellerId }) => {
     const [amount, setAmount] = useState(0)
     const handleChange = (event) => {
         setAmount(event.target.value)
@@ -20,13 +20,14 @@ const AddBid = ({ productId, sellerEmail }) => {
         let response
         try {
             if (typeof window !== 'undefined') {
-                if (localStorage.getItem('email') === sellerEmail) {
+                if (localStorage.getItem('user_id') == sellerId) {
                     toast.error('Cannot bid on your own product!')
                 } else {
                     response = await axios.post(`${ProductMS_BaseURL}/bid/create`, {
                         bidAmount: amount,
                         prodId: productId,
                         email: localStorage.getItem('email'),
+                        user_id: localStorage.getItem('user_id')
                     })
                     window.location.reload(false)
                     console.log(response)
