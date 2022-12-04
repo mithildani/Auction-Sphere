@@ -82,7 +82,7 @@ const ProductDetails = () => {
                             style={{ width: '50%' }}
                         />
                         <CardText>
-                            <p>Seller:&nbsp;&nbsp;{product.seller_id} </p>
+                            <p>Seller:&nbsp;&nbsp;{product.email} </p>
                             <p>
                                 Minimum price: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 {product.initial_price}${' '}
@@ -106,9 +106,9 @@ const ProductDetails = () => {
                                     {bids.map((bid, index) => (
                                         <div key={index}>
                                             <p>
-                                                Bidder: {bid[0] + ' ' + bid[1]}
+                                                Bidder: {bid.first_name + ' ' + bid.last_name}
                                             </p>
-                                            <p>Bid amount: ${bid[2]}</p>
+                                            <p>Bid amount: ${bid.bid_amount}</p>
                                         </div>
                                     ))}
                                 </>
@@ -134,7 +134,7 @@ const ProductDetails = () => {
                                     {showAddBid && (
                                         <AddBid
                                             productId={id}
-                                            sellerEmail={product.seller_id}
+                                            sellerId={product.seller_id}
                                         />
                                     )}
                                 </>
