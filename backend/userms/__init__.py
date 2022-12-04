@@ -1,13 +1,7 @@
-import os
-
-from flask import Flask
-
 from userms import main
+from userms.app import app
 from userms.main.api import api
 from userms.main.database import db, migration
-
-app = Flask(__name__)
-app.config.from_object(main.settings[os.environ.get('APPLICATION_ENV', 'default')])
 
 from userms import models
 
