@@ -8,3 +8,16 @@
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
+
+.card-title{
+  align-items: center;
+  justify-content: center;
+}
+.timer{
+  /* text-align: center; */
+  background-color: orange;
+  width: 70%;
+  border-radius: 5px;
+  padding: 1em 0.3em;
+  font-size: 0.3em;
+}

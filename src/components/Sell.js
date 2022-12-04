@@ -3,7 +3,7 @@ import { Form, FormGroup, Label, Input, Navbar, Button } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 import Navv from './Navv'
 import Footer from './Footer'
-import { URL } from '../global'
+import { ProductMS_BaseURL } from '../global'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -34,13 +34,13 @@ const Sell = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         if (typeof window !== 'undefined')
-            formData.sellerEmail = localStorage.getItem('email')
+            formData.seller_id = localStorage.getItem('user_id')
 
         formData.photo = encodedImages
         console.log(formData)
         let response
         try {
-            response = await axios.post(`${URL}/product/create`, formData)
+            response = await axios.post(`${ProductMS_BaseURL}/product/create`, formData)
             console.log('POST RESPONSE')
             console.log(response)
             setFormData({

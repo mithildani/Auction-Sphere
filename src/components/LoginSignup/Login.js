@@ -14,7 +14,7 @@ import {
 import axios from 'axios'
 import Navv from '../Navv'
 import Footer from '../Footer'
-import { URL } from '../../global'
+import { UserMS_BaseURL } from '../../global'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -31,7 +31,7 @@ const Login = () => {
         console.log(formData)
         let response
         try {
-            response = await axios.post(`${URL}/login`, formData)
+            response = await axios.post(`${UserMS_BaseURL}/login`, formData)
             console.log(response)
             // Set local storage
             if (response.data.message === 'Logged in successfully') {
@@ -39,6 +39,7 @@ const Login = () => {
                 toast.success('Login success!')
                 localStorage.setItem('auth', 'true')
                 localStorage.setItem('email', formData.email)
+                localStorage.setItem('user_id', response.data.user_id)
                 navigate('/products')
             } else {
                 toast.error('Invalid credentials!')
