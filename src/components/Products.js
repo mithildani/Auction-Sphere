@@ -3,7 +3,7 @@ import Footer from './Footer'
 import Navv from './Navv'
 import ProductCard from './ProductCard'
 import Pagination from './Pagination'
-import { URL } from '../global'
+import { ProductMS_BaseURL } from '../global'
 import axios from 'axios'
 import { CardGroup, Row } from 'reactstrap'
 import { toast } from 'react-toastify'
@@ -26,7 +26,7 @@ const Products = () => {
 
     const getProducts = async (page) => {
         try {
-            let data = await axios.get(`${URL}/getLatestProducts?pageSize=${PageSize}&pageNum=${page}`)
+            let data = await axios.get(`${ProductMS_BaseURL}/getLatestProducts?pageSize=${PageSize}&pageNum=${page}`)
             setApiData(data.data)
             setTotalCount(data.data.total)
         } catch (error) {

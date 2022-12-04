@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Form, FormGroup, Label, Input, Navbar, Button } from 'reactstrap'
 import axios from 'axios'
-import { URL } from '../global'
+import { ProductMS_BaseURL } from '../global'
 import PropTypes from 'prop-types'
 import { toast } from 'react-toastify'
 
@@ -23,7 +23,7 @@ const AddBid = ({ productId, sellerEmail }) => {
                 if (localStorage.getItem('email') === sellerEmail) {
                     toast.error('Cannot bid on your own product!')
                 } else {
-                    response = await axios.post(`${URL}/bid/create`, {
+                    response = await axios.post(`${ProductMS_BaseURL}/bid/create`, {
                         bidAmount: amount,
                         prodId: productId,
                         email: localStorage.getItem('email'),
