@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom'
 import Navv from '../Navv'
 import Footer from '../Footer'
 import axios from 'axios'
-import { URL } from '../../global'
+import { UserMS_BaseURL } from '../../global'
 import { toast } from 'react-toastify'
 
 /**
@@ -34,7 +34,7 @@ const Signup = () => {
         else {
             console.log(formData)
             try {
-                let response = await axios.post(`${URL}/signup`, formData)
+                let response = await axios.post(`${UserMS_BaseURL}/signup`, formData)
                 console.log(response)
                 navigate('/login')
                 // alert("Form submitted successfully I think");

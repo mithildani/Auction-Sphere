@@ -14,12 +14,14 @@ import {
     CardSubtitle,
 } from 'reactstrap'
 import axios from 'axios'
+import moment from 'moment'
 
 import AddBid from './AddBid'
 import Footer from './Footer'
 import Navv from './Navv'
-import { URL } from '../global'
+import { ProductMS_BaseURL } from '../global'
 import { toast } from 'react-toastify'
+import Timer from './Timer'
 
 /**
  * This component is the details page of a single product.
@@ -31,14 +33,18 @@ const ProductDetails = () => {
     const [showButton, setShowButton] = useState(false)
     const [bids, setBids] = useState([])
     const [product, setProduct] = useState(null)
+    const [endTime, setEndTime] = useState()
+    const now = moment()
+    
     const getProductDetails = async () => {
         try {
-            let data = await axios.post(`${URL}/product/getDetails`, {
+            let data = await axios.post(`${ProductMS_BaseURL}/product/getDetails`, {
                 productID: id,
             })
             console.log(data)
             setBids(data.data.bids)
             setProduct(data.data.product[0])
+            setEndTime(data.data.product[0].deadline_date)
         } catch (error) {
             toast.error('Something went wrong')
         }
@@ -65,33 +71,34 @@ const ProductDetails = () => {
             >
                 {product && (
                     <div>
+                        <Timer time={endTime}/>
                         <CardTitle tag="h3" style={{ textAlign: 'center' }}>
-                            {product[1]}{' '}
+                            {product.name}{' '}
                         </CardTitle>
                         <hr />
                         <CardImg
-                            src={product[2]}
+                            src={product.photo}
                             className="mx-auto"
                             style={{ width: '50%' }}
                         />
                         <CardText>
-                            <p>Seller:&nbsp;&nbsp;{product[3]} </p>
+                            <p>Seller:&nbsp;&nbsp;{product.seller_id} </p>
                             <p>
                                 Minimum price: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                {product[4]}${' '}
+                                {product.initial_price}${' '}
                             </p>
-                            <p>Date posted: &nbsp;&nbsp;&nbsp;{product[5]} </p>
+                            <p>Date posted: &nbsp;&nbsp;&nbsp;{product.date} </p>
                             <p>
                                 Bidding window closes on: &nbsp;&nbsp;&nbsp;
-                                {product[7]}{' '}
+                                {product.deadline_date}{' '}
                             </p>
                             <p>
                                 Minimum price increment to beat a bid:
                                 &nbsp;&nbsp;&nbsp;
-                                {product[6]}${' '}
+                                {product.increment}${' '}
                             </p>
                             <p>
-                                Product Description: &nbsp;&nbsp;{product[8]}{' '}
+                                Product Description: &nbsp;&nbsp;{product.description}{' '}
                             </p>
                             {bids.length > 0 ? (
                                 <>
@@ -115,6 +122,7 @@ const ProductDetails = () => {
                                         onClick={() =>
                                             setShowAddBid(!showAddBid)
                                         }
+                                        disabled={endTime>now}
                                     >
                                         {showAddBid ? (
                                             <span>-</span>
@@ -126,7 +134,7 @@ const ProductDetails = () => {
                                     {showAddBid && (
                                         <AddBid
                                             productId={id}
-                                            sellerEmail={product[3]}
+                                            sellerEmail={product.seller_id}
                                         />
                                     )}
                                 </>
