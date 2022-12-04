@@ -15,7 +15,7 @@ import {
 } from 'reactstrap'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import { URL } from '../global'
+import { ProductMS_BaseURL } from '../global'
 import '../css/card.css'
 import { toast } from 'react-toastify'
 
@@ -24,15 +24,17 @@ import { toast } from 'react-toastify'
  */
 
 const ProductCard = ({ product, maxBid, name }) => {
-    const [url, setUrl] = useState(`/details/${product[0]}`)
+    const [url, setUrl] = useState(`/details/${product.prod_id}`)
     const [image, setImage] = useState('https://picsum.photos/900/180')
     
     const fetchImage = async () => {
         try {
-            const response = await axios.post(`${URL}/product/getImage`, {
-                productID: product[0],
+            console.log(product);
+            const response = await axios.post(`${ProductMS_BaseURL}/product/getImage`, {
+                productID: product.prod_id,
             })
-            setImage(response.data.result[0])
+            console.log(response);
+            setImage(response.data.result)
         } catch (e) {
             toast.error(e)
         }
@@ -45,7 +47,7 @@ const ProductCard = ({ product, maxBid, name }) => {
         <>
             <Card class="card">
                 <CardTitle tag="h3" style={{ textAlign: 'center' }}>
-                    {product[1]}
+                    {product.name}
                 </CardTitle>
                 <hr />
                 <CardImg
@@ -55,8 +57,8 @@ const ProductCard = ({ product, maxBid, name }) => {
                 />
                 {/* <img alt="Sample" src={image} /> */}
                 <CardBody>
-                    <CardText>Seller: {product[2]}</CardText>
-                    <CardText>Minimum price: ${product[3]}</CardText>
+                    <CardText>Seller: {product.email}</CardText>
+                    <CardText>Minimum price: ${product.initial_price}</CardText>
                     <CardText>
                         Current highest bids: ${maxBid === -1 ? 'N/A' : maxBid}
                     </CardText>
