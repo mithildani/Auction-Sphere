@@ -27,7 +27,7 @@ On the products page, people can view all the latest items being put up for sale
   <br/>
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" height="40" /> Python
   <br/>
-  <img src="https://commons.wikimedia.org/wiki/File:Postgresql_elephant.svg" width="40" height="40" /> PostgreSQL
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" width="40" height="40" /> PostgreSQL
 
 
 ## Project documentation
