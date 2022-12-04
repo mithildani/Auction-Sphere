@@ -36,7 +36,6 @@ const ProductDetails = () => {
     const [endTime, setEndTime] = useState()
     const now = moment()
     
-    console.log("first",now, endTime)
     const getProductDetails = async () => {
         try {
             let data = await axios.post(`${ProductMS_BaseURL}/product/getDetails`, {
@@ -45,7 +44,7 @@ const ProductDetails = () => {
             console.log(data)
             setBids(data.data.bids)
             setProduct(data.data.product[0])
-            setEndTime(data.data.product[0][7])
+            setEndTime(data.data.product[0].deadline_date)
         } catch (error) {
             toast.error('Something went wrong')
         }

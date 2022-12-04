@@ -27,14 +27,14 @@ import Timer from './Timer'
 const ProductCard = ({ product, maxBid, name }) => {
     const [url, setUrl] = useState(`/details/${product.prod_id}`)
     const [image, setImage] = useState('https://picsum.photos/900/180')
-
+    // console.log(`${product.deadline_date}`)
     const fetchImage = async () => {
         try {
-            console.log(product);
+            console.log(product)
             const response = await axios.post(`${ProductMS_BaseURL}/product/getImage`, {
                 productID: product.prod_id,
             })
-            console.log(response);
+            console.log("res",response);
             setImage(response.data.result)
         } catch (e) {
             toast.error(e)
@@ -49,9 +49,9 @@ const ProductCard = ({ product, maxBid, name }) => {
             <Card class="card">
                 <CardTitle tag="h3" style={{ display:'flex', flexDirection:'column',textAlign: 'center', justifyContent:'center' }}>
                     <div className="timer">
-                        <Timer time={product[6]} />
+                        <Timer time={`${product.deadline_date}`} />
                     </div>
-                    {product[1]}
+                    {product.name}
                 </CardTitle>
                 <hr />
                 <CardImg

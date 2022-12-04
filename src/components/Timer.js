@@ -10,14 +10,12 @@ const Timer = ({ time }) => {
     const currTime = moment()
     useEffect(() => {
         let now = moment()
-        let end = moment(time, 'YYYY-MM-DD hh:mm')
-
+        let end = moment(time)
         let diff = moment.duration(end.diff(now))._data
         let d = diff.days
         let h = diff.hours
         let m = diff.minutes
         let s = diff.seconds
-
        
         let dd = ('0' + d).slice(-2)
         let hh = ('0' + h).slice(-2)
