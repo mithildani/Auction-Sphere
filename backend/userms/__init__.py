@@ -1,10 +1,11 @@
+from flask import request
+from flask_cors import CORS
+
 from userms import main
+from userms import models
 from userms.app import app
 from userms.main.api import api
 from userms.main.database import db, migration
-from flask_cors import CORS
-
-from userms import models
 
 CORS(app, support_credentials=True)
 

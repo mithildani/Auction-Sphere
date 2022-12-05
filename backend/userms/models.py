@@ -3,7 +3,6 @@ from sqlalchemy_utils import EmailType
 
 from userms.main.database import db
 
-
 """This model is duplicated in backend/productms/models.py"""
 class Users(db.Model):
     __tablename__ = 'users'
