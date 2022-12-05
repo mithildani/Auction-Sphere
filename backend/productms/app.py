@@ -154,7 +154,10 @@ def get_product_details():
     This returns all the details from from the product table.
     It also lists down top ten bids of a particular product.
     """
-    productID = request.get_json()['productID']
+    productId = None
+    if type(request) is Request:
+        data = request.get_json()
+        productId = data['productID']
     instance = Product.query.join(Users, Users.id == Product.seller_id) \
         .with_entities(Product.prod_id, Product.name, 
                         Product.photo, Product.seller_id,
@@ -162,14 +165,14 @@ def get_product_details():
                         Product.date, Product.increment, 
                         Product.deadline_date, Product.description
                         ) \
-        .filter_by(prod_id=productID).all()
+        .filter_by(prod_id=productId).all()
     products = []
     for row in instance:
         products.append(dict(row))
 
     instance = Bids.query.join(Users, Users.id==Bids.user_id). \
         with_entities(Users.first_name, Users.last_name, Bids.bid_amount). \
-        filter(Bids.prod_id == productID). \
+        filter(Bids.prod_id == productId). \
         order_by(Bids.bid_amount.desc())[:10]
     topbids = []
     for row in instance:
@@ -230,8 +233,12 @@ def get_landing_page():
     If there is no such bid on the product, -1 is appended to the list.
     """
 
-    pageNum = int(request.args.get('pageNum'))
-    pageSize = int(request.args.get('pageSize'))
+    pageNum = 1
+    pageSize = 10
+    if type(request) is Request:
+        pageNum = int(request.args.get('pageNum'))
+        pageSize = int(request.args.get('pageSize'))
+
     offset = ((pageNum-1)*pageSize)
     response = {}
 
@@ -256,6 +263,7 @@ def get_landing_page():
     for product in products:
         result = Bids.query.join(Users, Users.id==Bids.user_id).filter(Bids.prod_id==product.get('prod_id')).order_by(Bids.bid_amount.desc()).limit(1).first()
         if(result is not None):
+            print("mithilll: ", result)
             highestBids.append(result.bid_amount)
             names.append(result.user.first_name)
         else:
@@ -267,7 +275,9 @@ def get_landing_page():
         "names": names, 
         "total": totalProducts
     }
-    return jsonify(response)
+    if type(request) is Request:
+        return jsonify(response)
+    return response
 
 
 def mail_job():
