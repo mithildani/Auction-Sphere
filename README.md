@@ -1,3 +1,18 @@
+[![GitHub](https://img.shields.io/github/license/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/issues?q=is%3Aissue+is%3Aclosed)
+![GitHub forks](https://img.shields.io/github/forks/kartikson1/Auction-Sphere?style=social)
+[![DOI](https://zenodo.org/badge/545100230.svg)](https://zenodo.org/badge/latestdoi/545100230)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kartikson1/Auction-Sphere/Running%20Code%20Coverage)](https://github.com/kartikson1/Auction-Sphere/actions)
+[![GitHub contributors](https://img.shields.io/github/contributors/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/graphs/contributors)
+[![GitHub last commit](https://img.shields.io/github/last-commit/kartikson1/Auction-Sphere)](https://github.com/kartikson1/Auction-Sphere/commits/main)
+![GitHub language count](https://img.shields.io/github/languages/count/kartikson1/Auction-Sphere)
+![GitHub top language](https://img.shields.io/github/languages/top/kartikson1/Auction-Sphere)
+
+[![codecov](https://codecov.io/github/kartikson1/Auction-Sphere/branch/main/graph/badge.svg?token=eucr4X9Mtx)](https://codecov.io/github/kartikson1/Auction-Sphere)
+
+
+
 # Auction-Sphere
 
 Repository for CSC 510 Software Engineering project 2, created by Group 14: Mithil Dani, Neha Kale, Rishikesh Yelne, Ritwik Vaidya, Vansh Mehta and Pradyumna Khawas
@@ -58,7 +73,7 @@ https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/inde
 ## Roadmap
 We have a lot planned for the future! Completed tasks and future enhancements can be found [here](https://github.com/users/kartikson1/projects/1/views/1)
 
-## Group-3
+## Group-14
 
 [Mithil Dani](https://github.com/mithildani)
 
