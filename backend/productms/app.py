@@ -1,5 +1,6 @@
 import os
 from urllib.request import Request
+from models import Users
 from models import Product, Bids, db
 from datetime import datetime, timedelta
 from flask import Flask, request, jsonify
@@ -14,8 +15,6 @@ from flask_mail import Mail, Message as MailMessage
 from flask_migrate import Migrate
 
 import sys
-sys.path.append("..")
-from userms.models import Users
 
 
 app = Flask(__name__)

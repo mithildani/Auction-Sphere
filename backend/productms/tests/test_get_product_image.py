@@ -1,12 +1,8 @@
-from unittest.mock import PropertyMock
-import app
 from app import get_product_image
-from tests.mockmodels import mock_get_sqlalchemy, request_context
-import flask
+from tests.mockmodels import request_context
 
 
 def test_get_image(
-    mock_get_sqlalchemy,
     mocker,
     request_context
 ):
