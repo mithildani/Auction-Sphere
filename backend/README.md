@@ -26,11 +26,17 @@ flask --app userms db init
 ```
 - Run the migration
 ```shell script
+flask --app userms db migrate
 flask --app userms db upgrade
 ```
 - Run the microservice
 ```shell script
 flask --app userms run
+```
+
+- Running the Pytest
+```shell script
+pytest userms/tests
 ```
 
 ### References
