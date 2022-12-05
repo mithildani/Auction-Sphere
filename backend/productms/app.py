@@ -1,4 +1,5 @@
 import os
+from urllib.request import Request
 from models import Product, Bids, db
 from datetime import datetime, timedelta
 from flask import Flask, request, jsonify
@@ -134,8 +135,11 @@ def get_product_image():
     This API is used to get image of the product on the basis of productId extracted from the json.
     This returns photo from the product table.
     """
-    productId = request.get_json()['productID']
-
+    productId = None
+    if type(request) is Request:
+        data = request.get_json()
+        productId = data['productID']
+        
     photo_cache = ProductCache(prodId = productId, cache=cache)
     photo_cache.get_configuration()
     picture = photo_cache.photo

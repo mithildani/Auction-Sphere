@@ -1,12 +1,27 @@
 import pytest
 
 from models import Users, Product, Bids
-
+from app import app
 
 @pytest.fixture
 def mock_get_sqlalchemy(mocker):
     mock = mocker.patch("flask_sqlalchemy.model._QueryProperty.__get__").return_value = mocker.Mock()
     return mock
+
+@pytest.fixture
+def mock_request(mocker):
+    mock = mocker.patch("flask.request").return_value = mocker.Mock()
+    return mock
+
+@pytest.fixture()
+def request_context():
+
+    # other setup can go here
+    return app.test_request_context
+
+    # clean up / reset resources here
+
+
 
 
 @pytest.fixture
