@@ -73,6 +73,73 @@ https://github.com/kartikson1/Auction-Sphere/blob/main/coverage/lcov-report/inde
 ## Roadmap
 We have a lot planned for the future! Completed tasks and future enhancements can be found [here](https://github.com/users/kartikson1/projects/1/views/1)
 
+## Improvements
+
+We have focused on multiple aspects to improve the project, following are few aspects which we have enhanced:
+
+### 1. Performance
+In the first phase of the project, the products were listed on the webpage by fetching all available products in the database. This is not a **scalable** option. If we add about 10000 products in the database, the performance of the application will be drastically affected. 
+Following is the screenshot of the network and memory tabs of the browser while loading 10000 records form the database:
+
+<img src="./docs/images/BadPerformance.jpg">
+
+The API endpoint requires ~35 seconds to fetch all records and the size of the packet is over 1Mb. 
+
+Browser Memory Consumption: 
+
+<img src="./docs/images/HighMemory.jpg" width="300" height="200">
+
+
+**The Fix : Pagination**
+
+We have implemented a paginated endpoint to fetch only 10 records at a time and the user can traverse through the pages using a pagination component. This drastically reduces the loading time of the page and also requires lower packet size to be transferred over the network.
+
+Following is the screenshot of the network and memory tabs of the browser while loading 10000 records form the database:
+
+<img src="./docs/images/BetterPerformance.jpg">
+
+With the paginated API endpoint, it requires only 114ms to fetch 10 records and the size of the packet is a mere 2.5kB. 
+
+Browser Memory Consumption: 
+
+<img src="./docs/images/LowMemory.jpg" width="300" height="200">
+
+In comparison, following are the improvement metrics in terms of Performance:
+
+Metric | Before | After | Improvement % 
+-- | -- | -- | --
+Time | 35 seconds | 114 ms | 300x better  
+Size | 1.1Mb | 2.5kB | 440x better 
+Memory | 203Mb | 12.3Mb | 16x better
+
+
+### 2. Caching
+We have used REDIS cache to improve the performance of API endpoints like fetching images of the products and to fetch the initial price of the product while creating a bid. These data are not subject to major updates and whenever the image or the base price of a product is updated, we also update the cache configuration if present. 
+
+REDIS cache drastically reduces the latency of network calls. For example, if we compare the time taken to load the images of products on the browser's network tab:
+
+1. Before Caching
+
+<img src="./docs/images/ImageCache_Before.jpg">
+
+To fetch the image for a product, the API takes ~500ms as seen above in the network tab. 
+
+The time taken for the product does not improve on subsequent calls and hence has a lower performance overall.
+
+2. After Caching
+
+<img src="./docs/images/ImageCache_After.jpg">
+
+As seen in the above image, all subsequent calls take ~75ms on an average to fetch the product's image from cache. 
+
+This is a significant improvement in performance and can be evaluated as follows:
+
+Metric | Before | After | Improvement % 
+-- | -- | -- | --
+Time | 500ms | 75ms | 6.6x better  
+Size | 300kB | 4kB | 75x better 
+
+
 ## Group-14
 
 [Mithil Dani](https://github.com/mithildani)
