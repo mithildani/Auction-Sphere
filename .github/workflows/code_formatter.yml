@@ -2,6 +2,7 @@ name: Format
 on:
   pull_request:
     branches: [main]
+  push:
 jobs:
   format:
     runs-on: ubuntu-latest
@@ -19,3 +20,34 @@ jobs:
         with:
           commit_message: Apply formatting changes
           branch: ${{ github.head_ref }}
+          
+  check-python-style:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Python Style Checker
+      uses: andymckay/pycodestyle-action@0.1.3
+  lint_python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+      - run: pip install bandit black codespell flake8 isort mypy pytest pyupgrade safety
+      - run: bandit --recursive --skip B101 . || true  # B101 is assert statements
+      - run: black --check . || true
+      - run: codespell || true  # --ignore-words-list="" --skip=""
+      - run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      - run: flake8 . --count --exit-zero --max-complexity=10 --max-line-length=88 --show-source --statistics
+      - run: isort --check-only --profile black . || true
+      - run: pip install -r requirements.txt || true
+      - run: mypy --install-types --non-interactive . || true
+      - run: pytest . || true
+      - run: pytest --doctest-modules . || true
+      - run: shopt -s globstar && pyupgrade --py36-plus **/*.py || true
+      - run: safety check
+  black_code_formatter:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Black Code Formatter
+      uses: lgeiger/black-action@v1.0.1
+      with:
+        args: ". --check"
