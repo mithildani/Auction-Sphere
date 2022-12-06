@@ -19,12 +19,8 @@
          python-version: 3.10.8
      - name: Install dependencies
        run: |
-         pip install flask
-         pip install flask-cors
-         pip install pytest-cov
-         pip install flake8 pytest
-         pip install apscheduler
-         pip install Flask-Mail
+         pip install -r backend/productms/requirements.txt
+         pip install -r backend/userms/requirements.txt
          echo requirements installed
      - name: Lint with flake8
        run: |
@@ -33,10 +29,12 @@
          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
      - name: Run the tests
+       run: |
+          pytest --cov=./ --cov-report=xml
        #run: |
        #    cd backend
        #     coverage run -m pytest test.py
      - name: Upload coverage to Codecov
-       uses: codecov/codecov-action@v1
+       uses: codecov/codecov-action@v3
        with:
-         token: ${{ secrets.CODECOV_TOKEN }}
+        token: 2ad3f844-7aa0-4238-a2c1-c9c759bcf013
