@@ -198,6 +198,17 @@ Each service can have its own tech stack.
 
 ![image](https://user-images.githubusercontent.com/54413195/205792797-fa9cb11b-208d-445d-8f04-fad09ea31126.png)
 
+### 5. Preventing SQL Injection: Raw string queries -> ORM
+The earlier version of software used raw string queries even in the signup flow. This made the system vulnerable to an SQL Injection attack as demonstrated in the video below.
+
+https://user-images.githubusercontent.com/24509876/205819484-cd151d3d-e1f6-4b2d-bdb7-756254a312fd.mp4
+
+This can be easily mitigated by using an ORM model to wrap the queries before it gets executed. This makes SQL injection impossible.
+
+<img width="879" alt="preventing_sql_injection" src="https://user-images.githubusercontent.com/24509876/205820766-6ee4740b-3bbb-47e9-826a-852a122ed707.png">
+
+
+
 ## Group-14
 
 [Mithil Dani](https://github.com/mithildani)
