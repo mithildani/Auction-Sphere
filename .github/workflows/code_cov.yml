@@ -36,3 +36,5 @@
        #     coverage run -m pytest test.py
      - name: Upload coverage to Codecov
        uses: codecov/codecov-action@v3
+       with:
+        token: 2ad3f844-7aa0-4238-a2c1-c9c759bcf013
