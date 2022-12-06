@@ -21,7 +21,10 @@ Click on the image below to view the demo video of the project
 
 [![Demo Video of the project](https://img.youtube.com/vi/AzgGo2B63z0/0.jpg)](https://www.youtube.com/watch?v=AzgGo2B63z0)
 
-[Demo Video of Improved Project](https://github.com/mithildani/Auction-Sphere/blob/main/docs/SE%20Project%202%20Video.mp4)
+
+Demo Video of Improved Project:
+
+https://user-images.githubusercontent.com/68791644/205821201-2666b9aa-a851-41a0-8c52-0406c9279c67.mp4
 
 
 ## About Auction-Sphere
