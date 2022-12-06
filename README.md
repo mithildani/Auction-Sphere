@@ -19,7 +19,10 @@ Repository for CSC 510 Software Engineering project 2, created by Group 14: Mith
 
 Click on the image below to view the demo video of the project
 
-[![Demo Vidoe of the project](https://img.youtube.com/vi/AzgGo2B63z0/0.jpg)](https://www.youtube.com/watch?v=AzgGo2B63z0)
+[![Demo Video of the project](https://img.youtube.com/vi/AzgGo2B63z0/0.jpg)](https://www.youtube.com/watch?v=AzgGo2B63z0)
+
+[![Demo Video of Improved Project](https://img.youtube.com/vi/AzgGo2B63z0/0.jpg)](https://www.youtube.com/watch?v=AzgGo2B63z0)
+
 
 ## About Auction-Sphere
 
