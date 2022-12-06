@@ -36,3 +36,4 @@ psycopg2==2.9.5
 python-dotenv==0.21.0
 flake8==6.0.0
 pytest-mock==3.10.0
+pytest==7.1.3
