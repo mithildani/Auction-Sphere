@@ -1,6 +1,6 @@
 |Notes|evidence|
 |-----|---------|
-|Video1|Very important: A **5min** video of new functionality, showing a significant delta from old. |
+|Video1|[Video link](https://user-images.githubusercontent.com/68791644/205822086-94739123-f9aa-480d-91b6-306ec4497933.mp4) |
 |Bonus: Xfold improvement| Link for: [Imporvements](https://github.com/mithildani/Auction-Sphere#improvements)|
 |Docs: what: point descriptions of each class/function (in isolation) |
 |Use of style checkers |[Style Checker](https://github.com/mithildani/Auction-Sphere/blob/main/.github/workflows/style_checker.yml)|
@@ -9,8 +9,8 @@
 |Use of code coverage |[codecov](https://codecov.io/github/kartikson1/Auction-Sphere)|
 |Other automated analysis tools|[Link](https://github.com/mithildani/Auction-Sphere/tree/main/.github/workflows)|
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others...but nevertheless, here is a track record that everyone is contributing a lot)|Evidence for balanced workload: [Contributions](https://github.com/mithildani/Auction-Sphere/graphs/contributors)|
-|Number of commits|354|
-|Number of commits: by different people|mithildani: 24, ritwik4690: 14, rishikesh-yelne: 12, therealppk: 8, nehakale8: 7, vanshmehta-7: 5|
+|Number of commits|483|
+|Number of commits: by different people|mithildani: 26, therealppk: 21, rishikesh-yelne: 16, ritwik4690: 15, nehakale8: 8, vanshmehta-7: 7|
 |Issues reports: there are **many**|[Issues](https://github.com/mithildani/Auction-Sphere/issues)|
 |Issues are being closed|[Closed Issues](https://github.com/mithildani/Auction-Sphere/issues?q=is%3Aissue+is%3Aclosed)|
 |DOI badge: exists|DOI present in Readme: [DOI](https://zenodo.org/record/7178252)|
