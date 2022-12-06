@@ -143,11 +143,13 @@ Size | 300kB | 4kB | 75x better
 ### 3. Monolith vs Microservice
 Monolithic applications:
 All applications have multiple fucntionalities that we implement for various features according to the requirements of the project. If we put up all the fucntionalities of this application in a single codebase, such type of applications are known as monolithic application. For the previous design, project was a monolithic design with all the features in one single codebase. 
+
 ![MONOLITHIC](https://user-images.githubusercontent.com/54413195/205785633-3584cf47-b713-44d7-985a-84deb216efe7.png)
 
 Microservice applications: 
 It is a method of development in which the system is broken down into smaller units that each handle a specified amount of functionality and data while interacting directly with one another using simple protocols like HTTP.
 We have changed from monolithic to microservices, we have separated the user and product services. The user microservice has all the user functionalities of login, signup and the product microservice has all the product functionalities such as creating the products, biding for the products, selling products. 
+
 ![MICROSERVICE](https://user-images.githubusercontent.com/54413195/205785444-d97dbaf5-a1bc-4dd5-9aac-a53a773f5a20.png)
 
 Disadvantages of Monolithic Application:
@@ -159,12 +161,14 @@ Not relaible.
 To adapt to a new tech stack it will be difficult. 
 
 Advantages of using two microservices over the previous monolithic service:
+Microservices are scalable.
 Very reliable. 
 Easy to manage.
 We only deploy a particular servie that has been changed. 
 Services are independent. 
 If any service fails, it won't affect all the remaining services. 
 Each service can have its own tech stack. 
+
 
 
 ## Group-14
