@@ -169,7 +169,34 @@ Services are independent.
 If any service fails, it won't affect all the remaining services. 
 Each service can have its own tech stack. 
 
+### 4. SQLite3 vs Postgresql 
+SQLite3 is not scalable and only works well with small databases. 
 
+SQLite3 is serverless and runs within the app. 
+
+SQLite - five types: Null, Text, Blob, Integer, Real.
+
+No user management with more simultaneous access.
+
+SQLite3 is fast for simple operations.
+
+SQLite3 is not fully ACID compliant.
+
+![sqlite3](https://user-images.githubusercontent.com/54413195/205792687-fb10c670-2b67-49db-a97c-fb4957434cdf.png)
+
+PostgreSQL works better with bigger databases and machines and has vertical scalability. 
+
+PostgreSQL is a client-server model where we have a separate DB server. 
+
+PostgreSQL supports every type.
+
+Handles many users very well with proper permissions. 
+
+When many complex queries are present, PostgreSQL works very well.
+
+PostgreSQL is ACID compliant. (Atomicity, COnsistency, Isolation, Durability).
+
+![image](https://user-images.githubusercontent.com/54413195/205792797-fa9cb11b-208d-445d-8f04-fad09ea31126.png)
 
 ## Group-14
 
