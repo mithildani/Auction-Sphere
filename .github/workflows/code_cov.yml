@@ -19,8 +19,8 @@
          python-version: 3.10.8
      - name: Install dependencies
        run: |
-         pip install -r backend\productms\requirements.txt
-         pip install -r backend\userms\requirements.txt
+         pip install -r backend/productms/requirements.txt
+         pip install -r backend/userms/requirements.txt
          echo requirements installed
      - name: Lint with flake8
        run: |
