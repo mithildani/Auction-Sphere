@@ -1,6 +1,8 @@
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+from userms.app import app
 
-migration = Migrate(directory='./users/migrations')
+db = SQLAlchemy(app)
+
+migration = Migrate(directory='./userms/migrations')

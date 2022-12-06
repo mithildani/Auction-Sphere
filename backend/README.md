@@ -22,15 +22,21 @@ pip3 install -r requirements.txt
 ```
 - Initialize the database
 ```shell script
-flask --app users db init
+flask --app userms db init
 ```
 - Run the migration
 ```shell script
-flask --app users db upgrade
+flask --app userms db migrate
+flask --app userms db upgrade
 ```
 - Run the microservice
 ```shell script
-flask --app users run
+flask --app userms run
+```
+
+- Running the Pytest
+```shell script
+pytest userms/tests
 ```
 
 ### References
